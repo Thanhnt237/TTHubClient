@@ -1,0 +1,25 @@
+.logo{
+  display: flex;
+  position: center;
+  width: 100px;
+  height: 50px;
+}
+
+.main-sider-container{
+
+}
+
+.main-sider{
+  width: 35%;
+
+  .button-left-sider {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.button-left-sider{
+  width: calc(100% - 50px);
+  padding: 10px 0px 10px 0px;
+  margin: auto;
+}
