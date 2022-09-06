@@ -6,20 +6,54 @@
 }
 
 .main-sider-container{
-
+  height: 100%;
 }
 
 .main-sider{
-  width: 35%;
+  display: flex;
+  width: 25%;
+  height: 100%;
+}
 
-  .button-left-sider {
-    display: flex;
-    justify-content: center;
-  }
+.sider-user-avatar-container{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.sider-user-avatar{
+  display: inline-block;
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.sider-user-information-container{
+  text-align: center;
+  padding: 0 0 20px 0;
 }
 
 .button-left-sider{
-  width: calc(100% - 50px);
-  padding: 10px 0px 10px 0px;
+  width: 100%;
+  padding: 10px 0 10px 0;
   margin: auto;
+}
+
+.sider-menu-container{
+
+}
+
+.button-left-sider{
+  text-align: left;
+  margin: 2px 0 2px 0;
+}
+
+.sider-menu-header{
+  margin: 0 10%;
+  padding: 10px 0;
+}
+
+.sider-menu-button-icon{
+  margin: 0 5%;
 }

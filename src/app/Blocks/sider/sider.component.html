@@ -1,9 +1,44 @@
 <mat-drawer-container class="main-sider-container" autosize>
-    <mat-drawer #sidenav position="start" class="main-sider" mode="over" opened>
-        <img src="../../../assets/logo.svg" alt="logo" class="logo">
-        <div class="xxx">
-            <button mat-button color="primary" class="button-left-sider">fack</button>
-        </div>
+    <mat-drawer #sidenav position="start" class="main-sider" mode="over">
+        <section>
+            <img src="../../../assets/logo.svg" alt="logo" class="logo"/>
+        </section>
+        <mat-divider></mat-divider>
+        <section>
+            <div class="sider-user-avatar-container">
+                <img class="sider-user-avatar" alt="user avatar" src="https://c4.wallpaperflare.com/wallpaper/726/754/357/kali-linux-kali-linux-nethunter-linux-unix-lenovo-hd-wallpaper-preview.jpg">
+            </div>
+            <div class="sider-user-information-container">
+                <p><strong>Cấn Tuấn Thành</strong></p>
+                <p>thanh.nt172824@sis.hust.edu.vn</p>
+            </div>
+
+        </section>
+        <mat-divider></mat-divider>
+        <section>
+            <div class="sider-menu-header">
+                <strong>Main Menu</strong>
+            </div>
+            <div class="sider-menu-container">
+                <button mat-button color="primary" class="button-left-sider">
+                    <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                    Porn Star
+                </button>
+                <button mat-button color="primary" class="button-left-sider">
+                    <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                    Most Viewed
+                </button>
+                <button mat-button color="primary" class="button-left-sider">
+                    <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                    Top trending
+                </button>
+                <button mat-button color="primary" class="button-left-sider" routerLink="/profile">
+                    <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                    Fack Profile
+                </button>
+            </div>
+
+        </section>
     </mat-drawer>
     <app-header (eventToggleSider)="sidenav.toggle()"></app-header>
     <router-outlet></router-outlet>
