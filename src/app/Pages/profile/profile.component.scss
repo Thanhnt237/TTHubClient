@@ -1,0 +1,52 @@
+.profile-top-header-container{
+  margin: 0 0 25px 0;
+}
+
+.profile-cover-photo{
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+}
+
+.profile-avatar-photo{
+  display: inline-block;
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-width: 5px;
+  border-radius: 50%;
+  border-color: white;
+  border-style: solid;
+  margin: -50px 0 0 0;
+  z-index: 1;
+}
+
+.profile-top-header-information{
+
+}
+
+.profile-top-header-name{
+  display: block;
+  text-align: center;
+}
+.profile-top-header-information-container{
+  padding: 0 0 0 0;
+  margin: 0 5%;
+  border-style: solid;
+  border-color: red;
+}
+
+.profile-content-container{
+  border-style: solid;
+  border-color: red;
+}
+
+.profile-content-left-card{
+
+}
+
+.profile-content-left-container{
+  display: block;
+}
