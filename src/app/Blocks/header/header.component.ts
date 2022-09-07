@@ -5,6 +5,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent implements OnInit {
   @Output() eventToggleSider = new EventEmitter<string>();
 

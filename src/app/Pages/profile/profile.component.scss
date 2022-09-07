@@ -8,6 +8,7 @@
   width: 100%;
   height: auto;
   max-height: 350px;
+  z-index: -1;
 }
 
 .profile-avatar-photo{
@@ -19,12 +20,10 @@
   border-radius: 50%;
   border-color: white;
   border-style: solid;
-  margin: -50px 0 0 0;
-  z-index: 1;
+  z-index: 99;
 }
 
 .profile-top-header-information{
-
 }
 
 .profile-top-header-name{
@@ -33,20 +32,39 @@
 }
 .profile-top-header-information-container{
   padding: 0 0 0 0;
-  margin: 0 5%;
+  margin: -100px 5% 0 5%;
   border-style: solid;
   border-color: red;
+  z-index: 99;
 }
 
 .profile-content-container{
   border-style: solid;
   border-color: red;
+  height: 100%;
 }
 
 .profile-content-left-card{
-
+  border: 3px solid yellow;
 }
 
 .profile-content-left-container{
   display: block;
+  border: 5px solid green;
 }
+
+.profile-content-right-container{
+  border: 5px solid blue;
+}
+
+.mat-grid-tile-content{
+
+}
+
+.mat-grid
+
+//#fack {
+//  .mat-grid-tile-content::slotted {
+//    display: none !important;
+//  }
+//}
