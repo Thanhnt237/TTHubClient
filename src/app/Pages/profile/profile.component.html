@@ -7,15 +7,17 @@
                 class="profile-top-header-information-container"
                 rowHeight="200px"
         >
-            <mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="2">
                 <div class="profile-top-header-information">
                     <img class="profile-avatar-photo" src="https://c4.wallpaperflare.com/wallpaper/726/754/357/kali-linux-kali-linux-nethunter-linux-unix-lenovo-hd-wallpaper-preview.jpg" alt="avatar photo">
                 </div>
-
             </mat-grid-tile>
 
-            <mat-grid-tile>
-                <div  class="profile-top-header-name">
+            <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1">
+                <div class="profile-top-header-name">
                     <p><strong>Kloud Walka</strong></p>
                     <p>Kloud Walka</p>
                 </div>
@@ -24,67 +26,112 @@
     </div>
 
     <div class="profile-content-container">
-        <mat-grid-list cols="2" gutterSize="5px">
-            <mat-grid-tile id="fack">
-                <mat-card class="profile-content-left-card">
-                    <mat-card-title>Fack me bro!</mat-card-title>
-                    <mat-card-content>
-                        <p>dis fack tinder profile i just made 4 mins ago</p>
-                    </mat-card-content>
+        <div class="profile-content-left-container">
+            <mat-card class="profile-content-left-card">
+                <mat-card-title>About me!</mat-card-title>
+                <mat-card-content>
+                    <p>dis fack tinder profile i just made 4 mins ago</p>
                     <mat-divider inset></mat-divider>
-                    <mat-card-footer>
-                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-                    </mat-card-footer>
-                </mat-card>
-                <div class="profile-content-left-container">
-                    <mat-card class="profile-content-left-card">
-                        <mat-card-title>Fack me bro!</mat-card-title>
-                        <mat-card-content>
-                            <p>dis fack tinder profile i just made 4 mins ago</p>
-                        </mat-card-content>
-                        <mat-divider inset></mat-divider>
-                        <mat-card-footer>
-                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-                        </mat-card-footer>
-                    </mat-card>
+                    <p><mat-icon>code</mat-icon> show me ur boob!</p>
+                    <p><mat-icon>code</mat-icon> show me ur boob!</p>
+                    <p><mat-icon>code</mat-icon> show me ur boob!</p>
+                </mat-card-content>
+            </mat-card>
 
-                    <mat-card class="profile-content-left-card">
-                        <mat-card-title>Fack me bro!</mat-card-title>
-                        <mat-card-content>
-                            <p>dis fack tinder profile i just made 4 mins ago</p>
-                        </mat-card-content>
-                        <mat-divider inset></mat-divider>
-                        <mat-card-footer>
-                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-                        </mat-card-footer>
-                    </mat-card>
-                </div>
+            <mat-card class="profile-content-left-card">
+                <mat-card-title>Fack me bro!</mat-card-title>
+                <mat-card-content>
+                    <p>dis fack tinder profile i just made 4 mins ago</p>
+                </mat-card-content>
+            </mat-card>
 
+            <mat-card class="profile-content-left-card">
+                <mat-card-title>Fack me bro!</mat-card-title>
+                <mat-card-content>
+                    <p>dis fack tinder profile i just made 4 mins ago</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
 
-            </mat-grid-tile>
-
-            <mat-grid-tile class="profile-content-right-container">
-                <mat-card class="profile-content-right-content">
-                    <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title>Shiba Inu</mat-card-title>
-                        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                    <mat-card-content>
-                        <p>
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                            bred for hunting.
-                        </p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button mat-button>LIKE</button>
-                        <button mat-button>SHARE</button>
+        <div class="profile-content-right-container">
+            <mat-card class="profile-content-right-content">
+                <mat-card-header>
+                    <img mat-card-avatar alt="fuck avatar" src="https://cafebiz.cafebizcdn.vn/thumb_w/600/162123310254002176/2021/10/25/photo1635130546084-1635130546247619509127.jpg"/>
+                    <mat-card-title>Shiba Inu</mat-card-title>
+                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                    <mat-card-actions style="position: absolute; right: 0; ">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="right-content-menu-action">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>dialpad</mat-icon>
+                                <span>Redial</span>
+                            </button>
+                            <button mat-menu-item disabled>
+                                <mat-icon>voicemail</mat-icon>
+                                <span>Check voice mail</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>notifications_off</mat-icon>
+                                <span>Disable alerts</span>
+                            </button>
+                        </mat-menu>
                     </mat-card-actions>
-                </mat-card>
-            </mat-grid-tile>
-        </mat-grid-list>
+                </mat-card-header>
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <p>
+                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                        bred for hunting.
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>LIKE</button>
+                    <button mat-button>SHARE</button>
+                </mat-card-actions>
+            </mat-card>
+
+            <mat-card class="profile-content-right-content">
+                <mat-card-header>
+                    <img mat-card-avatar alt="fuck avatar" src="https://cafebiz.cafebizcdn.vn/thumb_w/600/162123310254002176/2021/10/25/photo1635130546084-1635130546247619509127.jpg"/>
+                    <mat-card-title>Shiba Inu</mat-card-title>
+                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                    <mat-card-actions style="position: absolute; right: 0; ">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="right-content-menu-action">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>dialpad</mat-icon>
+                                <span>Redial</span>
+                            </button>
+                            <button mat-menu-item disabled>
+                                <mat-icon>voicemail</mat-icon>
+                                <span>Check voice mail</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>notifications_off</mat-icon>
+                                <span>Disable alerts</span>
+                            </button>
+                        </mat-menu>
+                    </mat-card-actions>
+                </mat-card-header>
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <p>
+                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                        bred for hunting.
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>LIKE</button>
+                    <button mat-button>SHARE</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
     </div>
 
 </div>

@@ -10,6 +10,8 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatCardModule} from "@angular/material/card";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatButtonModule} from "@angular/material/button";
+import {MatTableModule} from "@angular/material/table";
+import {MatMenuModule} from "@angular/material/menu";
 
 let matModule = [
   MatIconModule,
@@ -18,6 +20,8 @@ let matModule = [
   MatButtonModule,
   MatCardModule,
   MatProgressBarModule,
+  MatTableModule,
+  MatMenuModule,
 ]
 
 const routes: Routes = [
@@ -39,7 +43,6 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     matModule,
-
   ],
   exports: [RouterModule]
 })

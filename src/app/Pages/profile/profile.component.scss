@@ -29,39 +29,49 @@
 .profile-top-header-name{
   display: block;
   text-align: center;
+
 }
 .profile-top-header-information-container{
   padding: 0 0 0 0;
   margin: -100px 5% 0 5%;
-  border-style: solid;
-  border-color: red;
+  background: white;
+  border: 3px solid red;
   z-index: 99;
 }
 
 .profile-content-container{
-  border-style: solid;
-  border-color: red;
+  display: flex;
   height: 100%;
 }
 
 .profile-content-left-card{
-  border: 3px solid yellow;
+  width: 70%;
+  margin: 10px auto 10px auto;
+  border-radius: 5%;
 }
 
 .profile-content-left-container{
+  width: 50%;
   display: block;
-  border: 5px solid green;
 }
 
 .profile-content-right-container{
-  border: 5px solid blue;
+  width: 50%;
+}
+
+.profile-content-right-content{
+  margin: 10px auto;
+}
+
+.right-content-menu-action{
+  float:right;
+  margin: 0 20px 5px;
+
 }
 
 .mat-grid-tile-content{
 
 }
-
-.mat-grid
 
 //#fack {
 //  .mat-grid-tile-content::slotted {
