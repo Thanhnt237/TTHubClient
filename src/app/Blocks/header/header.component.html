@@ -1,13 +1,38 @@
-<mat-toolbar color = "primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="onToggleSider()">
+<mat-toolbar class="main-toolbar" >
+    <button mat-icon-button class="toolbar-button" aria-label="Example icon-button with menu icon" (click)="onToggleSider()">
         <mat-icon>menu</mat-icon>
     </button>
-    <span>TTHub</span>
+
+    <span class="toolbar-button">TTHub</span>
+
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
+
+    <button mat-icon-button class="toolbar-button-avatar toolbar-button" color="primary" [matMenuTriggerFor]="toolBarProfileMenu">
+        <img mat-card-avatar class="toolbar-avatar" src="https://play-lh.googleusercontent.com/PHjV5b_9bMCgYLn5Cz2Cy2sI7qMZ6iEtP-Mb1tSYzKUI-Mq1Sp0_f5evhmWgAaT81Q" alt="Toolbar-avatar"/>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
+
+    <button mat-flat-button class="mat-flat-button toolbar-button" routerLink="/login">
+        Đăng nhập
     </button>
+
+    <button mat-flat-button color="accent" class="mat-flat-button toolbar-button" routerLink="/login">
+        Đăng Ký
+    </button>
+
+    <mat-menu #toolBarProfileMenu="matMenu">
+        <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Redial</span>
+        </button>
+        <button mat-menu-item disabled>
+            <mat-icon>voicemail</mat-icon>
+            <span>Check voice mail</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Đăng xuất</span>
+        </button>
+    </mat-menu>
+
+
 </mat-toolbar>

@@ -24,18 +24,19 @@
 }
 
 .profile-top-header-information{
+  text-align: left;
 }
 
 .profile-top-header-name{
   display: block;
-  text-align: center;
-
+  vertical-align: bottom;
 }
 .profile-top-header-information-container{
   padding: 0 0 0 0;
   margin: -100px 5% 0 5%;
-  background: white;
-  border: 3px solid red;
+  justify-content: start;
+  //background: white;
+  //border: 3px solid red;
   z-index: 99;
 }
 

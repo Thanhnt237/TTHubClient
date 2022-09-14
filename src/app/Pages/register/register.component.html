@@ -1,0 +1,66 @@
+<mat-card>
+    <mat-card-title>Đăng ký</mat-card-title>
+    <mat-card-subtitle>
+        <p>Đã tài khoản? <a class="text-link aLink" routerLink="/login">Đăng nhập ngay</a></p>
+    </mat-card-subtitle>
+
+    <mat-card-content>
+        <div class="register-input-container">
+            <form (ngSubmit)="onRegister()" name="loginForm" [formGroup]="registerForm">
+                <div class="register-input-container">
+                    <mat-form-field class="full-width-input" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input
+                                formControlName="email"
+                                matInput
+                                placeholder="vidu@gmail.com"
+                                required
+                        />
+                        <mat-error *ngIf="!registerForm.controls['email'].valid">
+                            Bạn cần phải nhập tài khoản hoặc email!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="register-input-container">
+                    <mat-form-field class="full-width-input" appearance="outline">
+                        <mat-label>Mật khẩu</mat-label>
+                        <input
+                                formControlName="password"
+                                matInput [type]=" hide ? 'password' : 'text'"
+                                placeholder="******"
+                                required
+                        />
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                                [attr.aria-pressed]="hide">
+                            <mat-icon>
+                                {{hide ? 'visibility_off' : 'visibility'}}
+                            </mat-icon>
+                        </button>
+                        <mat-error *ngIf="!registerForm.controls['password'].valid">
+                            Mật khẩu cần ít nhất 6 ký tự
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="submit-form-container">
+                    <span>
+                        <a class="text-link aLink" routerLink="/forgot-password">Quên mật khẩu?</a>
+                    </span>
+
+                    <span class="spacer"></span>
+
+                    <button mat-flat-button color="primary" type="submit" (keydown.enter)="onRegister()"> Đăng nhập </button>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+
+    <kloud-divider [displayMessage]="'Hoặc tiếp tục với'"></kloud-divider>
+
+    <mat-card-footer>
+        <button mat-stroked-button color="primary" class="social-button"> <mat-icon>facebook</mat-icon> </button>
+        <button mat-stroked-button color="primary" class="social-button"> <mat-icon>facebook</mat-icon> </button>
+        <button mat-stroked-button color="primary" class="social-button"> <mat-icon>facebook</mat-icon> </button>
+    </mat-card-footer>
+</mat-card>

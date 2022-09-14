@@ -1,3 +1,24 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.main-toolbar{
+  background: #be403d;
+  color: white;
+}
+
+.toolbar-button-avatar{
+  background: white;
+}
+
+.toolbar-button{
+  margin: 0 10px;
+}
+
+.toolbar-avatar{
+  display: inline-block;
+  vertical-align: middle;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}

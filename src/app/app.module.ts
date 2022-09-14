@@ -14,6 +14,8 @@ import {MatDividerModule} from "@angular/material/divider";
 
 import { HeaderComponent } from './Blocks/header/header.component';
 import { SiderComponent } from './Blocks/sider/sider.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
 
 let matModule = [
     MatToolbarModule,
@@ -22,21 +24,30 @@ let matModule = [
     MatSidenavModule,
     MatCardModule,
     MatDividerModule,
+    MatMenuModule,
 ]
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SiderComponent
-  ],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        SiderComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         matModule,
     ],
-  providers: [],
-  bootstrap: [AppComponent]
+    providers: [
+        {
+            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+            useValue: {
+                duration: 2500,
+                panelClass: ['notification-snackbar']
+            }
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

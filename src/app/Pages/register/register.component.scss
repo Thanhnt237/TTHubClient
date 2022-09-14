@@ -1,0 +1,44 @@
+mat-card {
+  max-width: 800px;
+  margin: 2em auto;
+}
+
+mat-card-subtitle{
+  padding: 10px 40px 0 40px;
+}
+
+mat-card-title{
+  padding: 40px 40px 0 40px;
+}
+
+mat-card-content{
+  padding: 40px 40px 40px 40px;
+}
+
+mat-card-footer{
+  display: flex;
+  justify-content: center;
+}
+
+.register-input-container{
+  width: 100%;
+  margin: 10px 0 10px 0;
+}
+
+.full-width-input{
+  width: 100%;
+}
+
+.submit-form-container{
+  display: flex;
+  padding: 20px 0;
+}
+
+.spacer{
+  flex: 1 1 auto;
+}
+
+.social-button{
+  border-radius: 15%;
+  margin: 10px 10px 10px 10px;
+}
