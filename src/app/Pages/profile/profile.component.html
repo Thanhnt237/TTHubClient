@@ -55,6 +55,50 @@
         <div class="profile-content-right-container">
             <mat-card class="profile-content-right-content">
                 <mat-card-header>
+                    <mat-card-title>Create Post</mat-card-title>
+                    <mat-card-actions style="position: absolute; right: 0; ">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="right-content-menu-action">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>dialpad</mat-icon>
+                                <span>Redial</span>
+                            </button>
+                            <button mat-menu-item disabled>
+                                <mat-icon>voicemail</mat-icon>
+                                <span>Check voice mail</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>notifications_off</mat-icon>
+                                <span>Disable alerts</span>
+                            </button>
+                        </mat-menu>
+                    </mat-card-actions>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                    <form (ngSubmit)="onSubmitForm()" name="loginForm" [formGroup]="createPostForm">
+                        <mat-form-field class="full-width-input" appearance="outline">
+                            <mat-label>Post</mat-label>
+                            <input
+                                    formControlName="postContent"
+                                    matInput
+                                    placeholder="Ngày hôm nay của bạn thế nào?"
+                                    required
+                            />
+                        </mat-form-field>
+                    </form>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>LIKE</button>
+                    <button mat-button>SHARE</button>
+                </mat-card-actions>
+            </mat-card>
+
+            <mat-card class="profile-content-right-content">
+                <mat-card-header>
                     <img mat-card-avatar alt="fuck avatar" src="https://cafebiz.cafebizcdn.vn/thumb_w/600/162123310254002176/2021/10/25/photo1635130546084-1635130546247619509127.jpg"/>
                     <mat-card-title>Shiba Inu</mat-card-title>
                     <mat-card-subtitle>Dog Breed</mat-card-subtitle>
