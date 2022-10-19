@@ -23,6 +23,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { KloudDividerComponent } from './Components/kloud-divider/kloud-divider.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {AddClassDialog} from "./Pages/class/add-class/add-class";
+import {MatDialogModule} from "@angular/material/dialog";
+import {StudentComponent} from "./Pages/student/student.component";
+import {AddStudentDialog} from "./Pages/student/add-student/add-student";
 
 let matModule = [
   MatIconModule,
@@ -38,6 +42,10 @@ let matModule = [
   MatSnackBarModule
 ]
 
+let expandModule = [
+    AddClassDialog,
+    AddStudentDialog
+]
 
 
 const routes: Routes = [
@@ -58,13 +66,17 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: "student",
+    component: StudentComponent
+  },
+  {
     path: "**",
     component: HomeComponent
   }
 ];
 
 let customComponent = [
-  KloudDividerComponent
+  KloudDividerComponent,
 ]
 
 @NgModule({
@@ -74,13 +86,16 @@ let customComponent = [
     ClassComponent,
     LoginComponent,
     RegisterComponent,
-    customComponent
+    StudentComponent,
+    customComponent,
+    expandModule
   ],
   imports: [
     RouterModule.forRoot(routes),
     matModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MatDialogModule,
   ],
   exports: [RouterModule]
 })

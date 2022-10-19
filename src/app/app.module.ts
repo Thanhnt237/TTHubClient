@@ -48,6 +48,7 @@ let matModule = [
             }
         }
     ],
+    exports: [],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

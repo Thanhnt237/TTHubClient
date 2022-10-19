@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {AddClassDialog} from "./add-class/add-class";
 
 export interface PeriodicElement {
   name: string;
@@ -31,9 +33,19 @@ export class ClassComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor(
+      private readonly dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog(): void{
+    const dialogRef = this.dialog.open(AddClassDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }
