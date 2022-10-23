@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AddClassDialog} from "../class/add-class/add-class";
 import {MatDialog} from "@angular/material/dialog";
+import { AddStudentDialog } from "./add-student/add-student";
 
 @Component({
   selector: 'app-student',
@@ -17,7 +17,7 @@ export class StudentComponent implements OnInit {
   }
 
   openDialog(): void{
-    const dialogRef = this.dialog.open(AddClassDialog);
+    const dialogRef = this.dialog.open(AddStudentDialog);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

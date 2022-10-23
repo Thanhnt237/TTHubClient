@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {KloudDividerComponent} from "../../Components/kloud-divider/kloud-divider.component";
+import { TestService } from "../../Services/test.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
       private _formBuilder: FormBuilder,
-      private _snackBar: MatSnackBar
+      private _snackBar: MatSnackBar,
+      private _testService: TestService
   ) { }
 
   loginForm: FormGroup = this._formBuilder.group({
@@ -23,7 +25,14 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
-
+    this._testService.test().subscribe(
+      res => {
+        console.log(res)
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 
   onLogin(){

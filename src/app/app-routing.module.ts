@@ -27,6 +27,7 @@ import {AddClassDialog} from "./Pages/class/add-class/add-class";
 import {MatDialogModule} from "@angular/material/dialog";
 import {StudentComponent} from "./Pages/student/student.component";
 import {AddStudentDialog} from "./Pages/student/add-student/add-student";
+import { HttpClientModule } from "@angular/common/http";
 
 let matModule = [
   MatIconModule,
@@ -95,6 +96,7 @@ let customComponent = [
     matModule,
     ReactiveFormsModule,
     CommonModule,
+    HttpClientModule,
     MatDialogModule,
   ],
   exports: [RouterModule]
