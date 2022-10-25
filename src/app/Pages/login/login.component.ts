@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {KloudDividerComponent} from "../../Components/kloud-divider/kloud-divider.component";
-import { TestService } from "../../Services/test.service";
+import { LoginService } from "../../Services/auth/login.service";
+import { AuthService } from "../../Services/auth/auth.service";
+import { Router } from "@angular/router";
+import { KloudNotificationService } from "../../Components/kloud-notification/kloud-notification.service";
 
 @Component({
   selector: 'app-login',
@@ -11,12 +13,16 @@ import { TestService } from "../../Services/test.service";
 })
 
 export class LoginComponent implements OnInit {
+  apiLoading: boolean = false
   hide : boolean = false;
 
   constructor(
       private _formBuilder: FormBuilder,
       private _snackBar: MatSnackBar,
-      private _testService: TestService
+      private _loginService: LoginService,
+      private _authService: AuthService,
+      private _router: Router,
+      private _kloudNoti: KloudNotificationService
   ) { }
 
   loginForm: FormGroup = this._formBuilder.group({
@@ -25,22 +31,30 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this._testService.test().subscribe(
-      res => {
-        console.log(res)
-      },
-      err => {
-        console.log(err)
-      }
-    )
+
   }
 
   onLogin(){
     if(!this.loginForm.valid){
       return
     }else{
-      console.log(this.loginForm.value)
+      this.apiLoading = true
+      this.doLogin()
     }
+  }
+
+  doLogin(){
+    this._loginService.login(this.loginForm.value).subscribe(
+      (res: any) => {
+        this._authService.setToken(res.accessToken)
+        this._kloudNoti.success("Đăng nhập thành công")
+        this._router.navigate(['/'])
+      },
+      err => {
+        this._kloudNoti.error(err)
+        this.apiLoading = false
+      }
+    )
   }
 
 }

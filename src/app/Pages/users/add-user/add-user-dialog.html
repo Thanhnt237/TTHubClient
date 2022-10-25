@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>Thêm mới người dùng</h2>
+<form (ngSubmit)="onOK()" name="addUserForm" [formGroup]="addUserForm">
+<mat-dialog-content class="mat-typography">
+    <mat-form-field class="full-width-input">
+      <input
+        label="Họ và tên"
+        required
+        formControlName="name"
+        matInput
+        placeholder="Họ và tên"
+      />
+      <mat-error *ngIf="!addUserForm.controls['name'].valid">
+        Vui lòng nhập đầy đủ thông tin!
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <input
+        required
+        formControlName="phone"
+        matInput
+        placeholder="Số điện thoại"
+      />
+      <mat-error *ngIf="!addUserForm.controls['phone'].valid">
+        Vui lòng nhập đầy đủ thông tin!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        required
+        formControlName="email"
+        matInput
+        placeholder="Email"/>
+      <mat-error *ngIf="!addUserForm.controls['email'].valid">
+        Vui lòng nhập đầy đủ thông tin!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        required
+        formControlName="password"
+        matInput
+        placeholder="Mật khẩu"
+      />
+      <mat-error *ngIf="!addUserForm.controls['password'].valid">
+        Vui lòng nhập đầy đủ thông tin!
+      </mat-error>
+    </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close="" [mat-dialog-close]="true">Hủy</button>
+  <button mat-button cdkFocusInitial type="submit" [mat-dialog-close]="closeDialog">
+    <div style="display: flex;justify-content: center;align-items: center"> Thêm mới
+      <mat-spinner
+        [diameter]="20"
+        color="primary"
+        *ngIf="apiLoading"
+      ></mat-spinner>
+    </div>
+  </button>
+</mat-dialog-actions>
+</form>

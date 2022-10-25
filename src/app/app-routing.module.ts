@@ -21,13 +21,19 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { KloudDividerComponent } from './Components/kloud-divider/kloud-divider.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {AddClassDialog} from "./Pages/class/add-class/add-class";
 import {MatDialogModule} from "@angular/material/dialog";
 import {StudentComponent} from "./Pages/student/student.component";
 import {AddStudentDialog} from "./Pages/student/add-student/add-student";
 import { HttpClientModule } from "@angular/common/http";
+import { KloudNotificationComponent } from "./Components/kloud-notification/kloud-notification.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { UsersComponent } from "./Pages/users/users.component";
+import { AddUserDialog } from "./Pages/users/add-user/add-user";
+import { KloudTableComponent } from "./Components/kloud-table/kloud-table.component";
+import { KloudWidgetComponent } from "./Components/kloud-wiget/kloud-widget.component";
 
 let matModule = [
   MatIconModule,
@@ -40,12 +46,15 @@ let matModule = [
   MatMenuModule,
   MatInputModule,
   MatFormFieldModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatProgressSpinnerModule
 ]
 
 let expandModule = [
     AddClassDialog,
-    AddStudentDialog
+    AddStudentDialog,
+    AddUserDialog,
+
 ]
 
 
@@ -71,6 +80,10 @@ const routes: Routes = [
     component: StudentComponent
   },
   {
+    path: "users",
+    component: UsersComponent
+  },
+  {
     path: "**",
     component: HomeComponent
   }
@@ -78,6 +91,9 @@ const routes: Routes = [
 
 let customComponent = [
   KloudDividerComponent,
+  KloudNotificationComponent,
+  KloudTableComponent,
+  KloudWidgetComponent
 ]
 
 @NgModule({
@@ -88,6 +104,7 @@ let customComponent = [
     LoginComponent,
     RegisterComponent,
     StudentComponent,
+    UsersComponent,
     customComponent,
     expandModule
   ],
@@ -98,6 +115,7 @@ let customComponent = [
     CommonModule,
     HttpClientModule,
     MatDialogModule,
+    FormsModule
   ],
   exports: [RouterModule]
 })

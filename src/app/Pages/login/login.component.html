@@ -50,7 +50,21 @@
 
                     <span class="spacer"></span>
 
-                    <button mat-flat-button color="primary" type="submit" (keydown.enter)="onLogin()"> Đăng nhập </button>
+                    <button
+                      mat-flat-button
+                      color="primary"
+                      type="submit"
+                      [disabled]="apiLoading"
+                      (keydown.enter)="onLogin()"
+                    >
+                        <div style="display: flex;justify-content: center;align-items: center"> Đăng nhập
+                            <mat-spinner
+                              [diameter]="20"
+                              color="primary"
+                              *ngIf="apiLoading"
+                            ></mat-spinner>
+                        </div>
+                    </button>
                 </div>
             </form>
         </div>

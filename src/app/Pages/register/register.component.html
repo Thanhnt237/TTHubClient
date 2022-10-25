@@ -9,6 +9,36 @@
             <form (ngSubmit)="onRegister()" name="loginForm" [formGroup]="registerForm">
                 <div class="register-input-container">
                     <mat-form-field class="full-width-input" appearance="outline">
+                        <mat-label>Họ và Tên</mat-label>
+                        <input
+                          formControlName="name"
+                          matInput
+                          placeholder="Nguyễn Văn A"
+                          required
+                        />
+                        <mat-error *ngIf="!registerForm.controls['name'].valid">
+                            Bạn cần phải nhập Họ và tên!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="register-input-container">
+                    <mat-form-field class="full-width-input" appearance="outline">
+                        <mat-label>Số điện thoại</mat-label>
+                        <input
+                          formControlName="phone"
+                          matInput
+                          placeholder="0987654312"
+                          required
+                        />
+                        <mat-error *ngIf="!registerForm.controls['phone'].valid">
+                            Bạn cần phải nhập số điện thoại có 10 số!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="register-input-container">
+                    <mat-form-field class="full-width-input" appearance="outline">
                         <mat-label>Email</mat-label>
                         <input
                                 formControlName="email"
@@ -34,7 +64,7 @@
                         <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
                                 [attr.aria-pressed]="hide">
                             <mat-icon>
-                                {{hide ? 'visibility_off' : 'visibility'}}
+                                {{hide ? 'visibility' : 'visibility_off'}}
                             </mat-icon>
                         </button>
                         <mat-error *ngIf="!registerForm.controls['password'].valid">
@@ -50,7 +80,15 @@
 
                     <span class="spacer"></span>
 
-                    <button mat-flat-button color="primary" type="submit" (keydown.enter)="onRegister()"> Đăng nhập </button>
+                    <button mat-flat-button color="primary" type="submit" (keydown.enter)="onRegister()">
+                        <div style="display: flex;justify-content: center;align-items: center"> Đăng ký
+                            <mat-spinner
+                              [diameter]="20"
+                              color="primary"
+                              *ngIf="apiLoading"
+                            ></mat-spinner>
+                        </div>
+                    </button>
                 </div>
             </form>
         </div>

@@ -16,6 +16,8 @@ import { HeaderComponent } from './Blocks/header/header.component';
 import { SiderComponent } from './Blocks/sider/sider.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { TokenInterceptorService } from "./Services/interceptors/token.interceptor";
 
 let matModule = [
     MatToolbarModule,
@@ -46,6 +48,11 @@ let matModule = [
                 duration: 2500,
                 panelClass: ['notification-snackbar']
             }
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptorService,
+            multi: true
         }
     ],
     exports: [],
