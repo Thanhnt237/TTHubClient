@@ -30,7 +30,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class ClassComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns= [{
+    key: "position",
+    name: "position"
+  }];
+
   dataSource = ELEMENT_DATA;
 
   constructor(
@@ -38,6 +42,10 @@ export class ClassComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  async handleGetAllClasses(){
+    
   }
 
   openDialog(): void{

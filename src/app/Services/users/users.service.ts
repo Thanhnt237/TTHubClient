@@ -17,7 +17,7 @@ export class UsersService {
   ) { }
 
   handleGetUser(){
-    return this.http.get(this.getAllUserUrl).pipe()
+    return this.http.get(this.getAllUserUrl)
   }
 
   handleAddUser(data:any){
