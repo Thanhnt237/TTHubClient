@@ -32,7 +32,6 @@ export class KloudNotificationService {
   }
 
   public error(error?: any, message: any = 'Thao tác thất bại') {
-    console.log(error)
     if(error?.error?.extend?.error_code){
       switch (error.error.extend.error_code){
         case "001":

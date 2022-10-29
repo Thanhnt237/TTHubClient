@@ -1,26 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {AddClassDialog} from "./add-class/add-class";
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import { ClassService } from "../../Services/class/class.service";
+import { componentKey } from "../../constants/component_key";
+import { KloudNotificationService } from "../../Components/kloud-notification/kloud-notification.service";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-class',
@@ -29,31 +13,131 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class ClassComponent implements OnInit {
+  lockApiLoading = false
+  deleteApiLoading = false
 
   displayedColumns= [{
-    key: "position",
-    name: "position"
+    key: componentKey.check_box_col
+  },{
+    key: "STT",
+    name: "STT"
+  },{
+    key: "classCode",
+    name: "Mã lớp học"
+  },{
+    key: "name",
+    name: "Tên lớp học"
+  },{
+    key: "semester",
+    name: "Học kỳ"
+  },{
+    key: componentKey.actions_col,
+    stickyEnd: true
   }];
 
-  dataSource = ELEMENT_DATA;
+  classesDataSource: any
+
+  searchForm: FormGroup = this.formBuilder.group({
+    searchField: new FormControl("")
+  })
 
   constructor(
-      private readonly dialog: MatDialog
+      private readonly dialog: MatDialog,
+      private readonly classService: ClassService,
+      private readonly kloudNoti: KloudNotificationService,
+      private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.handleGetAllClasses()
   }
 
-  async handleGetAllClasses(){
-    
+  async handleSearch() {
+    if(this.searchForm?.value?.searchField) await this.handleGetAllClasses(this.searchForm?.value?.searchField)
   }
 
-  openDialog(): void{
-    const dialogRef = this.dialog.open(AddClassDialog);
+  async handleGetAllClasses(search_string?: string): Promise<void>{
+    let query = {
+      limit: 15,
+      page: 1,
+      search_string: ""
+    }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    if(search_string){
+      query["search_string"] = search_string
+    }
+
+    this.classService.handleGetClasses(query).subscribe(
+      (res: any) => {
+        if(res?.data?.length){
+          this.classesDataSource = res.data.map((c:any, index: number) => ({
+            STT: index + 1,
+            ...c
+          }))
+        }
+      }, error => {
+        this.kloudNoti.error(error)
+      }
+    )
+  }
+
+  openDialog(): void {
+    this.dialog.open(AddClassDialog)
+      .afterClosed().subscribe(async (res) => {
+      await this.handleGetAllClasses()
     });
+  }
+
+  handleClickLockRecord(record: any){
+    this.lockApiLoading = true
+    this.classService.handleUpdateClass(record.ID, {isLock: !record.isLock}).subscribe(
+      async (res:any) => {
+        this.kloudNoti.success("Khóa lớp học thành công")
+        await this.handleGetAllClasses()
+        this.lockApiLoading = false
+      }, err => {
+        this.kloudNoti.error(err)
+        this.lockApiLoading = false
+      }
+    )
+  }
+
+  handleClickEditRecord(record: any){
+    this.dialog.open(AddClassDialog, {
+      data: record
+    }).afterClosed().subscribe(async (res) => {
+      await this.handleGetAllClasses()
+    })
+  }
+
+  handleClickedRow(record: any): void {
+    // console.log(record)
+  }
+
+  handleClickedDeleteRecord(record: any) {
+    this.deleteApiLoading = true
+    this.classService.handleUpdateClass(record.ID, {isActive: false}).subscribe(
+      async (res:any) => {
+        this.kloudNoti.success("Xóa lớp học thành công")
+        await this.handleGetAllClasses()
+        this.deleteApiLoading = false
+      }, err => {
+        this.kloudNoti.error(err)
+        this.deleteApiLoading = false
+      }
+    )
+  }
+
+  onClickMultipleChoiceEdit(record: any){
+
+  }
+
+  onClickMultipleChoiceLock(record: any){
+
+  }
+
+  onClickMultipleChoiceDelete(record: any){
+
   }
 
 }

@@ -1,3 +1,4 @@
+@charset "utf-8";
 @use '@angular/material' as mat;
 
 @include mat.core();
@@ -36,4 +37,53 @@ body {
 .notification-snackbar {
   background: white;
   color: black;
+}
+
+.kloud-title-container{
+  padding: 10px 0 10px 10px;
+}
+
+.page-title{
+  font-size: 24px;
+}
+
+.top-search-box-container{
+  display: flex;
+}
+
+.top-search{
+  margin-left: 20px;
+}
+
+.widget-button{
+  margin: 0 10px 0 10px;
+}
+
+.kloud-widget{
+  display: block;
+}
+
+.widget-container{
+  display: flex;
+  margin: 10px 10px 10px 10px;
+}
+
+.widget-button-container{
+  display: flex;
+  float: right;
+  padding: 10px 10px 10px 10px;
+}
+
+.widget-spacer {
+  flex: 1 1 auto;
+}
+
+.widget-icon-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.widget-icon {
+  padding-right: 5px;
 }

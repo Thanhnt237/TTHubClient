@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { AddClassDialog } from "../../Pages/class/add-class/add-class";
 import { MatDialog } from "@angular/material/dialog";
 
 @Component({
@@ -17,6 +16,18 @@ export class KloudWidgetComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  onClickMultipleChoiceEdit(record: any){
+
+  }
+
+  onClickMultipleChoiceLock(record: any){
+
+  }
+
+  onClickMultipleChoiceDelete(record: any){
 
   }
 }

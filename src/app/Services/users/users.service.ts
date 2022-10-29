@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { endpoints } from "../../constants/endpoints";
+import { createQueryUrl } from "../../helper";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class UsersService {
     private _router: Router
   ) { }
 
-  handleGetUser(){
-    return this.http.get(this.getAllUserUrl)
+  handleGetUser(query?: any){
+    return this.http.get(createQueryUrl(this.getAllUserUrl, query))
   }
 
   handleAddUser(data:any){

@@ -19,22 +19,31 @@
             <div class="sider-menu-header">
             </div>
             <div class="sider-menu-container">
-                <button mat-button color="primary" class="button-left-sider" routerLink="/users">
-                    <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
-                    Quản lý danh sách người dùng
-                </button>
-                <button mat-button color="primary" class="button-left-sider" routerLink="/student">
-                    <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
-                    Quản lý học sinh
-                </button>
-                <button mat-button color="primary" class="button-left-sider" routerLink="/class">
-                    <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
-                    Quản lý lớp học
-                </button>
-                <button mat-button color="primary" class="button-left-sider" routerLink="/profile">
-                    <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
-                    Quản lý thông tin cá nhân
-                </button>
+                <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                        <button mat-button color="primary" class="button-left-sider" routerLink="/class">
+                            <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                            Quản lý lớp học
+                        </button>
+                        <mat-expansion-panel-header class="button-left-sider">
+                            <mat-icon color="accent" class="sider-menu-button-icon"> favorite </mat-icon>
+                            Quản trị hệ thống
+                        </mat-expansion-panel-header>
+                        <button mat-button color="primary" class="button-left-sider" routerLink="/users">
+                            <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                            Quản lý danh sách người dùng
+                        </button>
+                        <button mat-button color="primary" class="button-left-sider" routerLink="/student">
+                            <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                            Quản lý học sinh
+                        </button>
+                        <button mat-button color="primary" class="button-left-sider" routerLink="/profile">
+                            <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                            Quản lý thông tin cá nhân
+                        </button>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
             </div>
 
         </section>

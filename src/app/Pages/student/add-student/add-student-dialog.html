@@ -1,78 +1,272 @@
-<h2 mat-dialog-title>Thêm </h2>
+<h2 mat-dialog-title >Thêm </h2>
 <mat-dialog-content class="mat-typography">
-    <form>
-        <mat-card>
+        <mat-card class="mat-card-container">
             <mat-card-title>Thông tin học sinh</mat-card-title>
-            <mat-card-content>
-                <mat-form-field>
-                    <input matInput placeholder="Mã học sinh"/>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Họ và Tên"/>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Ngày sinh"/>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Giới tính"/>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Dân tộc"/>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Tôn giáo"/>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Địa chỉ"/>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Lớp"/>
-                </mat-form-field>
+            <kloud-divider></kloud-divider>
+            <mat-card-content class="mat-card-content">
+                <form [formGroup]="studentInfoForm">
+                    <mat-form-field *ngIf="!isNew">
+                        <input
+                          readonly
+                          matInput
+                          formControlName="tenant_code"
+                          placeholder="Mã học sinh"
+                        />
+                        <mat-error *ngIf="!studentInfoForm.controls['tenant_code'].valid">
+                            Vui lòng nhập đầy đủ thông tin!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input
+                          matInput
+                          placeholder="Họ và Tên"
+                          formControlName="name"
+                        />
+                        <mat-error *ngIf="!studentInfoForm.controls['name'].valid">
+                            Vui lòng nhập đầy đủ thông tin!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input
+                          matInput
+                          placeholder="Ngày sinh"
+                          formControlName="DoB"
+                          [matDatepicker]="StuDoBDatePicker"
+                        />
+                        <mat-hint>Định dạng ngày DD/MM/YYYY</mat-hint>
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="StuDoBDatePicker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker
+                          color="primary"
+                          #StuDoBDatePicker></mat-datepicker>
+                        <mat-error *ngIf="!studentInfoForm.controls['DoB'].valid">
+                            Vui lòng nhập đầy đủ thông tin!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Giới tính</mat-label>
+                        <mat-select
+                          formControlName="gender"
+                          matNativeControl
+                        >
+                            <mat-option [value]="'nam'"> Nam </mat-option>
+                            <mat-option [value]="'nam'"> Nữ</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="!studentInfoForm.controls['gender'].valid">
+                            Vui lòng nhập đầy đủ thông tin!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input
+                          matInput
+                          placeholder="Dân tộc"
+                          formControlName="religion"
+                        />
+                        <mat-error *ngIf="!studentInfoForm.controls['religion'].valid">
+                            Vui lòng nhập đầy đủ thông tin!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input
+                          matInput
+                          placeholder="Tôn giáo"
+                          formControlName="ethnic"
+                        />
+                        <mat-error *ngIf="!studentInfoForm.controls['ethnic'].valid">
+                            Vui lòng nhập đầy đủ thông tin!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input
+                          matInput
+                          placeholder="Địa chỉ"
+                          formControlName="address"
+                        />
+                        <mat-error *ngIf="!studentInfoForm.controls['address'].valid">
+                            Vui lòng nhập đầy đủ thông tin!
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+                <form [formGroup]="classInfoForm">
+                    <mat-form-field>
+                        <mat-label>Lớp</mat-label>
+                        <mat-select
+                          formControlName="ID"
+                          matNativeControl
+                        >
+                            <mat-option *ngFor="let data of classDataSource" [value]="data.ID"> {{data.name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="!classInfoForm.controls['ID'].valid">
+                            Vui lòng nhập đầy đủ thông tin!
+                        </mat-error>
+                    </mat-form-field>
+                </form>
             </mat-card-content>
         </mat-card>
-
+    <form [formGroup]="fatherInfoForm">
         <mat-card>
             <mat-card-title>Thông tin bố</mat-card-title>
+            <kloud-divider></kloud-divider>
             <mat-card-content>
                 <mat-form-field>
-                    <input matInput placeholder="Họ và tên bố"/>
+                    <input
+                      matInput
+                      placeholder="Họ và tên bố"
+                      formControlName="name"
+                    />
                 </mat-form-field>
+
                 <mat-form-field>
-                    <input matInput placeholder="Ngày sinh bố"/>
+                    <input
+                      matInput
+                      placeholder="Ngày sinh bố"
+                      formControlName="DoB"
+                      [matDatepicker]="faderStuDoBDatePicker"
+                    />
+                    <mat-hint>Định dạng ngày DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="faderStuDoBDatePicker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker
+                      color="primary"
+                      #faderStuDoBDatePicker></mat-datepicker>
+                    <mat-error *ngIf="!studentInfoForm.controls['DoB'].valid">
+                        Vui lòng nhập đầy đủ thông tin!
+                    </mat-error>
                 </mat-form-field>
+
                 <mat-form-field>
-                    <input matInput placeholder="Số CMTND"/>
+                    <input
+                      matInput
+                      placeholder="Số CMTND"
+                      formControlName="national_identifier"
+                    />
                 </mat-form-field>
+
                 <mat-form-field>
-                    <input matInput placeholder="Ngày cấp"/>
+                    <input
+                      matInput
+                      placeholder="Ngày cấp"
+                      formControlName="national_identifier_provide_date"
+                    />
                 </mat-form-field>
+
                 <mat-form-field>
-                    <input matInput placeholder="Nơi cấp"/>
+                    <input
+                      matInput
+                      placeholder="Nơi cấp"
+                    />
                 </mat-form-field>
+
                 <mat-form-field>
-                    <input matInput placeholder="Nghề nghiệp"/>
+                    <input
+                      matInput
+                      placeholder="Nghề nghiệp"
+                      formControlName="job"
+                    />
                 </mat-form-field>
+
                 <mat-form-field>
-                    <input matInput placeholder="Dân tộc"/>
+                    <input
+                      formControlName="religion"
+                      matInput
+                      placeholder="Dân tộc"
+                    />
                 </mat-form-field>
+
                 <mat-form-field>
-                    <input matInput placeholder="Tôn giáo"/>
+                    <input
+                      formControlName="ethnic"
+                      matInput
+                      placeholder="Tôn giáo"/>
                 </mat-form-field>
             </mat-card-content>
         </mat-card>
+    </form>
 
-        <mat-form-field>
-            <input matInput placeholder="Ngày sinh bố"/>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Dân tộc"/>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Tôn giáo"/>
-        </mat-form-field>
+    <form [formGroup]="motherInfoForm">
+        <mat-card>
+            <mat-card-title> Thông tin mẹ </mat-card-title>
+            <kloud-divider></kloud-divider>
+            <mat-card-content>
+                <mat-form-field>
+                    <input
+                      formControlName="name"
+                      matInput
+                      placeholder="Họ và tên mẹ"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                      formControlName="DoB"
+                      matInput
+                      placeholder="Ngày sinh mẹ"
+                      [matDatepicker]="moderStuDoBDatePicker"
+                    />
+                    <mat-hint>Định dạng ngày DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="moderStuDoBDatePicker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker
+                      color="primary"
+                      #moderStuDoBDatePicker></mat-datepicker>
+                    <mat-error *ngIf="!studentInfoForm.controls['DoB'].valid">
+                        Vui lòng nhập đầy đủ thông tin!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                      formControlName="national_identifier"
+                      matInput
+                      placeholder="Số CMTND"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                      formControlName="national_identifier_provide_date"
+                      matInput
+                      placeholder="Ngày cấp"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                      matInput
+                      placeholder="Nơi cấp"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                      formControlName="job"
+                      matInput
+                      placeholder="Nghề nghiệp"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                      formControlName="religion"
+                      matInput
+                      placeholder="Dân tộc"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                      formControlName="ethnic"
+                      matInput
+                      placeholder="Tôn giáo"/>
+                </mat-form-field>
+            </mat-card-content>
+        </mat-card>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close="" [mat-dialog-close]="true">Hủy</button>
-    <button mat-button cdkFocusInitial>Thêm mới</button>
+    <button mat-button mat-dialog-close="" [mat-dialog-close]="'No data change'">Hủy</button>
+    <button mat-button cdkFocusInitial type="submit" (click)="onOK()">
+        <div style="display: flex;justify-content: center;align-items: center">
+            <span *ngIf="isNew">Thêm mới</span>
+            <span *ngIf="!isNew">Chỉnh sửa</span>
+            <mat-spinner
+              [diameter]="20"
+              color="primary"
+              *ngIf="apiLoading"
+            ></mat-spinner>
+        </div>
+    </button>
 </mat-dialog-actions>

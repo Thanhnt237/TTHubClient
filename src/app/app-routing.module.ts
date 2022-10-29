@@ -34,6 +34,14 @@ import { UsersComponent } from "./Pages/users/users.component";
 import { AddUserDialog } from "./Pages/users/add-user/add-user";
 import { KloudTableComponent } from "./Components/kloud-table/kloud-table.component";
 import { KloudWidgetComponent } from "./Components/kloud-wiget/kloud-widget.component";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatSelectModule } from "@angular/material/select";
 
 let matModule = [
   MatIconModule,
@@ -47,7 +55,13 @@ let matModule = [
   MatInputModule,
   MatFormFieldModule,
   MatSnackBarModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatCheckboxModule,
+  MatSlideToggleModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ]
 
 let expandModule = [
@@ -115,7 +129,9 @@ let customComponent = [
     CommonModule,
     HttpClientModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatAutocompleteModule,
+    MatSelectModule
   ],
   exports: [RouterModule]
 })

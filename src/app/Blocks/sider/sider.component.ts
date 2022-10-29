@@ -8,6 +8,7 @@ import {HeaderComponent} from "../header/header.component";
 })
 export class SiderComponent implements OnInit {
   showFiller = false;
+  panelOpenState = false;
   constructor() { }
 
   ngOnInit(): void {

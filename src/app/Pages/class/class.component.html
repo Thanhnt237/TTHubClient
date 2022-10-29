@@ -1,12 +1,52 @@
 <div class="fluid-container">
-    <kloud-widget
-      [title]="'Quản lý lớp học'"
-      [openDialog]="openDialog"
-    ></kloud-widget>
+    <div class="page-title">
+        Quản lý lớp học
+    </div>
+
+    <form [formGroup]="searchForm" (ngSubmit)="handleSearch()">
+        <mat-form-field class="top-search-box-container">
+            <button mat-icon-button color="primary" matPrefix ><mat-icon color="">search</mat-icon></button>
+            <input formControlName="searchField" class="top-search" matInput placeholder="Tìm kiếm">
+        </mat-form-field>
+    </form>
+
+    <button mat-icon-button color="primary" matPrefix (click)="handleGetAllClasses()">reset</button>
+
+    <button mat-button class="widget-button" color="primary"
+    >Chọn</button>
+    <button mat-button class="widget-button" color="primary">Lọc</button>
+    <button mat-button class="widget-button" color="primary">Xuất</button>
+    <button mat-raised-button class="widget-button" color="primary" (click)="openDialog()"> <mat-icon>add_circle_outline</mat-icon>Tạo mới</button>
+    <button mat-raised-button class="widget-button" color="primary">Import</button>
+
+<!--    <mat-menu #multipleSelectMenu="matMenu">-->
+<!--        <ng-template matMenuContent let-record="passingData">-->
+<!--            <button mat-menu-item (click)="onClickMultipleChoiceEdit(record)">-->
+<!--                <mat-icon>edit</mat-icon>-->
+<!--                <span>Sửa</span>-->
+<!--            </button>-->
+
+<!--            <button mat-menu-item (click)="onClickMultipleChoiceLock(record)">-->
+<!--                <mat-icon>lock</mat-icon>-->
+<!--                <span>Khóa</span>-->
+<!--                <mat-slide-toggle></mat-slide-toggle>-->
+<!--            </button>-->
+
+<!--            <button mat-menu-item (click)="onClickMultipleChoiceDelete(record)">-->
+<!--                <mat-icon>delete</mat-icon>-->
+<!--                <span>Xóa</span>-->
+<!--            </button>-->
+<!--        </ng-template>-->
+<!--    </mat-menu>-->
+
     <kloud-table
-      [dataSource]="dataSource"
+      [dataSource]="classesDataSource"
       [displayedColumns]="displayedColumns"
+      [lockApiLoading]="lockApiLoading"
+      [deleteApiLoading]="deleteApiLoading"
+      (clickedRow)="handleClickedRow($event)"
+      (handleClickEditRecord)="handleClickEditRecord($event)"
+      (handleClickDeleteRecord)="handleClickedDeleteRecord($event)"
+      (handleClickLockRecord)="handleClickLockRecord($event)"
     ></kloud-table>
 </div>
-
-

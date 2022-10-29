@@ -1,10 +1,32 @@
 <div class="fluid-container">
-  <kloud-widget
-    [title]="'Quản lý người dùng'"
-    [openDialog]="openDialog"
-  ></kloud-widget>
-  <kloud-table
-    [dataSource]="users"
-    [displayedColumns]="displayColumn"
-  ></kloud-table>
+  <div class="page-title">
+    Quản lý lớp học
+  </div>
+
+  <form [formGroup]="searchForm" (ngSubmit)="handleSearch()">
+    <mat-form-field class="top-search-box-container">
+      <button mat-icon-button color="primary" matPrefix ><mat-icon color="">search</mat-icon></button>
+      <input formControlName="searchField" class="top-search" matInput placeholder="Tìm kiếm">
+    </mat-form-field>
+  </form>
+
+  <button mat-icon-button color="primary" matPrefix (click)="handleGetUser()">reset</button>
+
+  <button mat-button class="widget-button" color="primary"
+  >Chọn</button>
+  <button mat-button class="widget-button" color="primary">Lọc</button>
+  <button mat-button class="widget-button" color="primary">Xuất</button>
+  <button mat-raised-button class="widget-button" color="primary" (click)="openDialog()"> <mat-icon>add_circle_outline</mat-icon>Tạo mới</button>
+  <button mat-raised-button class="widget-button" color="primary">Import</button>
+
+  <div class="table-user">
+    <kloud-table
+      [dataSource]="users"
+      [displayedColumns]="displayColumn"
+      (clickedRow)="handleClickedRow($event)"
+      (handleClickEditRecord)="handleClickedEdit($event)"
+      (handleClickLockRecord)="handleClickedLock($event)"
+      (handleClickDeleteRecord)="handleClickedDelete($event)"
+    ></kloud-table>
+  </div>
 </div>

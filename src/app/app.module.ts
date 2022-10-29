@@ -18,6 +18,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptorService } from "./Services/interceptors/token.interceptor";
+import { MatExpansionModule } from "@angular/material/expansion";
 
 let matModule = [
     MatToolbarModule,
@@ -35,12 +36,13 @@ let matModule = [
         HeaderComponent,
         SiderComponent,
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        matModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    matModule,
+    MatExpansionModule
+  ],
     providers: [
         {
             provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,

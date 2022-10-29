@@ -8,5 +8,15 @@ export const endpoints = {
   //Users
   get_all_user_api: 'api/resources/users/getAllUsers',
   add_new_user_api: 'api/resources/users/addNewUser',
-  update_user_api: 'api/resources/users/updateUser'
+  update_user_api: 'api/resources/users/updateUser',
+
+  //Class
+  get_all_class_api: 'api/resources/class/getAllClass',
+  add_new_class_api: 'api/resources/class/addNewClass',
+  update_class_api: 'api/resources/class/updateClass/',
+
+  //Student Information
+  get_all_student_information: 'api/resources/information/getAllStudentInformation',
+  add_new_student_information: 'api/resources/information/addNewStudentInformation',
+  update_student_information: 'api/resources/information/updateStudentInformation',
 }

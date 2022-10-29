@@ -1,29 +1,37 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Inject, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { KloudNotificationService } from "../../../Components/kloud-notification/kloud-notification.service";
 import { UsersService } from "../../../Services/users/users.service";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { AddClassDialog } from "../../class/add-class/add-class";
 
 @Component({
   selector: 'add-user-dialog',
   templateUrl: 'add-user-dialog.html',
 })
 export class AddUserDialog implements OnInit{
+  isNew: boolean = true
   apiLoading: boolean = false
-  closeDialog: boolean = false
 
   constructor(
+    private dialogRef: MatDialogRef<AddClassDialog>,
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _kloudNoti: KloudNotificationService,
-    private userService: UsersService
+    private userService: UsersService,
+    @Inject(MAT_DIALOG_DATA) public userRecordData: any
   ) {
   }
 
   ngOnInit(
   ) {
     this.apiLoading = false
-    this.closeDialog = false
+    if(this.userRecordData){
+      this.isNew = false
+      this.addUserForm.patchValue(this.userRecordData)
+    }
+
   }
 
   addUserForm: FormGroup = this._formBuilder.group({
@@ -45,14 +53,14 @@ export class AddUserDialog implements OnInit{
   handleAddUser(){
     this.userService.handleAddUser([this.addUserForm.value]).subscribe(
       (res: any) => {
-        this.closeDialog = true
         this._kloudNoti.success("Thêm mới người dùng thành công")
+        this.apiLoading = false
+        this.dialogRef.close('success')
       }, err => {
         this._kloudNoti.error(err)
         this.apiLoading = false
       }
     )
   }
-
 
 }

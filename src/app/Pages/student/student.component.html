@@ -1,15 +1,64 @@
 <div class="fluid-container">
-    <div>
-        Quản lý học sinh
-    </div>
-    <form>
-        <mat-form-field class="top-search-box-container">
-            <button mat-icon-button color="primary" matPrefix><mat-icon color="">search</mat-icon></button>
-            <input class="top-search" matInput placeholder="Tìm kiếm">
-        </mat-form-field>
-    </form>
-    <button mat-button color="primary">Chọn</button>
-    <button mat-button color="primary">Lọc</button>
-    <button mat-button color="primary">Xuất</button>
-    <button mat-raised-button color="primary" (click)="openDialog()"> <mat-icon>add_circle_outline</mat-icon>Tạo mới</button>
+    <mat-card>
+        <mat-card-title class="kloud-title-container">
+            <span class="page-title">Quản lý học sinh</span>
+        </mat-card-title>
+
+        <kloud-divider></kloud-divider>
+
+        <mat-card-subtitle>
+          <div class="widget-container">
+            <div class="widget-spacer"></div>
+            <div class="widget-button-container">
+              <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>
+              <div class="widget-button"><button  mat-flat-button color="secondary">Lọc</button></div>
+
+              <div class="widget-button">
+                <button class="widget-icon-button"
+                        mat-raised-button color="secondary"
+                > <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                  <span>Xuất</span>
+                </button>
+              </div>
+              <div class="widget-button">
+                <button class="widget-icon-button"
+                        mat-raised-button color="accent"
+                >
+                  <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                  <span>Import</span>
+                </button>
+              </div>
+
+              <div class="widget-button">
+                <button class="widget-icon-button"
+                        mat-raised-button color="primary"
+                        (click)="openDialog()"
+                >
+                  <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                  <span>Tạo mới</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </mat-card-subtitle>
+
+        <mat-card-content>
+            <div class="kloud-table">
+                <kloud-table
+                  [dataSource]="studentsDataSource"
+                  [displayedColumns]="displayedColumn"
+                  [lockApiLoading]="lockApiLoading"
+                  [deleteApiLoading]="deleteApiLoading"
+
+                  (clickedRow)="handleClickedRow($event)"
+                  (handleClickEditRecord)="handleClickEditRecord($event)"
+                  (handleClickDeleteRecord)="handleClickDeleteRecord($event)"
+                  (handleClickLockRecord)="handleClickLockRecord($event)"
+                >
+                </kloud-table>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
 </div>
