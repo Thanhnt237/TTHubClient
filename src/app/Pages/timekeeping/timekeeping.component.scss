@@ -1,0 +1,73 @@
+.fluid-container{
+  display: flex;
+}
+
+.class-filter-group-container{
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+  min-width: 800px;
+}
+
+.table-container{
+  min-width: 1000px;
+  overflow: auto;
+}
+
+.table-no-matching-data{
+  display: flex;
+  justify-content: center;
+}
+
+.main-content-container{
+  width: 100%;
+  margin: 10px 0 10px 10px;
+}
+
+.kloud-card-content{
+  padding: 10px;
+}
+
+.kloud-card-component{
+  margin: 10px;
+}
+
+.kloud-button{
+  margin-right: 10px;
+}
+
+mat-card-actions{
+  padding: 10px;
+}
+
+.kloud-button-toggle{
+  text-align: left;
+}
+
+.kontent{
+  display: flex;
+  flex-direction: row;
+}
+
+.kloud-table{
+  width: 100%;
+}
+
+.kloud-paginator{
+  justify-content: end;
+}
+
+.mat-header-cell{
+  text-align: center;
+}
+
+.mat-row{
+  text-align: center;
+}
+
+td.mat-column-name {
+  text-align: left;
+}

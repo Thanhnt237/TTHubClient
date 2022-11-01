@@ -8,20 +8,7 @@ import { StudentService } from "../../../Services/students/student.service";
 import { ClassService } from "../../../Services/class/class.service";
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-import * as moment from 'moment-timezone'
-
-export const MY_FORMATS = {
-    parse: {
-        dateInput: 'DDMMYYYY',
-    },
-    display: {
-        dateInput: 'DD/MM/YYYY',
-        monthYearLabel: 'MMM YYYY',
-        dateA11yLabel: 'LL',
-        monthYearA11yLabel: 'MMMM YYYY',
-    },
-};
-
+import { DateFormat } from "../../../constants/date-format";
 
 @Component({
     selector: 'add-student-dialog',
@@ -33,7 +20,7 @@ export const MY_FORMATS = {
         deps: [MAT_DATE_LOCALE]
     }, {
         provide: MAT_DATE_FORMATS,
-        useValue: MY_FORMATS
+        useValue: DateFormat
     }]
 })
 
@@ -69,6 +56,7 @@ export class AddStudentDialog implements OnInit{
         this.fatherInfoForm.patchValue(this.studentRecordData.father_information)
         this.motherInfoForm.patchValue(this.studentRecordData.mother_information)
         this.classInfoForm.patchValue(this.studentRecordData.class)
+        this.contactInformationForm.patchValue(this.studentRecordData.contact_information)
     }
 
     handleGetClass(){
@@ -116,6 +104,12 @@ export class AddStudentDialog implements OnInit{
         national_identifier_provide_date: new FormControl()
     })
 
+    contactInformationForm: FormGroup = this._formBuilder.group({
+        name: new FormControl('', [Validators.required]),
+        phone: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.required])
+    })
+
     classInfoForm: FormGroup = this._formBuilder.group({
         ID: new FormControl()
     })
@@ -125,7 +119,8 @@ export class AddStudentDialog implements OnInit{
           !this.studentInfoForm.valid ||
           !this.motherInfoForm.valid ||
           !this.fatherInfoForm.valid ||
-          !this.classInfoForm.valid
+          !this.classInfoForm.valid ||
+          !this.contactInformationForm.valid
         ){
             this._kloudNoti.warn('Vui lòng nhập đủ thông tin')
             return
@@ -134,6 +129,7 @@ export class AddStudentDialog implements OnInit{
                 ...this.studentInfoForm.value,
                 father_information: this.fatherInfoForm.value,
                 mother_information: this.motherInfoForm.value,
+                contact_information: this.contactInformationForm.value,
                 class: this.classInfoForm.value
             }
 

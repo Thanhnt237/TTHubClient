@@ -1,3 +1,7 @@
+.fluid-container{
+  display: flex;
+}
+
 table{
   width: 100%;
 }
@@ -12,8 +16,6 @@ table{
 
 .page-title{
   font-size: 24px;
-  padding: 10px 0 10px 10px;
-  font-weight: 800;
 }
 
 .top-search-box-container{
@@ -27,4 +29,8 @@ table{
 .widget-button{
   margin: 10px 10px 10px 10px;
   padding: 0 10px 0 10px;
+}
+
+.main-content-container{
+  margin-top: 10px;
 }

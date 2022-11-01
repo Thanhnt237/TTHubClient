@@ -1,24 +1,45 @@
 <div class="fluid-container">
-  <mat-card>
-    <mat-card-title class="kloud-title-container">
-      <span class="page-title">Quản lý người dùng</span>
-    </mat-card-title>
+  <div>
+    <mat-card class="filter-container">
+      <mat-card-title class="kloud-title-container">
+        <span class="page-title"> Bộ lọc </span>
+      </mat-card-title>
+      <kloud-divider></kloud-divider>
+    </mat-card>
 
+    <mat-card class="filter-container">
+      <mat-card-title class="kloud-title-container">
+        <span class="page-title"> Bộ lọc </span>
+      </mat-card-title>
+      <kloud-divider></kloud-divider>
+      <mat-card-content>
+        <mat-tab-group mat-align-tabs="start">
+          <mat-tab label="First">Content 1</mat-tab>
+          <mat-tab label="Second">Content 2</mat-tab>
+          <mat-tab label="Third">Content 3</mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card class="main-content-container">
+    <mat-card-title class="kloud-title-container">
+      <span class="page-title"> Danh sách hóa đơn đã tạo </span>
+    </mat-card-title>
     <kloud-divider></kloud-divider>
 
     <mat-card-subtitle>
       <div class="widget-container">
-        <form [formGroup]="searchForm" (ngSubmit)="handleSearch()">
-          <mat-form-field class="top-search-box-container">
-            <button mat-icon-button color="primary" matPrefix ><mat-icon color="">search</mat-icon></button>
-            <input formControlName="searchField" class="top-search" matInput placeholder="Tìm kiếm">
-          </mat-form-field>
-        </form>
+
+        <mat-form-field class="top-search-box-container">
+          <button mat-icon-button color="primary" matPrefix><mat-icon color="">search</mat-icon></button>
+          <input class="top-search" matInput placeholder="Tìm kiếm">
+        </mat-form-field>
 
         <div class="widget-spacer"></div>
         <div class="widget-button-container">
           <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>
-          <div class="widget-button"><button  mat-flat-button color="secondary">Lọc</button></div>
+          <div class="widget-button" ><button mat-flat-button color="secondary">Lọc</button></div>
 
           <div class="widget-button">
             <button class="widget-icon-button"
@@ -49,17 +70,12 @@
       </div>
     </mat-card-subtitle>
 
-    <mat-card-content>
-      <div class="table-user">
-        <kloud-table
-          [dataSource]="users"
-          [displayedColumns]="displayColumn"
-          (clickedRow)="handleClickedRow($event)"
-          (handleClickEditRecord)="handleClickedEdit($event)"
-          (handleClickLockRecord)="handleClickedLock($event)"
-          (handleClickDeleteRecord)="handleClickedDelete($event)"
-        ></kloud-table>
-      </div>
+    <mat-card-content class="table-container">
+      <kloud-table>
+
+      </kloud-table>
     </mat-card-content>
   </mat-card>
+
+
 </div>

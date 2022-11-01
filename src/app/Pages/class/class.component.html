@@ -1,52 +1,92 @@
 <div class="fluid-container">
-    <div class="page-title">
-        Quản lý lớp học
+    <div class="left-fluid-container">
+        <mat-card class="filter-container">
+            <mat-card-title class="kloud-title-container">
+                <span class="page-title"> Bộ lọc </span>
+            </mat-card-title>
+            <kloud-divider></kloud-divider>
+            <mat-card-content>
+                <div class="filter-component-container">
+                    <mat-label>Học kỳ</mat-label>
+                    <mat-select>
+                        <option>20222</option>
+                    </mat-select>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </div>
 
-    <form [formGroup]="searchForm" (ngSubmit)="handleSearch()">
-        <mat-form-field class="top-search-box-container">
-            <button mat-icon-button color="primary" matPrefix ><mat-icon color="">search</mat-icon></button>
-            <input formControlName="searchField" class="top-search" matInput placeholder="Tìm kiếm">
-        </mat-form-field>
-    </form>
+    <div class="right-fluid-container">
+        <mat-card class="main-content-container">
+            <mat-card-title class="kloud-title-container">
+                <span class="page-title">Quản lý lớp học</span>
+            </mat-card-title>
 
-    <button mat-icon-button color="primary" matPrefix (click)="handleGetAllClasses()">reset</button>
+            <kloud-divider></kloud-divider>
 
-    <button mat-button class="widget-button" color="primary"
-    >Chọn</button>
-    <button mat-button class="widget-button" color="primary">Lọc</button>
-    <button mat-button class="widget-button" color="primary">Xuất</button>
-    <button mat-raised-button class="widget-button" color="primary" (click)="openDialog()"> <mat-icon>add_circle_outline</mat-icon>Tạo mới</button>
-    <button mat-raised-button class="widget-button" color="primary">Import</button>
+            <mat-card-subtitle>
+                <div class="widget-container">
+                    <form [formGroup]="searchForm" (ngSubmit)="handleSearch()">
+                        <mat-form-field class="top-search-box-container">
+                            <button mat-icon-button color="primary" matPrefix ><mat-icon color="">search</mat-icon></button>
+                            <input formControlName="searchField" class="top-search" matInput placeholder="Tìm kiếm">
+                        </mat-form-field>
+                    </form>
 
-<!--    <mat-menu #multipleSelectMenu="matMenu">-->
-<!--        <ng-template matMenuContent let-record="passingData">-->
-<!--            <button mat-menu-item (click)="onClickMultipleChoiceEdit(record)">-->
-<!--                <mat-icon>edit</mat-icon>-->
-<!--                <span>Sửa</span>-->
-<!--            </button>-->
+                    <div class="widget-spacer"></div>
 
-<!--            <button mat-menu-item (click)="onClickMultipleChoiceLock(record)">-->
-<!--                <mat-icon>lock</mat-icon>-->
-<!--                <span>Khóa</span>-->
-<!--                <mat-slide-toggle></mat-slide-toggle>-->
-<!--            </button>-->
+                    <div class="widget-spacer"></div>
+                    <div class="widget-button-container">
+                        <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>
+                        <div class="widget-button">
+                            <button class="widget-icon-button"
+                                    mat-raised-button color="secondary"
+                            > <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                                <span>Xuất</span>
+                            </button>
+                        </div>
+                        <div class="widget-button">
+                            <button
+                                (click)="openImportDialog()"
+                                class="widget-icon-button"
+                                mat-raised-button color="accent"
+                            >
+                                <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                                <span>Import</span>
+                            </button>
+                        </div>
 
-<!--            <button mat-menu-item (click)="onClickMultipleChoiceDelete(record)">-->
-<!--                <mat-icon>delete</mat-icon>-->
-<!--                <span>Xóa</span>-->
-<!--            </button>-->
-<!--        </ng-template>-->
-<!--    </mat-menu>-->
+                        <div class="widget-button">
+                            <button
+                                (click)="openDialog()"
+                                class="widget-icon-button"
+                                mat-raised-button
+                                color="primary"
+                            >
+                                <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                                <span>Tạo mới</span>
+                            </button>
+                        </div>
 
-    <kloud-table
-      [dataSource]="classesDataSource"
-      [displayedColumns]="displayedColumns"
-      [lockApiLoading]="lockApiLoading"
-      [deleteApiLoading]="deleteApiLoading"
-      (clickedRow)="handleClickedRow($event)"
-      (handleClickEditRecord)="handleClickEditRecord($event)"
-      (handleClickDeleteRecord)="handleClickedDeleteRecord($event)"
-      (handleClickLockRecord)="handleClickLockRecord($event)"
-    ></kloud-table>
+                    </div>
+                </div>
+
+            </mat-card-subtitle>
+
+            <mat-card-content>
+                <div class="kloud-table">
+                    <kloud-table
+                      [dataSource]="classesDataSource"
+                      [displayedColumns]="displayedColumns"
+                      [lockApiLoading]="lockApiLoading"
+                      [deleteApiLoading]="deleteApiLoading"
+                      (clickedRow)="handleClickedRow($event)"
+                      (handleClickEditRecord)="handleClickEditRecord($event)"
+                      (handleClickDeleteRecord)="handleClickedDeleteRecord($event)"
+                      (handleClickLockRecord)="handleClickLockRecord($event)"
+                    ></kloud-table>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

@@ -18,7 +18,7 @@ export class KloudNotificationComponent implements OnInit {
   get getIcon() {
     switch (this.data.snackType) {
       case 'Success':
-        return 'done';
+        return 'check_circle';
       case 'Error':
         return 'error';
       case 'Warn':

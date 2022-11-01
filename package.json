@@ -21,10 +21,13 @@
     "@angular/platform-browser": "~13.2.0",
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
+    "@nestjs/axios": "^0.1.0",
     "bulma": "^0.9.4",
     "moment": "^2.29.4",
+    "moment-range": "^4.0.2",
     "moment-timezone": "^0.5.38",
     "ngx-paypal": "^10.0.1",
+    "ngx-print": "^1.2.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

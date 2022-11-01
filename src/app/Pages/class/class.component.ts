@@ -5,6 +5,7 @@ import { ClassService } from "../../Services/class/class.service";
 import { componentKey } from "../../constants/component_key";
 import { KloudNotificationService } from "../../Components/kloud-notification/kloud-notification.service";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { ImportClassDialog } from "./import-class/import-class-dialog";
 
 @Component({
   selector: 'app-class',
@@ -86,6 +87,13 @@ export class ClassComponent implements OnInit {
       .afterClosed().subscribe(async (res) => {
       await this.handleGetAllClasses()
     });
+  }
+
+  openImportDialog(): void{
+    this.dialog.open(ImportClassDialog)
+      .afterClosed().subscribe((result: any) => {
+        console.log("Import class dialog closed", result)
+    })
   }
 
   handleClickLockRecord(record: any){

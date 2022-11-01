@@ -1,0 +1,12 @@
+<button
+  id="dropzone"
+  mat-flat-button
+  fileDragDirective
+  (click)="fileInput.click()"
+  (files)="handleFileDropped($event)"
+>
+<div><mat-icon>file_upload</mat-icon></div>
+<div>Nhấn hoặc kéo thả file vào đây</div>
+</button>
+
+<input type="file" #fileInput hidden (click)="handleFileDropped($event)">

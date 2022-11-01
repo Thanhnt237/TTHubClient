@@ -42,6 +42,15 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatSelectModule } from "@angular/material/select";
+import { TimekeepingComponent } from "./Pages/timekeeping/timekeeping.component";
+import { DebtComponent } from "./Pages/debt/debt.component";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { StudentCheckinFilterDialog } from "./Pages/timekeeping/filter-dialog/student-checkin-filter-dialog";
+import { BillsComponent } from "./Pages/bills/bills.component";
+import { MatTabsModule } from "@angular/material/tabs";
+import { KloudExcelReader } from "./Components/kloud-excel-reader/kloud-excel-reader";
+import { ImportClassDialog } from "./Pages/class/import-class/import-class-dialog";
+import { DragDirective } from "./Components/kloud-excel-reader/directive-drag-field";
 
 let matModule = [
   MatIconModule,
@@ -65,10 +74,13 @@ let matModule = [
 ]
 
 let expandModule = [
-    AddClassDialog,
-    AddStudentDialog,
-    AddUserDialog,
-
+  AddClassDialog,
+  AddStudentDialog,
+  AddUserDialog,
+  StudentCheckinFilterDialog,
+  KloudExcelReader,
+  ImportClassDialog,
+  DragDirective
 ]
 
 
@@ -98,6 +110,18 @@ const routes: Routes = [
     component: UsersComponent
   },
   {
+    path: "timekeeping",
+    component: TimekeepingComponent
+  },
+  {
+    path: "debt",
+    component: DebtComponent
+  },
+  {
+    path: "bills",
+    component: BillsComponent
+  },
+  {
     path: "**",
     component: HomeComponent
   }
@@ -119,6 +143,9 @@ let customComponent = [
     RegisterComponent,
     StudentComponent,
     UsersComponent,
+    TimekeepingComponent,
+    DebtComponent,
+    BillsComponent,
     customComponent,
     expandModule
   ],
@@ -131,7 +158,9 @@ let customComponent = [
     MatDialogModule,
     FormsModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatTabsModule
   ],
   exports: [RouterModule]
 })

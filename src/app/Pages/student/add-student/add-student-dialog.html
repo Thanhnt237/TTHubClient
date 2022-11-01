@@ -106,10 +106,10 @@
             </mat-card-content>
         </mat-card>
     <form [formGroup]="fatherInfoForm">
-        <mat-card>
+        <mat-card class="mat-card-container">
             <mat-card-title>Thông tin bố</mat-card-title>
             <kloud-divider></kloud-divider>
-            <mat-card-content>
+            <mat-card-content class="mat-card-content">
                 <mat-form-field>
                     <input
                       matInput
@@ -188,10 +188,10 @@
     </form>
 
     <form [formGroup]="motherInfoForm">
-        <mat-card>
+        <mat-card class="mat-card-container">
             <mat-card-title> Thông tin mẹ </mat-card-title>
             <kloud-divider></kloud-divider>
-            <mat-card-content>
+            <mat-card-content class="mat-card-content">
                 <mat-form-field>
                     <input
                       formControlName="name"
@@ -251,6 +251,49 @@
                       formControlName="ethnic"
                       matInput
                       placeholder="Tôn giáo"/>
+                </mat-form-field>
+            </mat-card-content>
+        </mat-card>
+    </form>
+
+    <form [formGroup]="contactInformationForm">
+        <mat-card class="mat-card-container">
+            <mat-card-title> Thông tin người liên hệ khi cần thiết</mat-card-title>
+            <mat-card-subtitle>
+                <p>
+                    Các vấn đề xử lý liên quan đến hệ thống sẽ được cung cấp khi khai báo thông tin
+                </p>
+            </mat-card-subtitle>
+            <kloud-divider></kloud-divider>
+            <mat-card-content class="mat-card-content">
+                <mat-form-field>
+                    <input
+                      formControlName="name"
+                      matInput
+                      placeholder="Họ và tên người liên hệ"/>
+                    <mat-error *ngIf="!contactInformationForm.controls['name'].valid">
+                        Vui lòng nhập đầy đủ thông tin!
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input
+                      formControlName="phone"
+                      matInput
+                      placeholder="Số điện thoại người liên hệ"/>
+                    <mat-error *ngIf="!contactInformationForm.controls['phone'].valid">
+                        Vui lòng nhập đầy đủ thông tin!
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input
+                      formControlName="email"
+                      matInput
+                      placeholder="Email người liên hệ"/>
+                    <mat-error *ngIf="!contactInformationForm.controls['email'].valid">
+                        Vui lòng nhập đầy đủ thông tin!
+                    </mat-error>
                 </mat-form-field>
             </mat-card-content>
         </mat-card>

@@ -3,7 +3,6 @@ import {MatDialog} from "@angular/material/dialog";
 import { AddStudentDialog } from "./add-student/add-student";
 import { StudentService } from "../../Services/students/student.service";
 import { KloudNotificationService } from "../../Components/kloud-notification/kloud-notification.service";
-import { keys } from "../../constants/keys";
 import { componentKey } from "../../constants/component_key";
 
 @Component({

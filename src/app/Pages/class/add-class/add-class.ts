@@ -11,6 +11,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 @Component({
     selector: 'add-class-dialog',
     templateUrl: 'add-class-dialog.html',
+    styleUrls: ['add-class-dialog.scss']
 })
 export class AddClassDialog implements OnInit{
     apiLoading: boolean = false

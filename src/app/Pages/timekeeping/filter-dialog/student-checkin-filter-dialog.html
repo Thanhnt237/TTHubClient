@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Bộ lọc</h2>
+
+<mat-dialog-content>
+  <mat-form-field class="example-form-field" appearance="outline">
+    <mat-label>Khoảng ngày</mat-label>
+    <mat-date-range-input
+      [formGroup]="dateFilter"
+      [rangePicker]="campaignOnePicker"
+    >
+      <input
+        formControlName="start"
+        matStartDate
+        placeholder="Từ ngày"
+      >
+      <input
+        formControlName="end"
+        matEndDate
+        placeholder="Đến ngày"
+      >
+    </mat-date-range-input>
+    <mat-hint>Định dạng ngày DD/MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close="" [mat-dialog-close]="'No data change'">Hủy</button>
+  <button mat-button cdkFocusInitial type="submit" (click)="onOK()">
+    <div style="display: flex;justify-content: center;align-items: center">
+      <span>Áp dụng</span>
+      <mat-spinner
+        [diameter]="20"
+        color="primary"
+        *ngIf="apiLoading"
+      ></mat-spinner>
+    </div>
+  </button>
+</mat-dialog-actions>
