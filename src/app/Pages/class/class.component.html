@@ -5,12 +5,18 @@
                 <span class="page-title"> Bộ lọc </span>
             </mat-card-title>
             <kloud-divider></kloud-divider>
-            <mat-card-content>
-                <div class="filter-component-container">
-                    <mat-label>Học kỳ</mat-label>
-                    <mat-select>
-                        <option>20222</option>
-                    </mat-select>
+            <mat-card-content class="kard-kontent">
+                <div class="kard-kontent-komponent">
+                    <h3 class="kard-kontent-komponent-title">Filter học kỳ</h3>
+                    <mat-form-field
+                      class="filter-component-container full-width-input"
+                      appearance="outline"
+                    >
+                        <mat-label>Học kỳ</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let item of semesterFilter" [value]="item.semester">{{item.semester}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
             </mat-card-content>
         </mat-card>
@@ -26,7 +32,7 @@
 
             <mat-card-subtitle>
                 <div class="widget-container">
-                    <form [formGroup]="searchForm" (ngSubmit)="handleSearch()">
+                    <form [formGroup]="searchForm" (ngSubmit)="handleSearch()" style="margin-top: 7px;">
                         <mat-form-field class="top-search-box-container">
                             <button mat-icon-button color="primary" matPrefix ><mat-icon color="">search</mat-icon></button>
                             <input formControlName="searchField" class="top-search" matInput placeholder="Tìm kiếm">

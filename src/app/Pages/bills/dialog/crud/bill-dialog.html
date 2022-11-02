@@ -1,0 +1,87 @@
+<h2 mat-dialog-title>Thêm mới hóa đơn thanh toán</h2>
+<form (ngSubmit)="onOK()" [formGroup]="billForm">
+  <mat-dialog-content class="mat-typography">
+    <mat-form-field>
+      <mat-select
+        formControlName="classification"
+        placeholder="Loại hóa đơn"
+      >
+      <mat-option value="PAY"> Thanh toán </mat-option>
+      <mat-option value="DEBT"> Ghi nợ </mat-option>
+      </mat-select>
+<!--      <mat-error *ngIf="!addClassForm.controls['classCode'].valid">-->
+<!--        Vui lòng nhập mã lớp!-->
+<!--      </mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+        formControlName="type"
+        placeholder="Hình thức thanh toán"
+      >
+        <mat-option value="CASHING"> Tiền mặt </mat-option>
+        <mat-option value="BANKING"> Chuyển khoản </mat-option>
+        <mat-option value="GATEWAY"> Thanh toán Online </mat-option>
+      </mat-select>
+<!--      <mat-error *ngIf="!addClassForm.controls['name'].valid">-->
+<!--        Vui lòng nhập tên lớp!-->
+<!--      </mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="full-width-input">
+      <input
+        matInput
+        formControlName="reason"
+        placeholder="Nội dung thanh toán"
+      />
+      <!--      <mat-error *ngIf="!addClassForm.controls['name'].valid">-->
+      <!--        Vui lòng nhập tên lớp!-->
+      <!--      </mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="amount"
+        placeholder="Số tiền"
+        class="full-width-input"
+      />
+      <!--      <mat-error *ngIf="!addClassForm.controls['name'].valid">-->
+      <!--        Vui lòng nhập tên lớp!-->
+      <!--      </mat-error>-->
+    </mat-form-field>
+
+<!--    <mat-form-field>-->
+<!--      <input-->
+<!--        matInput-->
+<!--        required-->
+<!--        formControlName="semester"-->
+<!--        placeholder="Học kỳ"-->
+<!--      />-->
+<!--      <mat-error *ngIf="!addClassForm.controls['semester'].valid">-->
+<!--        Vui lòng nhập học kỳ!-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
+
+    <mat-slide-toggle
+      *ngIf="!isNew"
+      formControlName="isLock"
+    > Khóa
+    </mat-slide-toggle>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close="" [mat-dialog-close]="'No data change'">Hủy</button>
+    <button mat-button color="primary" [disabled]="apiLoading" cdkFocusInitial type="submit">
+      <div style="display: flex;justify-content: center;align-items: center">
+        <span *ngIf="isNew">Thêm mới</span>
+        <span *ngIf="!isNew">Sửa</span>
+        <mat-spinner
+          [diameter]="20"
+          color="primary"
+          *ngIf="apiLoading"
+        ></mat-spinner>
+      </div>
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -49,7 +49,7 @@ mat-card-actions{
 
 .kontent{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .kloud-table{
@@ -70,4 +70,8 @@ mat-card-actions{
 
 td.mat-column-name {
   text-align: left;
+}
+
+.mat-button-toggle-label-content{
+  display: flex !important;
 }

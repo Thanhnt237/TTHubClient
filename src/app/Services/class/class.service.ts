@@ -11,6 +11,7 @@ export class ClassService {
   private readonly getAllClassUrl = `${endpoints.base_url}${endpoints.get_all_class_api}`
   private readonly addNewClasUrl = `${endpoints.base_url}${endpoints.add_new_class_api}`
   private readonly updateClassUrl = `${endpoints.base_url}${endpoints.update_class_api}`
+  private readonly getSemesterUrl = `${endpoints.base_url}${endpoints.get_semester_api}`
 
   constructor(
     private http: HttpClient,
@@ -27,6 +28,10 @@ export class ClassService {
 
   handleUpdateClass(ID: any, data: any){
     return this.http.put(`${this.updateClassUrl}${ID}`,data)
+  }
+
+  getSemester(){
+    return this.http.get(this.getSemesterUrl)
   }
 
 }

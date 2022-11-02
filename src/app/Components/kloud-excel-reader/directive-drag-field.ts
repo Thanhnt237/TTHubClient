@@ -35,7 +35,6 @@ export class DragDirective {
 
     let files: FileHandle[] = [];
 
-    console.log(evt)
     // @ts-ignore
     for (let i = 0; i < evt.dataTransfer.files.length; i++) {
       // @ts-ignore

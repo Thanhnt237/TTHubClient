@@ -2,8 +2,65 @@
   <div>
     <mat-card class="filter-container">
       <mat-card-title class="kloud-title-container">
-        <span class="page-title"> Bộ lọc </span>
+        <span class="page-title"> Chọn học sinh </span>
       </mat-card-title>
+      <kloud-divider></kloud-divider>
+      <mat-card-content class="kard-kontent">
+<!--        <mat-form-field class="full-width-input" appearance="outline">-->
+<!--          <mat-label>Lớp học</mat-label>-->
+<!--          <mat-select-->
+<!--            placeholder="Chọn lớp học"-->
+<!--          >-->
+<!--            <mat-option>-->
+<!--              <ngx-mat-select-search-->
+<!--                placeholderLabel="Tìm kiếm lớp học"-->
+<!--              ></ngx-mat-select-search>-->
+<!--            </mat-option>-->
+<!--            <mat-option>fack</mat-option>-->
+<!--          </mat-select>-->
+<!--        </mat-form-field>-->
+
+        <mat-form-field class="full-width-input" appearance="outline" (click)="onGetStudentInfo()">
+          <mat-label>Học sinh</mat-label>
+          <mat-select
+            placeholder="Học sinh"
+            [style]="'width:600px'"
+            [(ngModel)]="studentFilter"
+            (selectionChange)="onSelectionStudentFilterChange()"
+          >
+            <mat-select-trigger *ngIf="studentFilter">
+              {{studentFilter?.tenant_code}} - {{studentFilter?.name}}
+            </mat-select-trigger>
+            <mat-option>
+              <ngx-mat-select-search
+                ngModel
+                (ngModelChange)="onSearchStudentInfoChange($event)"
+                (durationchange)="6"
+                placeholderLabel="Tìm kiếm học sinh"
+              ></ngx-mat-select-search>
+            </mat-option>
+            <mat-option disabled *ngIf="!studentInformation">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-option>
+            <mat-option
+              [style]="'height: auto;'"
+              *ngFor="let info of studentInformation"
+              class="kustom-mat-option"
+              [value]="info"
+            >
+              <div class="kloud-custom-option-row">
+                <div class="kloud-custom-option-left"><strong>Mã lớp:</strong> {{info.class.classCode}}</div>
+                <div class="kloud-custom-option-right"><strong>Tên lớp:</strong> {{info.class.name}}</div>
+              </div>
+              <div class="kloud-custom-option-row">
+                <div class="kloud-custom-option-left"><strong>Mã HS:</strong> {{info.tenant_code}}</div>
+                <div class="kloud-custom-option-right"><strong>Tên học sinh:</strong> {{info.name}}</div>
+              </div>
+              <kloud-divider></kloud-divider>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
       <kloud-divider></kloud-divider>
     </mat-card>
 
@@ -12,12 +69,25 @@
         <span class="page-title"> Bộ lọc </span>
       </mat-card-title>
       <kloud-divider></kloud-divider>
-      <mat-card-content>
-        <mat-tab-group mat-align-tabs="start">
-          <mat-tab label="First">Content 1</mat-tab>
-          <mat-tab label="Second">Content 2</mat-tab>
-          <mat-tab label="Third">Content 3</mat-tab>
-        </mat-tab-group>
+      <mat-card-content class="kard-kontent">
+        <mat-form-field class="full-width-input" appearance="outline">
+          <mat-label>Ngày</mat-label>
+          <mat-select
+            placeholder="Chọn"
+          >
+            <mat-option>fack</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div style="padding: 10px 5px 6px 5px; ">
+          <div>Phân loại hóa đơn</div>
+          <div class=""></div>
+          <mat-radio-group aria-label="Select an option" style="display: flex;flex-direction: column">
+            <mat-radio-button style="margin: 6px 0 6px 10px" value="2">Tất cả</mat-radio-button>
+            <mat-radio-button style="margin: 6px 0 6px 10px" value="1">Thanh toán</mat-radio-button>
+            <mat-radio-button style="margin: 6px 0 6px 10px" value="2">Ghi nợ</mat-radio-button>
+          </mat-radio-group>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
@@ -30,7 +100,6 @@
 
     <mat-card-subtitle>
       <div class="widget-container">
-
         <mat-form-field class="top-search-box-container">
           <button mat-icon-button color="primary" matPrefix><mat-icon color="">search</mat-icon></button>
           <input class="top-search" matInput placeholder="Tìm kiếm">
@@ -39,7 +108,6 @@
         <div class="widget-spacer"></div>
         <div class="widget-button-container">
           <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>
-          <div class="widget-button" ><button mat-flat-button color="secondary">Lọc</button></div>
 
           <div class="widget-button">
             <button class="widget-icon-button"
@@ -60,6 +128,7 @@
           <div class="widget-button">
             <button class="widget-icon-button"
                     mat-raised-button color="primary"
+                    (click)="openDialog()"
             >
               <mat-icon class="widget-icon">add_circle_outline</mat-icon>
               <span>Tạo mới</span>

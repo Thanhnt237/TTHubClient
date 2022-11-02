@@ -14,6 +14,7 @@ export const endpoints = {
   get_all_class_api: 'api/resources/class/getAllClass',
   add_new_class_api: 'api/resources/class/addNewClass',
   update_class_api: 'api/resources/class/updateClass/',
+  get_semester_api: 'api/resources/class/getSemester',
 
   //Student Information
   get_all_student_information: 'api/resources/information/getAllStudentInformation',

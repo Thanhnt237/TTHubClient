@@ -51,6 +51,9 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { KloudExcelReader } from "./Components/kloud-excel-reader/kloud-excel-reader";
 import { ImportClassDialog } from "./Pages/class/import-class/import-class-dialog";
 import { DragDirective } from "./Components/kloud-excel-reader/directive-drag-field";
+import { BillDialog } from "./Pages/bills/dialog/crud/bill-dialog";
+import { NgxMatSelectSearchModule } from "ngx-mat-select-search";
+import { MatRadioModule } from "@angular/material/radio";
 
 let matModule = [
   MatIconModule,
@@ -80,7 +83,8 @@ let expandModule = [
   StudentCheckinFilterDialog,
   KloudExcelReader,
   ImportClassDialog,
-  DragDirective
+  DragDirective,
+  BillDialog
 ]
 
 
@@ -160,7 +164,9 @@ let customComponent = [
     MatAutocompleteModule,
     MatSelectModule,
     MatButtonToggleModule,
-    MatTabsModule
+    MatTabsModule,
+    NgxMatSelectSearchModule,
+    MatRadioModule
   ],
   exports: [RouterModule]
 })

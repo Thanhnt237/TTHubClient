@@ -23,13 +23,17 @@
     "@angular/router": "~13.2.0",
     "@nestjs/axios": "^0.1.0",
     "bulma": "^0.9.4",
+    "file-system": "^2.2.2",
+    "fs": "^0.0.1-security",
     "moment": "^2.29.4",
     "moment-range": "^4.0.2",
     "moment-timezone": "^0.5.38",
+    "ngx-mat-select-search": "^5.0.0",
     "ngx-paypal": "^10.0.1",
     "ngx-print": "^1.2.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

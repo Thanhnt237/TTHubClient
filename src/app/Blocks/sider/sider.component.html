@@ -4,66 +4,75 @@
             <img src="../../../assets/logo.svg" alt="logo" class="logo"/>
         </section>
         <mat-divider></mat-divider>
-        <section>
-            <div class="sider-user-avatar-container">
-                <img class="sider-user-avatar" alt="user avatar" src="https://c4.wallpaperflare.com/wallpaper/726/754/357/kali-linux-kali-linux-nethunter-linux-unix-lenovo-hd-wallpaper-preview.jpg">
-            </div>
-            <div class="sider-user-information-container">
-                <p><strong>Cấn Tuấn Thành</strong></p>
-                <p>thanh.nt172824@sis.hust.edu.vn</p>
-            </div>
-        </section>
-        <mat-divider></mat-divider>
+
+<!--        <section>-->
+<!--            <div class="sider-user-avatar-container">-->
+<!--                <img class="sider-user-avatar" alt="user avatar" src="https://c4.wallpaperflare.com/wallpaper/726/754/357/kali-linux-kali-linux-nethunter-linux-unix-lenovo-hd-wallpaper-preview.jpg">-->
+<!--            </div>-->
+<!--            <div class="sider-user-information-container">-->
+<!--                <p><strong>Cấn Tuấn Thành</strong></p>-->
+<!--                <p>thanh.nt172824@sis.hust.edu.vn</p>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--        <mat-divider></mat-divider>-->
+
         <section>
             <div class="sider-menu-header">
             </div>
             <div class="sider-menu-container">
                 <mat-accordion>
                     <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header class="button-left-sider" routerLink="/dashboard">
+                            <mat-icon class="sider-menu-button-icon"> assessment </mat-icon>
+                            DASHBOARD
+                        </mat-expansion-panel-header>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel hideToggle>
                         <mat-expansion-panel-header class="button-left-sider">
-                            <mat-icon color="accent" class="sider-menu-button-icon"> settings </mat-icon>
+                            <mat-icon class="sider-menu-button-icon"> settings </mat-icon>
                             Quản trị hệ thống
                         </mat-expansion-panel-header>
-                        <button mat-button color="primary" class="button-left-sider" routerLink="/class">
+                        <button mat-button class="button-left-sider" routerLink="/class">
                             <mat-icon class="sider-menu-button-icon"> class </mat-icon>
                             Quản lý lớp học
                         </button>
-                        <button mat-button color="primary" class="button-left-sider" routerLink="/users">
+                        <button mat-button class="button-left-sider" routerLink="/users">
                             <mat-icon class="sider-menu-button-icon"> supervised_user_circle </mat-icon>
                             Quản lý danh sách người dùng
                         </button>
-                        <button mat-button color="primary" class="button-left-sider" routerLink="/student">
+                        <button mat-button class="button-left-sider" routerLink="/student">
                             <mat-icon class="sider-menu-button-icon"> person </mat-icon>
                             Quản lý học sinh
                         </button>
-                        <button mat-button color="primary" class="button-left-sider" routerLink="/profile">
+                        <button mat-button class="button-left-sider" routerLink="/profile">
                             <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
                             Quản lý thông tin cá nhân
                         </button>
                     </mat-expansion-panel>
                     <mat-expansion-panel hideToggle>
                         <mat-expansion-panel-header class="button-left-sider">
-                            <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                            <mat-icon class="sider-menu-button-icon"> art_track </mat-icon>
                             Chấm ăn
                         </mat-expansion-panel-header>
-                        <button mat-button color="primary" class="button-left-sider" routerLink="/timekeeping">
-                            <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                        <button mat-button class="button-left-sider" routerLink="/timekeeping">
+                            <mat-icon class="sider-menu-button-icon"> art_track </mat-icon>
                             Chấm ăn
                         </button>
                     </mat-expansion-panel>
                     <mat-expansion-panel hideToggle >
                         <mat-expansion-panel-header class="button-left-sider">
-                            <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                            <mat-icon class="sider-menu-button-icon"> book </mat-icon>
                             Công nợ học phí
                         </mat-expansion-panel-header>
 
-                        <button mat-button color="primary" class="button-left-sider" routerLink="/bills">
-                            <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                        <button mat-button class="button-left-sider" routerLink="/bills">
+                            <mat-icon class="sider-menu-button-icon"> book </mat-icon>
                             Hóa đơn
                         </button>
 
-                        <button mat-button color="primary" class="button-left-sider" routerLink="/debt">
-                            <mat-icon class="sider-menu-button-icon"> favorite </mat-icon>
+                        <button mat-button class="button-left-sider" routerLink="/debt">
+                            <mat-icon class="sider-menu-button-icon"> book </mat-icon>
                             Thông tin công nợ học phí
                         </button>
                     </mat-expansion-panel>

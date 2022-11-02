@@ -17,6 +17,8 @@ export class ClassComponent implements OnInit {
   lockApiLoading = false
   deleteApiLoading = false
 
+  semesterFilter: any
+
   displayedColumns= [{
     key: componentKey.check_box_col
   },{
@@ -51,6 +53,7 @@ export class ClassComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleGetAllClasses()
+    this.handleGetSemester()
   }
 
   async handleSearch() {
@@ -70,7 +73,7 @@ export class ClassComponent implements OnInit {
 
     this.classService.handleGetClasses(query).subscribe(
       (res: any) => {
-        if(res?.data?.length){
+        if(res?.data){
           this.classesDataSource = res.data.map((c:any, index: number) => ({
             STT: index + 1,
             ...c
@@ -78,6 +81,16 @@ export class ClassComponent implements OnInit {
         }
       }, error => {
         this.kloudNoti.error(error)
+      }
+    )
+  }
+
+  handleGetSemester(){
+    this.classService.getSemester().subscribe(
+      (res: any) => {
+        this.semesterFilter = res
+      }, error => {
+
       }
     )
   }
@@ -134,6 +147,10 @@ export class ClassComponent implements OnInit {
         this.deleteApiLoading = false
       }
     )
+  }
+
+  onSelectedFilterSemester(){
+
   }
 
   onClickMultipleChoiceEdit(record: any){

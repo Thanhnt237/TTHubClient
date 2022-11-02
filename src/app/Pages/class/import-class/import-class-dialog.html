@@ -1,3 +1,21 @@
-<h2>Import class</h2>
+<div class="page-title" style="display: flex; padding-right: 20px; align-items: center;">
+  <h2>Import lớp học</h2>
+  <div class="widget-spacer"></div>
+  <button mat-button color="accent">Template</button>
+</div>
 
 <kloud-excel-reader></kloud-excel-reader>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close="" [mat-dialog-close]="'No data change'">Hủy</button>
+  <button mat-button color="primary" [disabled]="apiLoading" cdkFocusInitial type="submit">
+    <div style="display: flex;justify-content: center;align-items: center">
+      <span>Thêm mới</span>
+      <mat-spinner
+        [diameter]="20"
+        color="primary"
+        *ngIf="apiLoading"
+      ></mat-spinner>
+    </div>
+  </button>
+</mat-dialog-actions>

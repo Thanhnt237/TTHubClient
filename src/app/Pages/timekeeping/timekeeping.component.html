@@ -52,17 +52,21 @@
 
       <mat-card-content class="kontent kloud-card-content">
         <mat-button-toggle-group
+          style="align-items: start;"
           #classToggle="matButtonToggleGroup"
           class="class-filter-group-container"
           [(ngModel)]="selectedClassModel">
           <mat-button-toggle
+            [style.align-items]="'left'"
             mat-stroke-button
             *ngFor="let item of classDataSource"
             [value]="item" (click)="onClickClassToggle()"
             class="kloud-button-toggle"
-            style="text-align: start"
+            style="display: flex; width: auto; "
           >
-            Lớp: {{item.classCode}} - {{item.name}}
+            <div style="text-align: left;">Mã lớp: {{item.classCode}}</div>
+            <div style="text-align: left;">Tên lớp: {{item.name}}</div>
+            <kloud-divider></kloud-divider>
           </mat-button-toggle>
         </mat-button-toggle-group>
       </mat-card-content>

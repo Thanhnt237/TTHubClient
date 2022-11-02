@@ -53,16 +53,8 @@
     <mat-menu
       #toolBarProfileMenu="matMenu"
     >
-        <button mat-menu-item>
-            <mat-icon>dialpad</mat-icon>
-            <span>Redial</span>
-        </button>
-        <button mat-menu-item disabled>
-            <mat-icon>voicemail</mat-icon>
-            <span>Check voice mail</span>
-        </button>
         <button mat-menu-item (click)="_authService.doLogout()">
-            <mat-icon>notifications_off</mat-icon>
+            <mat-icon>power_settings_new</mat-icon>
             <span>Đăng xuất</span>
         </button>
     </mat-menu>
