@@ -63,7 +63,15 @@
                           matInput
                           placeholder="Dân tộc"
                           formControlName="religion"
+                          [matAutocomplete]="ethnicAutocomplete"
                         />
+                        <mat-autocomplete
+                          #ethnicAutocomplete="matAutocomplete"
+                        >
+                            <mat-option *ngFor="let religion of common_religion" [value]="religion.Name">
+                                <span>{{religion.Name}}</span>
+                            </mat-option>
+                        </mat-autocomplete>
                         <mat-error *ngIf="!studentInfoForm.controls['religion'].valid">
                             Vui lòng nhập đầy đủ thông tin!
                         </mat-error>

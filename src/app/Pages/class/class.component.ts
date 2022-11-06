@@ -6,6 +6,7 @@ import { componentKey } from "../../constants/component_key";
 import { KloudNotificationService } from "../../Components/kloud-notification/kloud-notification.service";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { ImportClassDialog } from "./import-class/import-class-dialog";
+import { exportExcel } from "../../helper";
 
 @Component({
   selector: 'app-class',
@@ -18,6 +19,9 @@ export class ClassComponent implements OnInit {
   deleteApiLoading = false
 
   semesterFilter: any
+
+  rawClassDataSource: any
+  classesDataSource: any
 
   displayedColumns= [{
     key: componentKey.check_box_col
@@ -38,7 +42,6 @@ export class ClassComponent implements OnInit {
     stickyEnd: true
   }];
 
-  classesDataSource: any
 
   searchForm: FormGroup = this.formBuilder.group({
     searchField: new FormControl("")
@@ -54,6 +57,10 @@ export class ClassComponent implements OnInit {
   ngOnInit(): void {
     this.handleGetAllClasses()
     this.handleGetSemester()
+  }
+
+  handleExport(){
+    exportExcel(this.classesDataSource, "classes_data")
   }
 
   async handleSearch() {
@@ -74,7 +81,7 @@ export class ClassComponent implements OnInit {
     this.classService.handleGetClasses(query).subscribe(
       (res: any) => {
         if(res?.data){
-          this.classesDataSource = res.data.map((c:any, index: number) => ({
+          this.classesDataSource = this.rawClassDataSource = res.data.map((c:any, index: number) => ({
             STT: index + 1,
             ...c
           }))
@@ -149,8 +156,13 @@ export class ClassComponent implements OnInit {
     )
   }
 
-  onSelectedFilterSemester(){
+  onSelectedFilterSemester($event: any){
+    let filtered = $event.value
+    this.classesDataSource = this.rawClassDataSource.filter((item: any) => item.semester === filtered)
+  }
 
+  resetFilteredSemester(){
+    this.classesDataSource = this.rawClassDataSource
   }
 
   onClickMultipleChoiceEdit(record: any){
@@ -164,5 +176,7 @@ export class ClassComponent implements OnInit {
   onClickMultipleChoiceDelete(record: any){
 
   }
+
+
 
 }

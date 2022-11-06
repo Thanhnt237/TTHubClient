@@ -4,6 +4,9 @@ import { AddStudentDialog } from "./add-student/add-student";
 import { StudentService } from "../../Services/students/student.service";
 import { KloudNotificationService } from "../../Components/kloud-notification/kloud-notification.service";
 import { componentKey } from "../../constants/component_key";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { exportExcel } from "../../helper";
+import { ImportStudentDialog } from "./import-student/import-student-dialog";
 
 @Component({
   selector: 'app-student',
@@ -26,7 +29,8 @@ export class StudentComponent implements OnInit {
     name: "Họ và tên"
   },{
     key: "DoB",
-    name: "Ngày sinh"
+    name: "Ngày sinh",
+    useFormatDateTime: true
   },{
     key: "gender",
     name: "Giới tính"
@@ -37,11 +41,15 @@ export class StudentComponent implements OnInit {
     key: "religion",
     name: "Dân tộc"
   },{
+    key: "className",
+    name: "Lớp"
+  },{
     key: "ethnic",
     name: "Tôn giáo"
   }, {
-    key: "joinDate",
-    name: "Ngày nhập học"
+    key: "createdAt",
+    name: "Ngày nhập học",
+    useFormatDateTime: true
   }, {
     key: componentKey.actions_col,
     stickyEnd: true
@@ -49,12 +57,33 @@ export class StudentComponent implements OnInit {
 
   constructor(
       private readonly dialog: MatDialog,
+      private readonly formBuilder: FormBuilder,
       private readonly studentService: StudentService,
       private readonly kloudNoti: KloudNotificationService
   ) { }
 
   ngOnInit(): void {
     this.handleGetAllStudents()
+  }
+
+  onClickExportExcel() {
+    exportExcel(this.studentsDataSource, "student_data")
+  }
+
+  onClickOpenImportStudentDialog(){
+    const dialogRef = this.dialog.open(ImportStudentDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === 'success') this.handleGetAllStudents()
+    });
+  }
+
+  searchForm: FormGroup = this.formBuilder.group({
+    searchField: new FormControl("")
+  })
+
+  async handleSearch() {
+    if(this.searchForm?.value?.searchField) await this.handleGetAllStudents(this.searchForm?.value?.searchField)
   }
 
   handleGetAllStudents(search_string?: string): void {
@@ -70,7 +99,10 @@ export class StudentComponent implements OnInit {
 
     this.studentService.getStudentsInfo().subscribe(
       (res: any) => {
-        this.studentsDataSource = res.data
+        this.studentsDataSource = res?.data?.length ? res.data.map((item: any) => ({
+          ...item,
+          className: item?.class?.name ? item.class.name : ""
+        })) : []
       }, (error) => {
         this.kloudNoti.error(error)
       })

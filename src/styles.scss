@@ -112,3 +112,16 @@ body {
 .full-width-input{
   width: 90%;
 }
+
+.mat-button-toggle-label-content {
+  display: flex !important;
+}
+
+.filter-radio-button-group{
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-radio-button-button{
+  margin: 6px 0 6px 10px;
+}

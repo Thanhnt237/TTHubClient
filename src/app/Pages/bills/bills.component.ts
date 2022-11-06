@@ -15,8 +15,6 @@ export class BillsComponent implements OnInit {
     key: ""
   }]
 
-  timeout = 1000;
-
   constructor(
     private readonly dialog: MatDialog,
     private readonly studentService: StudentService,
@@ -26,7 +24,7 @@ export class BillsComponent implements OnInit {
   studentFilter: any
 
   ngOnInit(): void {
-    // this.handleGetAllStudent()
+
   }
 
   openDialog(){
@@ -56,11 +54,6 @@ export class BillsComponent implements OnInit {
   }
 
   onSearchStudentInfoChange($event: any){
-    clearTimeout(this.timeout)
-
-    this.timeout = setTimeout(() => {
-      this.handleGetAllStudent($event)
-    }, 500);
 
   }
 

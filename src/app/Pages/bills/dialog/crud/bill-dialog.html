@@ -34,21 +34,22 @@
         formControlName="reason"
         placeholder="Nội dung thanh toán"
       />
-      <!--      <mat-error *ngIf="!addClassForm.controls['name'].valid">-->
-      <!--        Vui lòng nhập tên lớp!-->
-      <!--      </mat-error>-->
+            <mat-error *ngIf="!billForm.controls['reason'].valid">
+              Vui lòng nhập lý do thanh toán!
+            </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input
         matInput
+        currencyMask
         formControlName="amount"
         placeholder="Số tiền"
         class="full-width-input"
       />
-      <!--      <mat-error *ngIf="!addClassForm.controls['name'].valid">-->
-      <!--        Vui lòng nhập tên lớp!-->
-      <!--      </mat-error>-->
+            <mat-error *ngIf="!billForm.controls['amount'].valid">
+              Vui lòng nhập số tiền thanh toán!
+            </mat-error>
     </mat-form-field>
 
 <!--    <mat-form-field>-->

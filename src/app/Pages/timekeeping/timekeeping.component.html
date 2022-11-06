@@ -51,8 +51,9 @@
       <kloud-divider></kloud-divider>
 
       <mat-card-content class="kontent kloud-card-content">
+        <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
         <mat-button-toggle-group
-          style="align-items: start;"
+          style="align-items: start; display: block;"
           #classToggle="matButtonToggleGroup"
           class="class-filter-group-container"
           [(ngModel)]="selectedClassModel">
@@ -62,10 +63,12 @@
             *ngFor="let item of classDataSource"
             [value]="item" (click)="onClickClassToggle()"
             class="kloud-button-toggle"
-            style="display: flex; width: auto; "
+            style="display: flex; width: 100%; "
           >
-            <div style="text-align: left;">Mã lớp: {{item.classCode}}</div>
-            <div style="text-align: left;">Tên lớp: {{item.name}}</div>
+            <label>
+              <div style="text-align: left;"> <strong>Mã lớp:</strong> {{item.classCode}}</div>
+              <div style="text-align: left;"> <strong>Tên lớp:</strong> {{item.name}}</div>
+            </label>
             <kloud-divider></kloud-divider>
           </mat-button-toggle>
         </mat-button-toggle-group>
@@ -125,6 +128,7 @@
     </mat-card-subtitle>
 
     <mat-card-content class="table-container">
+        <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
         <table mat-table [dataSource]="studentDataSource">
           <ng-container matColumnDef="tenant_code">
             <th mat-header-cell *matHeaderCellDef> Mã học sinh</th>
@@ -140,8 +144,8 @@
             <th mat-header-cell *matHeaderCellDef> Ngày {{date}}</th>
             <td mat-cell *matCellDef="let element">
               <div style="display: flex; justify-content: center; align-items: center">
-                <button mat-icon-button *ngIf="element.isActive"> <mat-icon style="color: green">check_circle_outline</mat-icon> </button>
-                <button mat-icon-button *ngIf="!element.isActive"> <mat-icon color="accent">remove_circle_outline</mat-icon></button>
+                <button [disabled]="apiLoading" mat-icon-button *ngIf="element?.checkedInDate?.includes(date)" (click)="onClickCheckin(element, date, false)"> <mat-icon style="color: green">check_circle_outline</mat-icon> </button>
+                <button [disabled]="apiLoading" mat-icon-button *ngIf="!element?.checkedInDate?.includes(date)" (click)="onClickCheckin(element, date, true)"> <mat-icon color="accent">remove_circle_outline</mat-icon></button>
               </div>
             </td>
           </ng-container>

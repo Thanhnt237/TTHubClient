@@ -54,6 +54,10 @@ import { DragDirective } from "./Components/kloud-excel-reader/directive-drag-fi
 import { BillDialog } from "./Pages/bills/dialog/crud/bill-dialog";
 import { NgxMatSelectSearchModule } from "ngx-mat-select-search";
 import { MatRadioModule } from "@angular/material/radio";
+import { CheckoutComponent } from "./Pages/checkout/checkout.component";
+import { SmsNotificationComponent } from "./Pages/sms-notification/sms-notification.component";
+import { ImportStudentDialog } from "./Pages/student/import-student/import-student-dialog";
+import { CURRENCY_MASK_CONFIG, CurrencyMaskModule } from "ng2-currency-mask";
 
 let matModule = [
   MatIconModule,
@@ -73,7 +77,15 @@ let matModule = [
   MatCheckboxModule,
   MatSlideToggleModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatDialogModule,
+  FormsModule,
+  MatAutocompleteModule,
+  MatSelectModule,
+  MatButtonToggleModule,
+  MatTabsModule,
+  NgxMatSelectSearchModule,
+  MatRadioModule,
 ]
 
 let expandModule = [
@@ -84,7 +96,9 @@ let expandModule = [
   KloudExcelReader,
   ImportClassDialog,
   DragDirective,
-  BillDialog
+  BillDialog,
+  ImportStudentDialog,
+
 ]
 
 
@@ -126,6 +140,14 @@ const routes: Routes = [
     component: BillsComponent
   },
   {
+    path: "notification",
+    component: SmsNotificationComponent
+  },
+  {
+    path: "checkout",
+    component: CheckoutComponent
+  },
+  {
     path: "**",
     component: HomeComponent
   }
@@ -150,6 +172,8 @@ let customComponent = [
     TimekeepingComponent,
     DebtComponent,
     BillsComponent,
+    CheckoutComponent,
+    SmsNotificationComponent,
     customComponent,
     expandModule
   ],
@@ -159,14 +183,21 @@ let customComponent = [
     ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
-    MatDialogModule,
-    FormsModule,
-    MatAutocompleteModule,
-    MatSelectModule,
-    MatButtonToggleModule,
-    MatTabsModule,
-    NgxMatSelectSearchModule,
-    MatRadioModule
+    CurrencyMaskModule
+  ],
+  providers: [
+    {
+      provide: CURRENCY_MASK_CONFIG,
+      useValue: {
+        align: "right",
+        allowNegative: true,
+        decimal: ",",
+        precision: 3,
+        prefix: "",
+        suffix: "",
+        thousands: ","
+      }
+    }
   ],
   exports: [RouterModule]
 })

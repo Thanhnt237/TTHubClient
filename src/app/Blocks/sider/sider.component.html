@@ -1,7 +1,7 @@
 <mat-drawer-container class="main-sider-container" autosize>
     <mat-drawer #sidenav position="start" class="main-sider" mode="over">
-        <section>
-            <img src="../../../assets/logo.svg" alt="logo" class="logo"/>
+        <section class="logo-container">
+            <img src="../../../assets/Logo.png" alt="logo" class="logo"/>
         </section>
         <mat-divider></mat-divider>
 
@@ -22,9 +22,9 @@
             <div class="sider-menu-container">
                 <mat-accordion>
                     <mat-expansion-panel hideToggle>
-                        <mat-expansion-panel-header class="button-left-sider" routerLink="/dashboard">
-                            <mat-icon class="sider-menu-button-icon"> assessment </mat-icon>
-                            DASHBOARD
+                        <mat-expansion-panel-header class="button-left-sider" routerLink="/">
+                            <mat-icon class="sider-menu-button-icon"> home </mat-icon>
+                            Dashboard
                         </mat-expansion-panel-header>
                     </mat-expansion-panel>
 
@@ -53,11 +53,11 @@
                     <mat-expansion-panel hideToggle>
                         <mat-expansion-panel-header class="button-left-sider">
                             <mat-icon class="sider-menu-button-icon"> art_track </mat-icon>
-                            Chấm ăn
+                            Điểm danh
                         </mat-expansion-panel-header>
                         <button mat-button class="button-left-sider" routerLink="/timekeeping">
                             <mat-icon class="sider-menu-button-icon"> art_track </mat-icon>
-                            Chấm ăn
+                            Điểm danh
                         </button>
                     </mat-expansion-panel>
                     <mat-expansion-panel hideToggle >
@@ -77,6 +77,20 @@
                         </button>
                     </mat-expansion-panel>
                 </mat-accordion>
+
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header class="button-left-sider" routerLink="/checkout">
+                        <mat-icon class="sider-menu-button-icon"> payment </mat-icon>
+                        Checkout
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header class="button-left-sider" routerLink="/notification">
+                        <mat-icon class="sider-menu-button-icon"> notification </mat-icon>
+                        Thông báo
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
 
             </div>
 

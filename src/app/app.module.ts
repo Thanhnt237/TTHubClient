@@ -45,16 +45,16 @@ let matModule = [
   ],
     providers: [
         {
-            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-            useValue: {
-                duration: 2500,
-                panelClass: ['notification-snackbar']
-            }
+          provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+          useValue: {
+              duration: 2500,
+              panelClass: ['notification-snackbar']
+          }
         },
         {
-            provide: HTTP_INTERCEPTORS,
-            useClass: TokenInterceptorService,
-            multi: true
+          provide: HTTP_INTERCEPTORS,
+          useClass: TokenInterceptorService,
+          multi: true
         }
     ],
     exports: [],

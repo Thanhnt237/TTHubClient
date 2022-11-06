@@ -1,8 +1,12 @@
 .logo{
   display: flex;
   position: center;
-  width: 100px;
-  height: 50px;
+  width: 100%;
+}
+
+.logo-container{
+  max-width: 300px;
+  padding: 10px 0 10px 20px;
 }
 
 .main-sider-container{

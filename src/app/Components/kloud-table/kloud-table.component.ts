@@ -3,6 +3,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { SelectionModel } from "@angular/cdk/collections";
+import * as moment from 'moment-timezone'
 
 @Component({
   selector: 'kloud-table',
@@ -81,6 +82,10 @@ export class KloudTableComponent implements OnInit {
 
   onClickEditRecord(record: any){
     this.handleClickEditRecord.emit(record)
+  }
+
+  formatDateTime(datetime: any){
+    return moment(datetime).format('DD-MM-YYYY')
   }
 
 }

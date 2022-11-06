@@ -12,6 +12,7 @@ import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import { DateFormat } from "../../constants/date-format";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
+import { CheckinService } from "../../Services/checkin/checkin.service";
 const moment = extendMoment(Moment);
 
 @Component({
@@ -28,6 +29,8 @@ const moment = extendMoment(Moment);
   }]
 })
 export class TimekeepingComponent implements OnInit {
+  apiLoading: boolean = false;
+
   rawDisplayedColumn = ["tenant_code","name"]
   displayedColumn: any = this.rawDisplayedColumn.slice()
 
@@ -46,6 +49,7 @@ export class TimekeepingComponent implements OnInit {
     private readonly kloudNoti: KloudNotificationService,
     private readonly studentService: StudentService,
     private readonly matDialog: MatDialog,
+    private readonly checkinService: CheckinService
   ) {
     this.studentDataSource = new MatTableDataSource<any>()
   }
@@ -64,29 +68,61 @@ export class TimekeepingComponent implements OnInit {
   }
 
   handleGetClass(){
+    this.apiLoading = true
     this.classService.handleGetClasses().subscribe(
       (res: any) => {
         this.classDataSource = res.data
+        this.apiLoading = false
       }, error => {
         this.kloudNoti.error(error)
       }
     )
   }
 
-  handleGetStudentByClass(classID: string){
+  // handleGetStudentByClass(classID: string){
+  //   let query = {
+  //     limit: 10000,
+  //     page: 1,
+  //     filter_class: classID
+  //   }
+  //
+  //   this.studentService.getStudentsInfo(query).subscribe(
+  //     (res: any) => {
+  //       this.studentDataSource.data = res.data
+  //     }, (error) => {
+  //       this.kloudNoti.error(error)
+  //     }
+  //   )
+  // }
+
+  handleGetAllCheckin(){
+    if(!this.selectedClassModel) return
+
     let query = {
-      limit: 10000,
-      page: 1,
-      filter_class: classID
+      classID: this.selectedClassModel.ID,
+      start_date: moment(this.dateCount[0], 'DD-MM-YY').format("YYYY-MM-DD"),
+      end_date: moment(this.dateCount[this.dateCount.length-1], 'DD-MM-YY').format("YYYY-MM-DD")
     }
 
-    this.studentService.getStudentsInfo(query).subscribe(
+    console.log(query)
+
+    this.checkinService.getAll(query).subscribe(
       (res: any) => {
-        this. studentDataSource.data = res.data
-      }, (error) => {
+        this.studentDataSource.data = res?.data?.length ? res.data.map((item: any) => ({
+          ...item,
+          checkedInDate: item?.checkedIn?.length ?
+            item.checkedIn.map((c: any) => {
+              if(!c.isLock) return false
+              return moment(c.checkinDate).format("DD-MM-YY");
+            }) : []
+        })) : []
+        this.apiLoading = false
+      }, error => {
         this.kloudNoti.error(error)
+        this.apiLoading = false
       }
     )
+
   }
 
   onClickResetFilter(){
@@ -110,15 +146,14 @@ export class TimekeepingComponent implements OnInit {
       let {start, end} = this.dateFilter.value
       this.dateCount = [...moment().range(start,end).by("days")].map(c => c.format('DD-MM-YY'))
       this.displayedColumn = this.rawDisplayedColumn.concat(this.dateCount)
+      this.handleGetAllCheckin()
     }
   }
 
   onClickClassToggle(){
-    this.handleGetStudentByClass(this.selectedClassModel.ID)
-  }
-
-  handlePatchValueToDateFilter(){
-
+    // this.handleGetStudentByClass(this.selectedClassModel.ID)
+    this.apiLoading = true;
+    this.handleGetAllCheckin()
   }
 
   dateFilter: FormGroup = this._formBuilder.group({
@@ -126,5 +161,25 @@ export class TimekeepingComponent implements OnInit {
     end: new FormControl(moment(new Date()).endOf('week'))
   })
 
+  onClickCheckin(element: any, date: any, isLock: boolean){
+    console.log(this.studentDataSource.data.indexOf(element))
+    this.apiLoading = true
+    this.handleStudentCheckin({
+      student: element,
+      checkinDate: moment(date, 'DD-MM-YY').format("YYYY-MM-DD"),
+      isLock
+    })
+  }
 
+  handleStudentCheckin(body: any){
+    this.checkinService.studentCheckin(body).subscribe(
+      res => {
+        this.kloudNoti.success("Điểm danh thành công")
+        this.handleGetAllCheckin()
+      }, error => {
+        this.kloudNoti.error(error)
+        this.apiLoading = false
+      }
+    )
+  }
 }

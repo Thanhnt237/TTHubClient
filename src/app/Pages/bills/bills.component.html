@@ -6,20 +6,6 @@
       </mat-card-title>
       <kloud-divider></kloud-divider>
       <mat-card-content class="kard-kontent">
-<!--        <mat-form-field class="full-width-input" appearance="outline">-->
-<!--          <mat-label>Lớp học</mat-label>-->
-<!--          <mat-select-->
-<!--            placeholder="Chọn lớp học"-->
-<!--          >-->
-<!--            <mat-option>-->
-<!--              <ngx-mat-select-search-->
-<!--                placeholderLabel="Tìm kiếm lớp học"-->
-<!--              ></ngx-mat-select-search>-->
-<!--            </mat-option>-->
-<!--            <mat-option>fack</mat-option>-->
-<!--          </mat-select>-->
-<!--        </mat-form-field>-->
-
         <mat-form-field class="full-width-input" appearance="outline" (click)="onGetStudentInfo()">
           <mat-label>Học sinh</mat-label>
           <mat-select
@@ -40,7 +26,7 @@
               ></ngx-mat-select-search>
             </mat-option>
             <mat-option disabled *ngIf="!studentInformation">
-              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
             </mat-option>
             <mat-option
               [style]="'height: auto;'"

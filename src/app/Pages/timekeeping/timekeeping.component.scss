@@ -10,6 +10,7 @@
 table {
   width: 100%;
   min-width: 800px;
+  overflow: auto;
 }
 
 .table-container{
@@ -68,10 +69,18 @@ mat-card-actions{
   text-align: center;
 }
 
-td.mat-column-name {
-  text-align: left;
+td.mat-column-tenant_code {
+  width: 100px;
 }
 
-.mat-button-toggle-label-content{
-  display: flex !important;
+th.mat-column-tenant_code{
+  max-width: 150px;
+}
+
+th.mat-column-name{
+  max-width: 100px;
+}
+
+td.mat-column-name {
+  max-width: 200px;
 }

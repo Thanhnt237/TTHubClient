@@ -1,16 +1,16 @@
 <h2 mat-dialog-title>Thêm mới lớp học</h2>
 <form (ngSubmit)="onOK()" [formGroup]="addClassForm">
 <mat-dialog-content class="mat-typography">
-    <mat-form-field>
-        <input
-          matInput
-          formControlName="classCode"
-          placeholder="Mã lớp"
-        />
-        <mat-error *ngIf="!addClassForm.controls['classCode'].valid">
-            Vui lòng nhập mã lớp!
-        </mat-error>
-    </mat-form-field>
+<!--    <mat-form-field>-->
+<!--        <input-->
+<!--          matInput-->
+<!--          formControlName="classCode"-->
+<!--          placeholder="Mã lớp"-->
+<!--        />-->
+<!--        <mat-error *ngIf="!addClassForm.controls['classCode'].valid">-->
+<!--            Vui lòng nhập mã lớp!-->
+<!--        </mat-error>-->
+<!--    </mat-form-field>-->
 
     <mat-form-field>
         <input
@@ -25,12 +25,22 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input
-          matInput
-          required
-          formControlName="semester"
-          placeholder="Học kỳ"
-        />
+        <mat-label>Học kỳ</mat-label>
+        <mat-date-range-input
+          [formGroup]="semesterPickerForm"
+          [rangePicker]="semesterPicker"
+        >
+        <input matStartDate placeholder="Từ" formControlName="start">
+        <input matEndDate placeholder="Đến" formControlName="end">
+        </mat-date-range-input>
+
+        <mat-hint>YY – YY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="semesterPicker"></mat-datepicker-toggle>
+        <mat-date-range-picker
+          startView="multi-year"
+          #semesterPicker
+        ></mat-date-range-picker>
+
         <mat-error *ngIf="!addClassForm.controls['semester'].valid">
             Vui lòng nhập học kỳ!
         </mat-error>

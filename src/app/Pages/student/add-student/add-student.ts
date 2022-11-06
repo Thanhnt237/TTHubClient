@@ -9,6 +9,8 @@ import { ClassService } from "../../../Services/class/class.service";
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { DateFormat } from "../../../constants/date-format";
+import { common_religion } from "../../../../assets/religion";
+import { map, startWith } from "rxjs";
 
 @Component({
     selector: 'add-student-dialog',
@@ -32,6 +34,8 @@ export class AddStudentDialog implements OnInit{
 
     classDataSource: any
 
+    common_religion: any
+
     constructor(
       private dialogRef: MatDialogRef<AddClassDialog>,
       private _formBuilder: FormBuilder,
@@ -41,6 +45,7 @@ export class AddStudentDialog implements OnInit{
       private classService: ClassService,
       @Inject(MAT_DIALOG_DATA) public studentRecordData: any
     ) {
+        this.common_religion = common_religion
     }
 
     ngOnInit() {

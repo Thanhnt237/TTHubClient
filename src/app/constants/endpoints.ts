@@ -20,4 +20,8 @@ export const endpoints = {
   get_all_student_information: 'api/resources/information/getAllStudentInformation',
   add_new_student_information: 'api/resources/information/addNewStudentInformation',
   update_student_information: 'api/resources/information/updateStudentInformation',
+
+  //Checkin
+  get_all_checkin_api: "api/resources/checkin/student/getAll",
+  student_checkin: "api/resources/checkin/student/checkin"
 }

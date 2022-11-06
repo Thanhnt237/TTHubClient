@@ -4,16 +4,40 @@ import { Router } from "@angular/router";
 import { KloudNotificationService } from "../../../Components/kloud-notification/kloud-notification.service";
 import { ClassService } from "../../../Services/class/class.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from "@angular/material-moment-adapter";
+import * as moment from "moment";
 
-/**
- * @title Dialog with header, scrollable content and actions
- */
+export const MY_FORMATS = {
+    parse: {
+        dateInput: 'YYYY',
+    },
+    display: {
+        dateInput: 'YYYY',
+        monthYearLabel: 'YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'YYYY',
+    },
+};
+
 @Component({
     selector: 'add-class-dialog',
     templateUrl: 'add-class-dialog.html',
-    styleUrls: ['add-class-dialog.scss']
+    styleUrls: ['add-class-dialog.scss'],
+    providers: [
+        {
+            provide: DateAdapter,
+            useClass: MomentDateAdapter,
+            deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+        },
+        {
+            provide: MAT_DATE_FORMATS,
+            useValue: MY_FORMATS
+        },
+    ]
 })
 export class AddClassDialog implements OnInit{
+
     apiLoading: boolean = false
 
     isNew: boolean = true
@@ -32,14 +56,26 @@ export class AddClassDialog implements OnInit{
     addClassForm: FormGroup = this._formBuilder.group({
         name : new FormControl("", [Validators.required]),
         classCode: new FormControl("", [Validators.maxLength(50)]),
-        semester: new FormControl("", [Validators.required]),
+        semester: new FormControl(""),
         isLock: new FormControl()
     })
 
+    semesterPickerForm: FormGroup = this._formBuilder.group({
+        start: new FormControl(moment().year(), [Validators.required]),
+        end: new FormControl(moment().year(), [Validators.required])
+    })
+
     onOK(){
-        if(!this.addClassForm.valid) {
+        if(
+          !this.addClassForm.valid ||
+          !this.semesterPickerForm.valid
+        ) {
             return
         }else {
+            this.addClassForm.patchValue({
+                semester: `${this.semesterPickerForm.value.start.format('YYYY')}-${this.semesterPickerForm.value.end.format('YYYY')}`
+            })
+
             if(this.isNew){
                 this.apiLoading = true
                 this.handleAddClass()
@@ -79,9 +115,14 @@ export class AddClassDialog implements OnInit{
 
     ngOnInit(): void {
         if(this.classRecordData){
-            console.log(this.classRecordData)
             this.isNew = false
             this.addClassForm.patchValue(this.classRecordData)
+
+            let semester = this.classRecordData.semester.split("-")
+            this.semesterPickerForm.patchValue({
+                start: moment(semester[0]),
+                end: moment(semester[1])
+            })
         }
     }
 }

@@ -1,4 +1,7 @@
 .fluid-container{
-  align-items: center;
-  margin: auto;
+  display: flex;
+}
+
+.right-fluid-container{
+  margin-top: 10px;
 }

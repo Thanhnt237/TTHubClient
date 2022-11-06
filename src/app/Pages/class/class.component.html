@@ -13,11 +13,14 @@
                       appearance="outline"
                     >
                         <mat-label>Học kỳ</mat-label>
-                        <mat-select>
+                        <mat-select
+                            (selectionChange)="onSelectedFilterSemester($event)"
+                        >
                             <mat-option *ngFor="let item of semesterFilter" [value]="item.semester">{{item.semester}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
+                <button mat-button (click)="resetFilteredSemester()"> reset </button>
             </mat-card-content>
         </mat-card>
     </div>
@@ -47,6 +50,7 @@
                         <div class="widget-button">
                             <button class="widget-icon-button"
                                     mat-raised-button color="secondary"
+                                    (click)="handleExport()"
                             > <mat-icon class="widget-icon">add_circle_outline</mat-icon>
                                 <span>Xuất</span>
                             </button>

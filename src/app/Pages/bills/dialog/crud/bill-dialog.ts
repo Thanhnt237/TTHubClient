@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { KloudNotificationService } from "../../../../Components/kloud-notification/kloud-notification.service";
 import { StudentService } from "../../../../Services/students/student.service";
@@ -27,20 +27,22 @@ export class BillDialog implements OnInit{
 
   billForm: FormGroup = this._formBuilder.group({
     information: new FormControl(),
-    classification: new FormControl('PAY'),
-    type: new FormControl('CASHING'),
-    reason: new FormControl(''),
-    amount: new FormControl(''),
+    classification: new FormControl('PAY', [Validators.required]),
+    type: new FormControl('CASHING', [Validators.required]),
+    reason: new FormControl('', [Validators.required]),
+    amount: new FormControl(0, [Validators.required])
   })
 
   studentInfoFormControl: FormControl = new FormControl();
 
   ngOnInit(): void {
+
   }
 
-
-
   onOK(){
-
+    if(!this.billForm.valid) return
+    else{
+      console.log(this.billForm.value)
+    }
   }
 }
