@@ -21,21 +21,22 @@ import { TokenInterceptorService } from "./Services/interceptors/token.intercept
 import { MatExpansionModule } from "@angular/material/expansion";
 
 let matModule = [
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatCardModule,
-    MatDividerModule,
-    MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatCardModule,
+  MatDividerModule,
+  MatMenuModule,
 ]
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeaderComponent,
-        SiderComponent,
-    ],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    SiderComponent,
+
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -43,21 +44,23 @@ let matModule = [
     matModule,
     MatExpansionModule
   ],
-    providers: [
-        {
-          provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-          useValue: {
-              duration: 2500,
-              panelClass: ['notification-snackbar']
-          }
-        },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: TokenInterceptorService,
-          multi: true
-        }
-    ],
-    exports: [],
-    bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: {
+        duration: 2500,
+        panelClass: ['notification-snackbar']
+      }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
+  exports: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class  AppModule{
+
+}

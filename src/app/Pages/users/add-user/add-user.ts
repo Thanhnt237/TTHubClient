@@ -9,6 +9,7 @@ import { AddClassDialog } from "../../class/add-class/add-class";
 @Component({
   selector: 'add-user-dialog',
   templateUrl: 'add-user-dialog.html',
+  styleUrls: ['add-user-dialog.scss']
 })
 export class AddUserDialog implements OnInit{
   isNew: boolean = true

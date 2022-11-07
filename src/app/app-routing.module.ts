@@ -58,6 +58,8 @@ import { CheckoutComponent } from "./Pages/checkout/checkout.component";
 import { SmsNotificationComponent } from "./Pages/sms-notification/sms-notification.component";
 import { ImportStudentDialog } from "./Pages/student/import-student/import-student-dialog";
 import { CURRENCY_MASK_CONFIG, CurrencyMaskModule } from "ng2-currency-mask";
+import { BusManagementComponent } from "./Pages/bus-management/bus-management.component";
+import { StudyManagementComponent } from "./Pages/study-management/study-management.component";
 
 let matModule = [
   MatIconModule,
@@ -148,6 +150,14 @@ const routes: Routes = [
     component: CheckoutComponent
   },
   {
+    path: "bus-management",
+    component: BusManagementComponent
+  },
+  {
+    path: "study-management",
+    component: StudyManagementComponent
+  },
+  {
     path: "**",
     component: HomeComponent
   }
@@ -174,6 +184,8 @@ let customComponent = [
     BillsComponent,
     CheckoutComponent,
     SmsNotificationComponent,
+    BusManagementComponent,
+    StudyManagementComponent,
     customComponent,
     expandModule
   ],

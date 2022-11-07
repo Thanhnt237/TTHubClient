@@ -50,6 +50,21 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="outline">
+      <mat-label>Chức vụ</mat-label>
+      <mat-select>
+        <mat-option disabled>Super admin</mat-option>
+        <mat-option>Hội đồng quản trị</mat-option>
+        <mat-option>Quản lý</mat-option>
+        <mat-option>Giáo viên</mat-option>
+        <mat-option>Tài xế</mat-option>
+        <mat-option disabled>Phụ huynh học sinh</mat-option>
+      </mat-select>
+      <mat-error *ngIf="!addUserForm.controls['password'].valid && isNew">
+        Mật khẩu cần tối thiểu 6 ký tự
+      </mat-error>
+    </mat-form-field>
+
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">

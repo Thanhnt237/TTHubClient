@@ -46,7 +46,7 @@
 
     <mat-card class="filter-container">
       <mat-card-title class="kloud-title-container">
-        <span class="page-title"> Danh sách lớp </span>
+        <span class="page-title"> Danh sách tài xế </span>
       </mat-card-title>
       <kloud-divider></kloud-divider>
 
@@ -74,7 +74,6 @@
         </mat-button-toggle-group>
       </mat-card-content>
     </mat-card>
-
   </div>
 
   <mat-card class="main-content-container">
@@ -95,7 +94,6 @@
         <div class="widget-spacer"></div>
         <div class="widget-button-container">
           <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>
-<!--          <div class="widget-button" (click)="onClickOpenFilter()"><button mat-flat-button color="secondary">Lọc</button></div>-->
 
           <div class="widget-button">
             <button class="widget-icon-button"
@@ -127,61 +125,70 @@
     </mat-card-subtitle>
 
     <mat-card-content class="table-container">
-        <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
-        <table mat-table [dataSource]="studentDataSource">
-          <ng-container matColumnDef="tenant_code">
-            <th mat-header-cell *matHeaderCellDef> Mã học sinh</th>
-            <td mat-cell *matCellDef="let element"> {{element.tenant_code}} </td>
-          </ng-container>
+      <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
+<!--      <table mat-table [dataSource]="studentDataSource">-->
+<!--        <ng-container matColumnDef="tenant_code">-->
+<!--          <th mat-header-cell *matHeaderCellDef> Mã học sinh</th>-->
+<!--          <td mat-cell *matCellDef="let element"> {{element.tenant_code}} </td>-->
+<!--        </ng-container>-->
 
-          <ng-container matColumnDef="name" sticky>
-            <th mat-header-cell *matHeaderCellDef> Họ và tên </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-          </ng-container>
+<!--        <ng-container matColumnDef="name" sticky>-->
+<!--          <th mat-header-cell *matHeaderCellDef> Họ và tên </th>-->
+<!--          <td mat-cell *matCellDef="let element"> {{element.name}} </td>-->
+<!--        </ng-container>-->
 
-          <ng-container *ngFor="let date of dateCount" [matColumnDef]="date">
-            <th mat-header-cell *matHeaderCellDef> Ngày {{date}}</th>
-            <td mat-cell *matCellDef="let element">
-              <div style="display: flex; justify-content: center; align-items: center">
-                <button [disabled]="apiLoading" mat-icon-button *ngIf="element?.checkedInDate?.includes(date)" (click)="onClickCheckin(element, date, false)"> <mat-icon style="color: green">check_circle_outline</mat-icon> </button>
-                <button [disabled]="apiLoading" mat-icon-button *ngIf="!element?.checkedInDate?.includes(date)" (click)="onClickCheckin(element, date, true)"> <mat-icon color="accent">remove_circle_outline</mat-icon></button>
-              </div>
-            </td>
-          </ng-container>
+<!--        <ng-container *ngFor="let date of dateCount" [matColumnDef]="date">-->
+<!--          <th mat-header-cell *matHeaderCellDef> Ngày {{date}}</th>-->
+<!--          <td mat-cell *matCellDef="let element">-->
+<!--            <div style="display: flex; justify-content: center; align-items: center">-->
+<!--              <button [disabled]="apiLoading" mat-icon-button *ngIf="element?.checkedInDate?.includes(date)" (click)="onClickCheckin(element, date, false)"> <mat-icon style="color: green">check_circle_outline</mat-icon> </button>-->
+<!--              <button [disabled]="apiLoading" mat-icon-button *ngIf="!element?.checkedInDate?.includes(date)" (click)="onClickCheckin(element, date, true)"> <mat-icon color="accent">remove_circle_outline</mat-icon></button>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--        </ng-container>-->
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
+<!--        <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>-->
+<!--        <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>-->
 
-          <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" [colSpan]="displayedColumn.length">
-              <div class="table-no-matching-data">
-                Không có dữ liệu
-              </div>
-            </td>
-          </tr>
-        </table>
+<!--        <tr class="mat-row" *matNoDataRow>-->
+<!--          <td class="mat-cell" [colSpan]="displayedColumn.length">-->
+<!--            <div class="table-no-matching-data">-->
+<!--              Không có dữ liệu-->
+<!--            </div>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      </table>-->
 
-      <mat-paginator
-        [length]="this.studentDataSource.data.length"
-        [pageSize]="15"
-      ></mat-paginator>
+<!--      <mat-paginator-->
+<!--        [length]="this.studentDataSource.data.length"-->
+<!--        [pageSize]="15"-->
+<!--      ></mat-paginator>-->
     </mat-card-content>
   </mat-card>
-
 </div>
 
 <mat-menu #filterOptionMenu="matMenu">
   <ng-template matMenuContent>
+<!--    <button-->
+<!--      mat-menu-item-->
+<!--      class="kloud-button"-->
+<!--      (click)="onClickHandleFilterToToday()"-->
+<!--    > Hôm nay </button>-->
+
     <button
       mat-menu-item
       class="kloud-button"
-      (click)="onClickHandleFilterToToday()"
     > Hôm nay </button>
 
     <button
       mat-menu-item
       class="kloud-button"
-      (click)="onClickResetFilter()"
     > 7 ngày </button>
+
+<!--    <button-->
+<!--      mat-menu-item-->
+<!--      class="kloud-button"-->
+<!--      (click)="onClickResetFilter()"-->
+<!--    > 7 ngày </button>-->
   </ng-template>
 </mat-menu>
