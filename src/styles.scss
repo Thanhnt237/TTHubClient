@@ -125,3 +125,19 @@ body {
 .filter-radio-button-button{
   margin: 6px 0 6px 10px;
 }
+
+.kloud-custom-option-row{
+  display: flex;
+}
+
+.kloud-custom-option-left{
+  width: 50%;
+}
+
+.kloud-custom-option-right{
+  width: 50%;
+}
+
+.ngx-kloud-kustom-panel{
+  min-width: 600px !important;
+}

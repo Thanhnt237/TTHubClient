@@ -23,5 +23,10 @@ export const endpoints = {
 
   //Checkin
   get_all_checkin_api: "api/resources/checkin/student/getAll",
-  student_checkin: "api/resources/checkin/student/checkin"
+  student_checkin: "api/resources/checkin/student/checkin",
+
+  //Bus Management
+  get_all_bus_management_api: "api/resources/busManagement/getAll",
+  register_new_bus_management_api: "api/resources/busManagement/register",
+  update_bus_management_api: "api/resources/busManagement/update"
 }

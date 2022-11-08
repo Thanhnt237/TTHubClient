@@ -4,7 +4,6 @@ import { KloudNotificationService } from "../../Components/kloud-notification/kl
 import { StudentService } from "../../Services/students/student.service";
 import { MatDialog } from "@angular/material/dialog";
 import { StudentCheckinFilterDialog } from "./filter-dialog/student-checkin-filter-dialog";
-import * as Moment from 'moment-timezone'
 import { extendMoment } from 'moment-range';
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
@@ -13,6 +12,7 @@ import { DateFormat } from "../../constants/date-format";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { CheckinService } from "../../Services/checkin/checkin.service";
+import * as Moment from 'moment-timezone'
 const moment = extendMoment(Moment);
 
 @Component({
@@ -126,7 +126,10 @@ export class TimekeepingComponent implements OnInit {
   }
 
   onClickResetFilter(){
-    this.dateCount = [...moment().range(moment(new Date()).startOf('week'), moment(new Date()).endOf('week')).by("days")].map(c => c.format('DD-MM-YY'))
+    this.dateCount = [
+      ...moment().range(moment(new Date()).startOf('week'),
+      moment(new Date()).endOf('week')).by("days")
+    ].map(c => c.format('DD-MM-YY'))
     this.handleUpdateDisplayColumn()
   }
 
@@ -144,12 +147,12 @@ export class TimekeepingComponent implements OnInit {
   applyDatePickerFilter(){
     if(this.dateFilter.valid){
       let {start, end} = this.dateFilter.value
-      this.dateCount = [...moment().range(start,end).by("days")].map(c => c.format('DD-MM-YY'))
+      this.dateCount = [...moment().range(start,end).by("days")]
+        .map(c => c.format('DD-MM-YY'))
       this.displayedColumn = this.rawDisplayedColumn.concat(this.dateCount)
       this.handleGetAllCheckin()
     }
   }
-
   onClickClassToggle(){
     // this.handleGetStudentByClass(this.selectedClassModel.ID)
     this.apiLoading = true;

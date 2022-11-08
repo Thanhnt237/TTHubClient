@@ -20,7 +20,10 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <button mat-button (click)="resetFilteredSemester()"> reset </button>
+                <div style="display: flex;">
+                    <div class="widget-spacer"></div>
+                    <button mat-stroked-button (click)="resetFilteredSemester()"> reset </button>
+                </div>
             </mat-card-content>
         </mat-card>
     </div>
@@ -50,9 +53,18 @@
                         <div class="widget-button">
                             <button class="widget-icon-button"
                                     mat-raised-button color="secondary"
+                                    [disabled]="exportLoading"
                                     (click)="handleExport()"
-                            > <mat-icon class="widget-icon">add_circle_outline</mat-icon>
-                                <span>Xuất</span>
+                            >
+                                <div style="display: flex;justify-content: center;align-items: center">
+                                    <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                                    <span>Xuất</span>
+                                    <mat-spinner
+                                      [diameter]="20"
+                                      color="primary"
+                                      *ngIf="exportLoading"
+                                    ></mat-spinner>
+                                </div>
                             </button>
                         </div>
                         <div class="widget-button">
@@ -84,6 +96,7 @@
             </mat-card-subtitle>
 
             <mat-card-content>
+                <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
                 <div class="kloud-table">
                     <kloud-table
                       [dataSource]="classesDataSource"

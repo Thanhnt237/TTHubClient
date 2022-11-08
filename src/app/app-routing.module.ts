@@ -60,6 +60,8 @@ import { ImportStudentDialog } from "./Pages/student/import-student/import-stude
 import { CURRENCY_MASK_CONFIG, CurrencyMaskModule } from "ng2-currency-mask";
 import { BusManagementComponent } from "./Pages/bus-management/bus-management.component";
 import { StudyManagementComponent } from "./Pages/study-management/study-management.component";
+import { BusRegisterDialog } from "./Pages/bus-management/student-register/bus-register-dialog";
+import { MatTreeModule } from "@angular/material/tree";
 
 let matModule = [
   MatIconModule,
@@ -100,7 +102,7 @@ let expandModule = [
   DragDirective,
   BillDialog,
   ImportStudentDialog,
-
+  BusRegisterDialog
 ]
 
 
@@ -195,7 +197,8 @@ let customComponent = [
     ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    MatTreeModule
   ],
   providers: [
     {

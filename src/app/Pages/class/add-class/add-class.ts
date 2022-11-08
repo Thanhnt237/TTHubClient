@@ -6,7 +6,7 @@ import { ClassService } from "../../../Services/class/class.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from "@angular/material-moment-adapter";
-import * as moment from "moment";
+import * as moment from "moment-timezone";
 
 export const MY_FORMATS = {
     parse: {

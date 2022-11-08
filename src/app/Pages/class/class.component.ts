@@ -15,8 +15,10 @@ import { exportExcel } from "../../helper";
 })
 
 export class ClassComponent implements OnInit {
+  apiLoading: boolean = false
   lockApiLoading = false
   deleteApiLoading = false
+  exportLoading: boolean = false;
 
   semesterFilter: any
 
@@ -59,8 +61,10 @@ export class ClassComponent implements OnInit {
     this.handleGetSemester()
   }
 
-  handleExport(){
-    exportExcel(this.classesDataSource, "classes_data")
+  async handleExport(){
+    this.exportLoading = true
+    await exportExcel(this.classesDataSource, "classes_data")
+    this.exportLoading = false
   }
 
   async handleSearch() {
@@ -68,6 +72,7 @@ export class ClassComponent implements OnInit {
   }
 
   async handleGetAllClasses(search_string?: string): Promise<void>{
+    this.apiLoading = true
     let query = {
       limit: 15,
       page: 1,
@@ -86,6 +91,7 @@ export class ClassComponent implements OnInit {
             ...c
           }))
         }
+        this.apiLoading = false
       }, error => {
         this.kloudNoti.error(error)
       }
@@ -93,6 +99,7 @@ export class ClassComponent implements OnInit {
   }
 
   handleGetSemester(){
+
     this.classService.getSemester().subscribe(
       (res: any) => {
         this.semesterFilter = res
