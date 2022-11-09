@@ -15,6 +15,7 @@ export class KloudTableComponent implements OnInit {
   @Input() dataSource: any[] = [];
   @Input() lockApiLoading: boolean = false;
   @Input() deleteApiLoading: boolean = false
+  @Input() filtering: any = ""
 
   @Output() clickedRow = new EventEmitter<any>();
   @Output() handleClickLockRecord = new EventEmitter<any>()

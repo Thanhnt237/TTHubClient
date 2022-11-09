@@ -10,6 +10,7 @@ import { createQueryUrl } from "../../helper";
 export class StudentService {
 
   private readonly getAllStudentUrl = `${endpoints.base_url}${endpoints.get_all_student_information}`
+  private readonly getStudentGroupByClassUrl = `${endpoints.base_url}${endpoints.get_student_group_by_class_api}`
   private readonly addStudentUrl = `${endpoints.base_url}${endpoints.add_new_student_information}`
   private readonly updateStudentUrl = `${endpoints.base_url}${endpoints.update_student_information}`
 
@@ -20,6 +21,10 @@ export class StudentService {
 
   getStudentsInfo(query?: any) {
     return this.http.get(createQueryUrl(this.getAllStudentUrl, query))
+  }
+
+  getStudentGroupByClass(query?: any){
+    return this.http.get(createQueryUrl(this.getStudentGroupByClassUrl, query))
   }
 
   addStudentInfo(body: any){

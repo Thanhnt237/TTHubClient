@@ -68,7 +68,7 @@ export class ClassComponent implements OnInit {
   }
 
   async handleSearch() {
-    if(this.searchForm?.value?.searchField) await this.handleGetAllClasses(this.searchForm?.value?.searchField)
+    await this.handleGetAllClasses(this.searchForm?.value?.searchField)
   }
 
   async handleGetAllClasses(search_string?: string): Promise<void>{

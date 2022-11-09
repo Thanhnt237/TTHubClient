@@ -18,6 +18,7 @@ export const endpoints = {
 
   //Student Information
   get_all_student_information: 'api/resources/information/getAllStudentInformation',
+  get_student_group_by_class_api: "api/resources/information/getStudentGroupByClass",
   add_new_student_information: 'api/resources/information/addNewStudentInformation',
   update_student_information: 'api/resources/information/updateStudentInformation',
 

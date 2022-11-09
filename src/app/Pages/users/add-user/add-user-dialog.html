@@ -53,12 +53,12 @@
     <mat-form-field appearance="outline">
       <mat-label>Chức vụ</mat-label>
       <mat-select>
-        <mat-option disabled>Super admin</mat-option>
-        <mat-option>Hội đồng quản trị</mat-option>
-        <mat-option>Quản lý</mat-option>
-        <mat-option>Giáo viên</mat-option>
-        <mat-option>Tài xế</mat-option>
-        <mat-option disabled>Phụ huynh học sinh</mat-option>
+        <mat-option disabled [value]="listRole.SuperAdmin">Super admin</mat-option>
+        <mat-option [value]="listRole.Admin">Hội đồng quản trị</mat-option>
+        <mat-option [value]="listRole.Manager">Quản lý</mat-option>
+        <mat-option [value]="listRole.Teacher">Giáo viên</mat-option>
+        <mat-option [value]="listRole.Driver">Tài xế</mat-option>
+        <mat-option disabled [value]="listRole.Member">Phụ huynh học sinh</mat-option>
       </mat-select>
       <mat-error *ngIf="!addUserForm.controls['password'].valid && isNew">
         Mật khẩu cần tối thiểu 6 ký tự

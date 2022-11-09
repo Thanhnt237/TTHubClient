@@ -3,11 +3,16 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/materia
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from "@angular/material-moment-adapter";
 import { MY_FORMATS } from "../../class/add-class/add-class";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { FormBuilder, FormControl, FormGroup, Validator, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { KloudNotificationService } from "../../../Components/kloud-notification/kloud-notification.service";
 import { StudentService } from "../../../Services/students/student.service";
-import * as moment from "moment-timezone";
+import { NestedTreeControl } from "@angular/cdk/tree";
+import { MatTreeNestedDataSource } from "@angular/material/tree";
+import { SelectionModel } from "@angular/cdk/collections";
+import { Observable } from "rxjs";
+import { ClassService } from "../../../Services/class/class.service";
+import { BusManagementService } from "../../../Services/bus-management/bus-management.service";
 
 @Component({
   selector: 'bus-register',
@@ -27,11 +32,39 @@ import * as moment from "moment-timezone";
 })
 export class BusRegisterDialog implements OnInit{
   driverDataSource: any;
-  studentDataSource: any;
+
+  semesterDataSource: any;
+
+  studentDataSource = new MatTreeNestedDataSource<any>();
+  studentTreeControl = new NestedTreeControl<any>(node => node.children);
+
+  studentCheckListSelection = new SelectionModel<any>(true)
 
   apiLoading: boolean = false
 
   isNew: boolean = true
+
+  checkedStudentDisplayCol = [{
+    key: "STT",
+    name: ""
+  },{
+    key: "tenant_code",
+    name: "Mã học sinh"
+  },{
+    key: "name",
+    name: "Họ và tên"
+  }, {
+    key: "address",
+    name: "Địa chỉ"
+  },{
+    key: "gender",
+    name: "Giới tính"
+  },{
+    key: "className",
+    name: "lớp"
+  }]
+
+  checkedStudentTableDataSource: any
 
   constructor(
     private readonly dialogRef: MatDialogRef<BusRegisterDialog>,
@@ -39,32 +72,124 @@ export class BusRegisterDialog implements OnInit{
     private readonly _router: Router,
     private readonly _kloudNoti: KloudNotificationService,
     private readonly studentService: StudentService,
+    private readonly classService: ClassService,
+    private readonly busService: BusManagementService,
     @Inject(MAT_DIALOG_DATA) public readonly busRegisterData: any
   ) {
+    // this.checkedStudentTableDataSource = this.studentCheckListSelection.selected
   }
 
-  semesterFilter = new FormControl("")
+  busRegisterManagementForm: FormGroup = this._formBuilder.group({
+    driver: new FormControl('', [Validators.required]),
+    students: new FormControl([], [Validators.required]),
+    semester: new FormControl('', [Validators.required])
+  })
 
   ngOnInit(): void {
     if(this.busRegisterData){
       this.driverDataSource = this.busRegisterData?.allDriver ? this.busRegisterData.allDriver : []
     }
 
-    this.handleGetAllStudent()
+    this.handleGetStudentGroupByClass()
+    this.handleGetSemester()
   }
 
-  handleGetAllStudent(){
-    this.studentService.getStudentsInfo().subscribe(
+  handleGetSemester(){
+    this.apiLoading = true
+    this.classService.getSemester().subscribe(
       (res: any) => {
-        this.studentDataSource = res.data
+        this.semesterDataSource = res
+        this.apiLoading = false
+      },(error) => {
+
+      }
+    )
+  }
+
+  handleUpdateCheckedStudentTableDataSource(){
+    this.checkedStudentTableDataSource =
+      this.studentCheckListSelection
+        .selected
+        .filter(c => !c.children).map((c, index) => ({...c, STT: index + 1}))
+  }
+
+  handleGetStudentGroupByClass(){
+    this.apiLoading = true
+    this.studentService.getStudentGroupByClass().subscribe(
+      (res: any) => {
+        // console.log(res.data);
+        this.studentDataSource.data = res.data
+        this.apiLoading = false
       }, error => {
         this._kloudNoti.error(error)
       }
     )
   }
 
-  onOK(){
+  hasChild = (_: number, node: any) => !!node.children && node.children.length > 0;
+  getChildren = (node: any) => this.studentTreeControl.getChildren(node)
 
+  onStudentLeafItemSelectionToggle(node: any){
+    this.studentCheckListSelection.toggle(node)
+    console.log(node);
+    this.handleUpdateCheckedStudentTableDataSource()
+  }
+
+  onStudentBranchItemSelectionToggle(node: any){
+    this.studentCheckListSelection.toggle(node)
+
+    for (const branch of node.children) {
+      this.studentCheckListSelection.toggle(branch)
+      if(branch.children){
+        for (const leaf of branch.children) {
+          this.studentCheckListSelection.toggle(leaf)
+        }
+      }
+    }
+
+    this.handleUpdateCheckedStudentTableDataSource()
+  }
+
+  descendantsAllSelected(node: any): boolean {
+    const descendants = this.studentTreeControl.getDescendants(node);
+
+    return descendants.length > 0 && descendants.every(child => {
+      return this.studentCheckListSelection.isSelected(child);
+    })
+  }
+
+  descendantsPartiallySelected(node: any): boolean {
+    const descendants = this.studentTreeControl.getDescendants(node);
+    const result = descendants.some(child => this.studentCheckListSelection.isSelected(child));
+    return result && !this.descendantsAllSelected(node);
+  }
+
+  onOK(){
+    const selectedValue = this.studentCheckListSelection.selected
+    const normalizeData = selectedValue.filter(c => !c.children)
+    if(!normalizeData?.length) this._kloudNoti.error(new Error(),"Không học sinh nào được chọn")
+    this.busRegisterManagementForm.patchValue({students: normalizeData}, {emitEvent: false})
+
+    if(!this.busRegisterManagementForm.valid){
+      return this.busRegisterManagementForm.markAllAsTouched()
+    }else{
+      this.apiLoading = true
+      this.handleRegisBus()
+    }
+  }
+
+  handleRegisBus(){
+    this.busService.registerNewBusManagement(this.busRegisterManagementForm.value)
+      .subscribe(
+        res => {
+          this._kloudNoti.success("Thao tác thành công!")
+          this.apiLoading = false
+          this.dialogRef.close("success")
+        },error => {
+          this._kloudNoti.error("Thao tác thất bại")
+          this.apiLoading = false
+        }
+      )
   }
 
 

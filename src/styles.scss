@@ -141,3 +141,22 @@ body {
 .ngx-kloud-kustom-panel{
   min-width: 600px !important;
 }
+
+.kloud-tree-invisible {
+  display: none;
+}
+
+.kloud-tree ul,
+.kloud-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.kloud-tree .mat-nested-tree-node div[role=group] {
+  padding-left: 20px;
+}
+
+.kloud-tree div[role=group] > .mat-tree-node {
+  padding-left: 40px;
+}

@@ -116,7 +116,7 @@ export class AddStudentDialog implements OnInit{
     })
 
     classInfoForm: FormGroup = this._formBuilder.group({
-        ID: new FormControl()
+        ID: new FormControl("", [Validators.required])
     })
 
     onOK(){
@@ -128,6 +128,11 @@ export class AddStudentDialog implements OnInit{
           !this.contactInformationForm.valid
         ){
             this._kloudNoti.warn('Vui lòng nhập đủ thông tin')
+            this.studentInfoForm.markAllAsTouched()
+            this.motherInfoForm.markAllAsTouched()
+            this.fatherInfoForm.markAllAsTouched()
+            this.classInfoForm.markAllAsTouched()
+            this.contactInformationForm.markAllAsTouched()
             return
         }else{
             let finalForm = {

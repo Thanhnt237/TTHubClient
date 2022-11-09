@@ -5,6 +5,17 @@ import { KloudNotificationService } from "../../Components/kloud-notification/kl
 import { AddUserDialog } from "./add-user/add-user";
 import { MatTableDataSource } from "@angular/material/table";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { map } from "rxjs";
+
+enum RoleEnum{
+  SuperAdmin = "SUPER_ADMIN",
+  Admin = "ADMIN",
+  Manager = "MANAGER",
+  Teacher = "TEACHER",
+  Driver = "DRIVER",
+  Student = "STUDENT",
+  Member = "MEMBER"
+}
 
 @Component({
   selector: 'app-users',
@@ -13,6 +24,8 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 })
 export class UsersComponent implements OnInit {
   classDialogRef: any
+
+  roleEnum = RoleEnum
 
   users: any = []
 
@@ -47,7 +60,7 @@ export class UsersComponent implements OnInit {
   ) { }
 
   async handleSearch() {
-    if(this.searchForm?.value?.searchField) await this.handleGetUser(this.searchForm?.value?.searchField)
+    await this.handleGetUser(this.searchForm?.value?.searchField)
   }
 
   ngOnInit(): void {
@@ -67,11 +80,33 @@ export class UsersComponent implements OnInit {
 
     this.userService.handleGetUser(query).subscribe(
       (res: any) => {
-        this.users = res
+        this.users = res?.map((c:any) => ({
+          ...c,
+          role: this.convertRole(c.role)
+        }))
       }, err => {
         this.kloudNoti.error(err)
       }
     )
+  }
+
+  convertRole(role: string): string{
+    switch (role){
+      case this.roleEnum.SuperAdmin:
+        return "Super admin";
+      case this.roleEnum.Admin:
+        return "Hội đồng quản trị";
+      case this.roleEnum.Manager:
+        return "Quản lý"
+      case this.roleEnum.Teacher:
+        return "Giáo viên"
+      case this.roleEnum.Driver:
+        return "Lái xe"
+      case this.roleEnum.Member:
+        return "Phụ huynh học sinh"
+      default:
+        return "Thành viên"
+    }
   }
 
   openDialog(): void{

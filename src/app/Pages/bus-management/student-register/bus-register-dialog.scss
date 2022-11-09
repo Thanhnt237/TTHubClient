@@ -1,4 +1,8 @@
 .fluid-container{
+  width: 1600px;
+  height: 800px;
+  max-width: 1920px;
+  max-height: 1080px;
   display: flex;
   flex-direction: row;
 }

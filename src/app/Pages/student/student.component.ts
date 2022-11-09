@@ -83,7 +83,7 @@ export class StudentComponent implements OnInit {
   })
 
   async handleSearch() {
-    if(this.searchForm?.value?.searchField) await this.handleGetAllStudents(this.searchForm?.value?.searchField)
+    await this.handleGetAllStudents(this.searchForm?.value?.searchField)
   }
 
   handleGetAllStudents(search_string?: string): void {
@@ -97,7 +97,7 @@ export class StudentComponent implements OnInit {
       query["search_string"] = search_string
     }
 
-    this.studentService.getStudentsInfo().subscribe(
+    this.studentService.getStudentsInfo(query).subscribe(
       (res: any) => {
         this.studentsDataSource = res?.data?.length ? res.data.map((item: any) => ({
           ...item,

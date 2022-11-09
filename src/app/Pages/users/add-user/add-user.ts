@@ -6,6 +6,16 @@ import { UsersService } from "../../../Services/users/users.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { AddClassDialog } from "../../class/add-class/add-class";
 
+enum RoleEnum{
+  SuperAdmin = "SUPER_ADMIN",
+  Admin = "ADMIN",
+  Manager = "MANAGER",
+  Teacher = "TEACHER",
+  Driver = "DRIVER",
+  Student = "STUDENT",
+  Member = "MEMBER"
+}
+
 @Component({
   selector: 'add-user-dialog',
   templateUrl: 'add-user-dialog.html',
@@ -14,6 +24,8 @@ import { AddClassDialog } from "../../class/add-class/add-class";
 export class AddUserDialog implements OnInit{
   isNew: boolean = true
   apiLoading: boolean = false
+
+  listRole = RoleEnum
 
   constructor(
     private dialogRef: MatDialogRef<AddClassDialog>,
