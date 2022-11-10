@@ -14,6 +14,7 @@ import { ImportStudentDialog } from "./import-student/import-student-dialog";
   styleUrls: ['./student.component.scss']
 })
 export class StudentComponent implements OnInit {
+  apiLoading: boolean = false
   lockApiLoading: boolean = false;
   deleteApiLoading: boolean = false
 
@@ -92,7 +93,7 @@ export class StudentComponent implements OnInit {
       page: 1,
       search_string: ""
     }
-
+    this.apiLoading = true
     if(search_string){
       query["search_string"] = search_string
     }
@@ -103,6 +104,7 @@ export class StudentComponent implements OnInit {
           ...item,
           className: item?.class?.name ? item.class.name : ""
         })) : []
+        this.apiLoading = false
       }, (error) => {
         this.kloudNoti.error(error)
       })

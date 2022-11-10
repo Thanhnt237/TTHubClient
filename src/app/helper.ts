@@ -1,5 +1,6 @@
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import { Printd } from 'printd'
 
 export function createQueryUrl(url: any, query?: any){
   if(query && JSON.stringify(query) !== "{}") {
@@ -25,4 +26,18 @@ function saveExcelFile(buffer: any, fileName: string): void {
 
   const data: Blob = new Blob([buffer], {type: fileType});
   FileSaver.saveAs(data, fileName + fileExtension);
+}
+
+export function ngxPrint(){
+  const base = document.createElement('base')
+  base.setAttribute('href', 'https://your-cdn.dev')
+  base.setAttribute('meta', 'utf8')
+// define options to use
+  const options = {
+    headElements: [ base ]
+  }
+
+  const d = new Printd(options)
+
+  // d.print()
 }

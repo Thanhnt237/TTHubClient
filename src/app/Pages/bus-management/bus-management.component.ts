@@ -44,9 +44,11 @@ export class BusManagementComponent implements OnInit {
   }
 
   handleGetDriver(){
+    this.apiLoading = true;
     this._userService.handleGetUser().subscribe(
       (res) => {
         this.driverDataSource = res
+        this.apiLoading = false;
       }, (error) => {
         this._kloudNoti.error(error)
       }

@@ -89,6 +89,7 @@
       </mat-card-subtitle>
 
       <mat-card-content>
+        <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
         <div class="kloud-table">
           <kloud-table
             [dataSource]="studentsDataSource"

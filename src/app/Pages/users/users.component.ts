@@ -24,7 +24,7 @@ enum RoleEnum{
 })
 export class UsersComponent implements OnInit {
   classDialogRef: any
-
+  apiLoading: boolean = false
   roleEnum = RoleEnum
 
   users: any = []
@@ -73,6 +73,7 @@ export class UsersComponent implements OnInit {
       page: 1,
       search_string: ""
     }
+    this.apiLoading = true;
 
     if(search_string){
       query["search_string"] = search_string
@@ -84,6 +85,7 @@ export class UsersComponent implements OnInit {
           ...c,
           role: this.convertRole(c.role)
         }))
+        this.apiLoading = false
       }, err => {
         this.kloudNoti.error(err)
       }
@@ -113,13 +115,15 @@ export class UsersComponent implements OnInit {
     this.classDialogRef = this.dialog.open(AddUserDialog);
 
     this.classDialogRef.afterClosed().subscribe(async (result: any) => {
-      await this.handleGetUser()
+      if(result === 'success') await this.handleGetUser()
     });
   }
 
   handleClickedEdit(record: any){
     this.dialog.open(AddUserDialog, {
       data: record
+    }).afterClosed().subscribe(async (result: any) => {
+      if(result === 'success') await this.handleGetUser()
     })
   }
 

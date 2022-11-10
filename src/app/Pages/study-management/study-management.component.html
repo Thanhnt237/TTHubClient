@@ -1,1 +1,119 @@
-<p>study-management works!</p>
+<div class="fluid-container">
+  <div class="left-fluid-container">
+    <mat-card class="filter-container">
+      <mat-card-title class="kloud-title-container">
+        <span class="page-title"> Bộ lọc </span>
+      </mat-card-title>
+      <kloud-divider></kloud-divider>
+      <mat-card-content class="kard-kontent">
+        <div class="kard-kontent-komponent">
+          <mat-form-field appearance="outline">
+            <mat-label>Học kỳ</mat-label>
+            <mat-select>
+              <mat-option>fack</mat-option>
+              <mat-option> facl2 </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="kard-kontent-komponent">
+          <mat-form-field appearance="outline">
+            <mat-label>Lớp</mat-label>
+            <mat-select>
+              <mat-option>fackfack</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="filter-container">
+      <mat-card-title class="kloud-title-container">
+        <span class="page-title">Danh sách học sinh</span>
+      </mat-card-title>
+      <kloud-divider></kloud-divider>
+      <mat-card-content class="kontent kloud-card-content">
+        <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+        <mat-button-toggle-group
+          style="align-items: start; display: block;"
+          #classToggle="matButtonToggleGroup"
+          class="class-filter-group-container"
+          [(ngModel)]="selectedStudentModel">
+          <mat-button-toggle
+            [style.align-items]="'left'"
+            mat-stroke-button
+            *ngFor="let item of studentDataSource"
+            [value]="item" (click)="onClickClassToggle()"
+            class="kloud-button-toggle"
+            style="display: flex; width: 100%; "
+          >
+            <label>
+              <div style="text-align: left;"> <strong>Mã học sinh:</strong> {{item.tenant_code}}</div>
+              <div style="text-align: left;"> <strong>Tên học sinh:</strong> {{item.name}}</div>
+            </label>
+            <kloud-divider></kloud-divider>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="right-fluid-container">
+    <mat-card class="main-content-container">
+      <mat-card-title class="kloud-title-container">
+        <span class="page-title">Quản lý học sinh</span>
+      </mat-card-title>
+
+      <kloud-divider></kloud-divider>
+
+      <mat-card-subtitle>
+        <div class="widget-container">
+          <form style="margin-top: 7px;" [formGroup]="searchForm" (ngSubmit)="handleSearch()">
+            <mat-form-field class="top-search-box-container">
+              <button mat-icon-button color="primary" matPrefix ><mat-icon color="">search</mat-icon></button>
+              <input formControlName="searchField" class="top-search" matInput placeholder="Tìm kiếm">
+            </mat-form-field>
+          </form>
+
+          <div class="widget-spacer"></div>
+          <div class="widget-button-container">
+            <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>
+
+            <div class="widget-button">
+              <button class="widget-icon-button"
+                      mat-raised-button color="secondary"
+              > <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                <span>Xuất</span>
+              </button>
+            </div>
+            <div class="widget-button">
+              <button class="widget-icon-button"
+                      mat-raised-button color="accent"
+              >
+                <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                <span>Import</span>
+              </button>
+            </div>
+
+            <div class="widget-button">
+              <button class="widget-icon-button"
+                      mat-raised-button color="primary"
+              >
+                <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                <span>Tạo mới</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </mat-card-subtitle>
+
+      <mat-card-content>
+        <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+        <div class="kloud-table">
+          <kloud-table></kloud-table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

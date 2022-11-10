@@ -19,6 +19,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {NgxPrintModule} from 'ngx-print';
 
 import { KloudDividerComponent } from './Components/kloud-divider/kloud-divider.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -63,6 +64,7 @@ import { StudyManagementComponent } from "./Pages/study-management/study-managem
 import { BusRegisterDialog } from "./Pages/bus-management/student-register/bus-register-dialog";
 import { MatTreeModule } from "@angular/material/tree";
 import { KloudTreeDataComponent } from "./Components/kloud-tree-data/kloud-tree-data.component";
+import { AddStudyDialogComponent } from "./Pages/study-management/add-study-dialog/add-study-dialog.component";
 
 let matModule = [
   MatIconModule,
@@ -91,6 +93,7 @@ let matModule = [
   MatTabsModule,
   NgxMatSelectSearchModule,
   MatRadioModule,
+  NgxPrintModule
 ]
 
 let expandModule = [
@@ -104,7 +107,8 @@ let expandModule = [
   BillDialog,
   ImportStudentDialog,
   BusRegisterDialog,
-  KloudTreeDataComponent
+  KloudTreeDataComponent,
+  AddStudyDialogComponent,
 ]
 
 
