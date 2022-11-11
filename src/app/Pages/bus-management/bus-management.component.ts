@@ -65,7 +65,8 @@ export class BusManagementComponent implements OnInit {
       data: {
         allDriver: this.driverDataSource,
         selectedDriver: this.selectedDriverModel
-      }
+      },
+      width: "1600px"
     })
       .afterClosed().subscribe(async (res) => {
       console.log(res);
