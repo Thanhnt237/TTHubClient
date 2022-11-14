@@ -7,30 +7,61 @@
       <kloud-divider></kloud-divider>
       <mat-card-content class="kard-kontent">
         <div class="kard-kontent-komponent">
-          <h3 class="kard-kontent-komponent-title">Filter lớp học</h3>
+          <h3 class="kard-kontent-komponent-title">Lọc học kỳ</h3>
+          <mat-form-field
+            class="filter-component-container full-width-input"
+            appearance="outline"
+          >
+            <mat-select
+              placeholder="Chọn học kỳ"
+              [(ngModel)]="semesterFilterModel"
+              [value]="semesterFilterModel"
+              (selectionChange)="onChangeSelectSemester()"
+            >
+              <mat-option *ngFor="let c of semesterFilterDataSource"
+                          [value]="c.semester"> {{c.semester}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="kard-kontent-komponent">
+          <h3 class="kard-kontent-komponent-title">Lọc lớp học</h3>
           <mat-form-field
             class="filter-component-container full-width-input"
             appearance="outline"
           >
             <mat-select
               placeholder="Chọn lớp"
+              [(ngModel)]="classFilterModel"
+              [value]="classFilterModel"
+              (selectionChange)="onChangeSelectClass($event)"
             >
-              <mat-option>5 tuoi</mat-option>
-              <mat-option>5 tuoi</mat-option>
-              <mat-option>5 tuoi</mat-option>
+              <mat-option *ngFor="let c of classFilterDataSource"
+                          [value]="c.ID">{{c.semester}} - {{c.name}}</mat-option>
             </mat-select>
           </mat-form-field>
-
         </div>
 
         <div class="kard-kontent-komponent">
           <h3 class="kard-kontent-komponent-title">Filter giới tính</h3>
 
-          <mat-radio-group class="filter-radio-button-group">
-            <mat-radio-button class="filter-radio-button-button" value="2">Nam</mat-radio-button>
-            <mat-radio-button class="filter-radio-button-button" value="1">Nữ</mat-radio-button>
+          <mat-radio-group
+            class="filter-radio-button-group"
+            [(ngModel)]="genderFilterModel"
+            (ngModelChange)="onChangeSelectGender()"
+          >
+            <mat-radio-button class="filter-radio-button-button" value="">Tất cả</mat-radio-button>
+            <mat-radio-button class="filter-radio-button-button" value="Nam">Nam</mat-radio-button>
+            <mat-radio-button class="filter-radio-button-button" value="Nữ">Nữ</mat-radio-button>
           </mat-radio-group>
         </div>
+
+        <div class="kloud-kard-actions" style="margin-top:10px">
+<!--          <button mat-stroked-button (click)="resetAllFilter();"> Đặt lại </button>-->
+          <div class="widget-spacer"></div>
+          <!--                    <button mat-raised-button (click)="resetFilteredSemester()"> Áp dụng </button>-->
+        </div>
+
       </mat-card-content>
     </mat-card>
   </div>
@@ -54,7 +85,17 @@
 
           <div class="widget-spacer"></div>
           <div class="widget-button-container">
-            <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>
+            <div class="widget-button">
+              <button
+                [disabled]="!multipleSelectedRows.length"
+                mat-flat-button color="secondary"
+                [mat-menu-trigger-for]="multipleActionsMenu"
+              >Chọn
+              </button>
+              <mat-menu #multipleActionsMenu="matMenu">
+                <button mat-menu-item (click)="handleMultipleDelete()"><mat-icon>delete</mat-icon>Xóa</button>
+              </mat-menu>
+            </div>
 
             <div class="widget-button">
               <button class="widget-icon-button"
@@ -97,6 +138,7 @@
             [lockApiLoading]="lockApiLoading"
             [deleteApiLoading]="deleteApiLoading"
 
+            (handleSelectedRows)="handleSelectedRows($event)"
             (clickedRow)="handleClickedRow($event)"
             (handleClickEditRecord)="handleClickEditRecord($event)"
             (handleClickDeleteRecord)="handleClickDeleteRecord($event)"

@@ -94,34 +94,18 @@
 
         <div class="widget-spacer"></div>
         <div class="widget-button-container">
-          <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>
+<!--          <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>-->
 <!--          <div class="widget-button" (click)="onClickOpenFilter()"><button mat-flat-button color="secondary">Lọc</button></div>-->
 
           <div class="widget-button">
             <button class="widget-icon-button"
-                    mat-raised-button color="secondary"
+                    mat-raised-button
+                    color="secondary"
+                    (click)="handleExportExcel()"
             > <mat-icon class="widget-icon">add_circle_outline</mat-icon>
               <span>Xuất</span>
             </button>
           </div>
-          <div class="widget-button">
-            <button class="widget-icon-button"
-                    mat-raised-button color="accent"
-            >
-              <mat-icon class="widget-icon">add_circle_outline</mat-icon>
-              <span>Import</span>
-            </button>
-          </div>
-
-          <div class="widget-button">
-            <button class="widget-icon-button"
-                    mat-raised-button color="primary"
-            >
-              <mat-icon class="widget-icon">add_circle_outline</mat-icon>
-              <span>Tạo mới</span>
-            </button>
-          </div>
-
         </div>
       </div>
     </mat-card-subtitle>

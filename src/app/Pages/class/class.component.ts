@@ -25,6 +25,8 @@ export class ClassComponent implements OnInit {
   rawClassDataSource: any
   classesDataSource: any
 
+  multipleSelectionRow: any = []
+
   displayedColumns= [{
     key: componentKey.check_box_col
   },{
@@ -112,14 +114,14 @@ export class ClassComponent implements OnInit {
   openDialog(): void {
     this.dialog.open(AddClassDialog)
       .afterClosed().subscribe(async (res) => {
-      await this.handleGetAllClasses()
+      if(res === 'success') await this.handleGetAllClasses()
     });
   }
 
   openImportDialog(): void{
     this.dialog.open(ImportClassDialog)
-      .afterClosed().subscribe((result: any) => {
-        console.log("Import class dialog closed", result)
+      .afterClosed().subscribe(async (result: any) => {
+        if(result === 'success') await this.handleGetAllClasses()
     })
   }
 
@@ -172,18 +174,21 @@ export class ClassComponent implements OnInit {
     this.classesDataSource = this.rawClassDataSource
   }
 
-  onClickMultipleChoiceEdit(record: any){
-
+  handleSelectedRow(record: any[]){
+    this.multipleSelectionRow = record
   }
 
-  onClickMultipleChoiceLock(record: any){
-
+  handleMultipleDelete(){
+    this.apiLoading = true;
+    this.classService.handleMultipleDelete(this.multipleSelectionRow.map((c: any) => c.ID))
+      .subscribe(
+        (res: any) => {
+          this.kloudNoti.success("Xóa thành công")
+          this.handleGetAllClasses()
+          this.apiLoading = false
+        }, (error: any) => {
+          this.kloudNoti.error(error)
+        }
+      )
   }
-
-  onClickMultipleChoiceDelete(record: any){
-
-  }
-
-
-
 }

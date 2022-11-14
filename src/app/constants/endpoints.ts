@@ -1,5 +1,7 @@
+import { environment } from "../../environments/environment";
+
 export const endpoints = {
-  base_url: 'http://localhost:8080/',
+  base_url: environment.production ? environment.baseUrl : 'http://localhost:8080/',
 
   //Auth
   login_api: 'api/public/auth/login',
@@ -15,6 +17,7 @@ export const endpoints = {
   add_new_class_api: 'api/resources/class/addNewClass',
   update_class_api: 'api/resources/class/updateClass/',
   get_semester_api: 'api/resources/class/getSemester',
+  multiple_delete_api: 'api/resources/class/multipleDelete',
 
   //Student Information
   get_all_student_information: 'api/resources/information/getAllStudentInformation',

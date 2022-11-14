@@ -4,9 +4,30 @@
       <mat-card-title class="kloud-title-container">
         <span class="page-title"> Bộ lọc </span>
       </mat-card-title>
-      <kloud-divider></kloud-divider>
       <mat-card-content class="kard-kontent">
-
+        <mat-label class="kard-kontent-komponent-title">Lọc chức vụ</mat-label>
+        <mat-form-field
+          class="filter-component-container full-width-input"
+          appearance="outline"
+        >
+          <mat-label>Chức vụ</mat-label>
+          <mat-select
+            #roleSelect
+            (selectionChange)="onSelectedRoles($event)"
+          >
+            <mat-option [value]="roleEnum.SuperAdmin">Super admin</mat-option>
+            <mat-option [value]="roleEnum.Admin">Hội đồng quản trị</mat-option>
+            <mat-option [value]="roleEnum.Manager">Quản lý</mat-option>
+            <mat-option [value]="roleEnum.Teacher">Giáo viên</mat-option>
+            <mat-option [value]="roleEnum.Driver">Tài xế</mat-option>
+            <mat-option [value]="roleEnum.Member">Phụ huynh học sinh</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="kloud-kard-actions">
+          <button mat-stroked-button (click)="handleResetFilter(); roleSelect.value='';"> Đặt lại </button>
+          <div class="widget-spacer"></div>
+          <!--                    <button mat-raised-button (click)="resetFilteredSemester()"> Áp dụng </button>-->
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
@@ -30,7 +51,6 @@
         <div class="widget-spacer"></div>
         <div class="widget-button-container">
           <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>
-          <div class="widget-button"><button  mat-flat-button color="secondary">Lọc</button></div>
 
           <div class="widget-button">
             <button class="widget-icon-button"

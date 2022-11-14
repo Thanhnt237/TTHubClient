@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit {
   classDialogRef: any
   apiLoading: boolean = false
   roleEnum = RoleEnum
-
+  rawUsers: any = []
   users: any = []
 
   displayColumn = [{
@@ -81,7 +81,7 @@ export class UsersComponent implements OnInit {
 
     this.userService.handleGetUser(query).subscribe(
       (res: any) => {
-        this.users = res?.map((c:any) => ({
+        this.rawUsers = this.users = res?.map((c:any) => ({
           ...c,
           role: this.convertRole(c.role)
         }))
@@ -127,8 +127,15 @@ export class UsersComponent implements OnInit {
     })
   }
 
-  handleClickedLock(record: any){
+  onSelectedRoles(record: any){
+    console.log(record.value);
+    console.log(this.users);
+    console.log(this.rawUsers);
+    this.users = this.rawUsers.filter((c: any) => c.role === record.value)
+  }
 
+  handleClickedLock(record: any){
+    console.log(record);
   }
 
   handleClickedDelete(record: any){
@@ -139,4 +146,7 @@ export class UsersComponent implements OnInit {
 
   }
 
+  handleResetFilter() {
+    this.users = this.rawUsers.slice()
+  }
 }

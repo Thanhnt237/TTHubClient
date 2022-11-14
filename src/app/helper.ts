@@ -1,6 +1,7 @@
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { Printd } from 'printd'
+import {pick} from 'lodash'
 
 export function createQueryUrl(url: any, query?: any){
   if(query && JSON.stringify(query) !== "{}") {
@@ -40,4 +41,34 @@ export function ngxPrint(){
   const d = new Printd(options)
 
   // d.print()
+}
+
+/**
+ * @description normalize excel data to standard data
+ * @param {any[]} data
+ * @param {Object} normalizeColumn column to normalize format: {"dataColumn": "normalizeColumn"}
+ */
+export function normalizeExcelData(data: any[], normalizeColumn: any): any[]{
+  if(!data[0]) return []
+  if(!normalizeColumn) return []
+
+  let returnData = JSON.parse(JSON.stringify(data))
+  const convertedCols = Object.values(normalizeColumn)
+
+  for (let i = 0; i < data.length; i++) {
+    for (const [keys, values] of Object.entries(returnData[i])) {
+      if(values && typeof values === 'string' && values.trim()){
+        returnData[i][keys] = values.trim()
+      }
+    }
+
+    for (const [keys, values] of Object.entries(normalizeColumn)) {
+      returnData[i][`${values}`] = returnData[i][keys]
+    }
+
+    // @ts-ignore
+    returnData[i] = pick(returnData[i], convertedCols)
+  }
+
+  return returnData
 }

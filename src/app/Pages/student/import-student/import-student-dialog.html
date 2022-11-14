@@ -1,10 +1,15 @@
 <div class="page-title" style="display: flex; padding-right: 20px; align-items: center;">
   <h2>Import học sinh</h2>
   <div class="widget-spacer"></div>
-  <button mat-button color="accent">Template</button>
+  <button
+    mat-button
+    color="accent"
+    (click)="handleExportTemplate()"
+  >Template</button>
 </div>
 
-<kloud-excel-reader></kloud-excel-reader>
+<kloud-excel-reader
+></kloud-excel-reader>
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close="" [mat-dialog-close]="'No data change'">Hủy</button>

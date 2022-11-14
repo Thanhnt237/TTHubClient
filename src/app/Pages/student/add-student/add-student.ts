@@ -146,7 +146,7 @@ export class AddStudentDialog implements OnInit{
             if(this.isNew){
                 this.handleAddNewStudentInformation(finalForm)
             }else{
-                this.handleUpdateStudentInformation(finalForm)
+                this.handleUpdateStudentInformation({ ...finalForm, ID: this.studentRecordData.ID })
             }
 
         }
@@ -169,7 +169,7 @@ export class AddStudentDialog implements OnInit{
     handleUpdateStudentInformation(finalForm: any){
         this.studentService.updateStudentInfo(finalForm).subscribe(
           res => {
-              this._kloudNoti.success("Thêm mới người dùng thành công")
+              this._kloudNoti.success("Chỉnh sửa người dùng thành công")
               this.apiLoading = false
               this.dialogRef.close('success')
           }, error => {

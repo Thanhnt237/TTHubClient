@@ -91,7 +91,7 @@ export class AddClassDialog implements OnInit{
           res => {
               this._kloudNoti.success("Thêm mới lớp học thành công")
               this.apiLoading = false
-              this.dialogRef.close()
+              this.dialogRef.close('success')
           },
           err => {
               this._kloudNoti.error(err)
@@ -105,7 +105,7 @@ export class AddClassDialog implements OnInit{
           (res:any) => {
               this._kloudNoti.success("Chỉnh sửa lớp học thành công")
               this.apiLoading = false
-              this.dialogRef.close()
+              this.dialogRef.close('success')
           }, err => {
               this._kloudNoti.error(err)
               this.apiLoading = false

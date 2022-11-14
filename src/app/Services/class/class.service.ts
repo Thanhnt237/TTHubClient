@@ -12,7 +12,7 @@ export class ClassService {
   private readonly addNewClasUrl = `${endpoints.base_url}${endpoints.add_new_class_api}`
   private readonly updateClassUrl = `${endpoints.base_url}${endpoints.update_class_api}`
   private readonly getSemesterUrl = `${endpoints.base_url}${endpoints.get_semester_api}`
-
+  private readonly multipleDeleteUrl = `${endpoints.base_url}${endpoints.multiple_delete_api}`
   constructor(
     private http: HttpClient,
     private _router: Router
@@ -28,6 +28,10 @@ export class ClassService {
 
   handleUpdateClass(ID: any, data: any){
     return this.http.put(`${this.updateClassUrl}${ID}`,data)
+  }
+
+  handleMultipleDelete(classIDs: any){
+    return this.http.post(this.multipleDeleteUrl, {classIDs})
   }
 
   getSemester(){

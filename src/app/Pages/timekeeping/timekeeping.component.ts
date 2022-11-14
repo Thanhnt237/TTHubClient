@@ -13,6 +13,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { CheckinService } from "../../Services/checkin/checkin.service";
 import * as Moment from 'moment-timezone'
+import { exportExcel } from "../../helper";
 const moment = extendMoment(Moment);
 
 @Component({
@@ -39,6 +40,7 @@ export class TimekeepingComponent implements OnInit {
   classDataSource: any
   selectedClassModel: any
 
+  rawStudentDataSource: any;
   studentDataSource: MatTableDataSource<any>
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator
@@ -108,7 +110,7 @@ export class TimekeepingComponent implements OnInit {
 
     this.checkinService.getAll(query).subscribe(
       (res: any) => {
-        this.studentDataSource.data = res?.data?.length ? res.data.map((item: any) => ({
+        this.rawStudentDataSource = this.studentDataSource.data = res?.data?.length ? res.data.map((item: any) => ({
           ...item,
           checkedInDate: item?.checkedIn?.length ?
             item.checkedIn.map((c: any) => {
@@ -184,5 +186,10 @@ export class TimekeepingComponent implements OnInit {
         this.apiLoading = false
       }
     )
+  }
+
+  handleExportExcel(){
+    console.log(this.studentDataSource.data.flat());
+    // exportExcel(this.studentDataSource.data.flat(), "checkin_data")
   }
 }

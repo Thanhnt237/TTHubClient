@@ -14,7 +14,7 @@ import { KloudNotificationService } from "../../Components/kloud-notification/kl
 
 export class LoginComponent implements OnInit {
   apiLoading: boolean = false
-  hide : boolean = false;
+  hide : boolean = true;
 
   constructor(
       private _formBuilder: FormBuilder,

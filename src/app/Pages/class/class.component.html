@@ -7,23 +7,25 @@
             <kloud-divider></kloud-divider>
             <mat-card-content class="kard-kontent">
                 <div class="kard-kontent-komponent">
-                    <h3 class="kard-kontent-komponent-title">Filter học kỳ</h3>
+                    <mat-label class="kard-kontent-komponent-title">Lọc học kỳ</mat-label>
                     <mat-form-field
                       class="filter-component-container full-width-input"
                       appearance="outline"
                     >
                         <mat-label>Học kỳ</mat-label>
                         <mat-select
+                            #semesterSelect
                             (selectionChange)="onSelectedFilterSemester($event)"
                         >
                             <mat-option *ngFor="let item of semesterFilter" [value]="item.semester">{{item.semester}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div style="display: flex;">
-                    <button mat-stroked-button (click)="resetFilteredSemester()"> Đặt lại </button>
+<!--                <kloud-divider></kloud-divider>-->
+                <div class="kloud-kard-actions">
+                    <button mat-stroked-button (click)="resetFilteredSemester(); semesterSelect.value='';"> Đặt lại </button>
                     <div class="widget-spacer"></div>
-                    <button mat-raised-button (click)="resetFilteredSemester()"> Áp dụng </button>
+<!--                    <button mat-raised-button (click)="resetFilteredSemester()"> Áp dụng </button>-->
                 </div>
             </mat-card-content>
         </mat-card>
@@ -50,7 +52,17 @@
 
                     <div class="widget-spacer"></div>
                     <div class="widget-button-container">
-                        <div class="widget-button"><button mat-flat-button color="secondary">Chọn</button></div>
+                        <div class="widget-button">
+                            <button
+                              [disabled]="!multipleSelectionRow[0]"
+                              mat-flat-button color="secondary"
+                              [mat-menu-trigger-for]="multipleActionsMenu"
+                            >Chọn
+                            </button>
+                            <mat-menu #multipleActionsMenu="matMenu">
+                                <button mat-menu-item (click)="handleMultipleDelete()"><mat-icon>delete</mat-icon>Xóa</button>
+                            </mat-menu>
+                        </div>
                         <div class="widget-button">
                             <button class="widget-icon-button"
                                     mat-raised-button color="secondary"
@@ -93,7 +105,6 @@
 
                     </div>
                 </div>
-
             </mat-card-subtitle>
 
             <mat-card-content>
@@ -101,6 +112,7 @@
                 <div class="kloud-table">
                     <kloud-table
                       [dataSource]="classesDataSource"
+
                       [displayedColumns]="displayedColumns"
                       [lockApiLoading]="lockApiLoading"
                       [deleteApiLoading]="deleteApiLoading"
@@ -108,6 +120,7 @@
                       (handleClickEditRecord)="handleClickEditRecord($event)"
                       (handleClickDeleteRecord)="handleClickedDeleteRecord($event)"
                       (handleClickLockRecord)="handleClickLockRecord($event)"
+                      (handleSelectedRows)="handleSelectedRow($event)"
                     ></kloud-table>
                 </div>
             </mat-card-content>

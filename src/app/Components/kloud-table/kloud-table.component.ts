@@ -21,7 +21,7 @@ export class KloudTableComponent implements OnInit {
   @Output() handleClickLockRecord = new EventEmitter<any>()
   @Output() handleClickEditRecord = new EventEmitter<any>()
   @Output() handleClickDeleteRecord = new EventEmitter<any>()
-
+  @Output() handleSelectedRows = new EventEmitter<any>()
   // @ts-ignore
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator
 
@@ -41,10 +41,6 @@ export class KloudTableComponent implements OnInit {
     this.mappingCol = this.displayedColumns.map(c => c.key)
   }
 
-  ngDoCheck(){
-
-  }
-
   ngOnChanges(changes: SimpleChange) {
     let fullChange = JSON.parse(JSON.stringify(changes))
     this.tableDataSource.data = fullChange.dataSource.currentValue
@@ -52,6 +48,10 @@ export class KloudTableComponent implements OnInit {
 
   ngAfterViewInit() {
     this.tableDataSource.paginator = this.paginator;
+  }
+
+  emitSelectedRow(){
+    this.handleSelectedRows.emit(this.selection.selected)
   }
 
   onClickedRow(row: any){
@@ -67,10 +67,17 @@ export class KloudTableComponent implements OnInit {
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
+      this.emitSelectedRow()
       return;
     }
 
     this.selection.select(...this.tableDataSource?.data);
+    this.emitSelectedRow()
+  }
+
+  toggleRows(element: any) {
+    this.selection.toggle(element)
+    this.emitSelectedRow()
   }
 
   onClickLockRecord(record: any){

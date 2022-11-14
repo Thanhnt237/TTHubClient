@@ -1,14 +1,30 @@
 <div class="page-title" style="display: flex; padding-right: 20px; align-items: center;">
   <h2>Import lớp học</h2>
   <div class="widget-spacer"></div>
-  <button mat-button color="accent">Template</button>
+  <button
+    mat-button
+    color="accent"
+    (click)="handleExportTemplate()"
+  >
+    <mat-icon>file_download</mat-icon>
+    <span>Template</span>
+  </button>
 </div>
 
-<kloud-excel-reader></kloud-excel-reader>
+<kloud-excel-reader
+  (emitExcelData)="handleRecieveExcelData($event)"
+></kloud-excel-reader>
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close="" [mat-dialog-close]="'No data change'">Hủy</button>
-  <button mat-button color="primary" [disabled]="apiLoading" cdkFocusInitial type="submit">
+  <button
+    mat-button
+    color="primary"
+    [disabled]="apiLoading"
+    cdkFocusInitial
+    type="submit"
+    (click)="handleImportExcel()"
+  >
     <div style="display: flex;justify-content: center;align-items: center">
       <span>Thêm mới</span>
       <mat-spinner

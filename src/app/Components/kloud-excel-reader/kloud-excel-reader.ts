@@ -9,6 +9,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class KloudExcelReader implements OnInit{
   @Output() fileDropped = new EventEmitter<any>();
+  @Output() emitExcelData = new EventEmitter<any>();
 
   receivedFile: boolean = false;
   receivedUrl: string = '';
@@ -58,9 +59,13 @@ export class KloudExcelReader implements OnInit{
         const ws = wb.Sheets[wsname];
 
         const data = utils.sheet_to_json(ws);
-        console.log(data);
+        this.handleEmitExcelData(data)
       };
     }
+  }
+
+  handleEmitExcelData(data: any[]){
+    this.emitExcelData.emit(data)
   }
 
   ngOnInit(): void {
