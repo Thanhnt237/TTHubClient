@@ -27,7 +27,7 @@ export const endpoints = {
   student_checkin: "api/resources/checkin/student/checkin",
 
   //Bus Management
-  get_all_bus_management_api: "api/resources/busManagement/getAll",
+  get_all_bus_management_api: "api/resources/busManagement/getAllBusManagementRegistered",
   register_new_bus_management_api: "api/resources/busManagement/register",
   update_bus_management_api: "api/resources/busManagement/update"
 }

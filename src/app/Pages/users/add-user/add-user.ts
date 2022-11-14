@@ -51,7 +51,8 @@ export class AddUserDialog implements OnInit{
     name : new FormControl("", [Validators.required]),
     phone: new FormControl("", [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     email: new FormControl("", [Validators.required, Validators.email]),
-    password: new FormControl("", [Validators.required, Validators.minLength(6)])
+    password: new FormControl("", [Validators.required, Validators.minLength(6)]),
+    role: new FormControl(this.listRole.Member)
   })
 
   onOK(){
@@ -59,6 +60,7 @@ export class AddUserDialog implements OnInit{
       return
     }else {
       this.apiLoading = true
+      // console.log(this.addUserForm.value)
       this.handleAddUser()
     }
   }
