@@ -53,7 +53,7 @@
     </mat-card-title>
     <kloud-divider></kloud-divider>
     <mat-card-content class="kloud-card-content">
-      <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+      <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
       <form [formGroup]="busRegisterManagementForm">
         <div class="kloud-card-component">
           <mat-form-field appearance="legacy">

@@ -86,24 +86,38 @@ export class BusRegisterDialog implements OnInit{
   })
 
   ngOnInit(): void {
+    this.handleGetStudentGroupByClass()
+    // this.handleGetSemester()
+
     if(this.busRegisterData){
       this.driverDataSource = this.busRegisterData?.allDriver ? this.busRegisterData.allDriver : []
+      this.semesterDataSource = this.busRegisterData?.allSemester ? this.busRegisterData.allSemester : []
+
+      this.busRegisterManagementForm.patchValue({
+        semester: this.busRegisterData.selectedSemester,
+        driver: this.busRegisterData.selectedDriver
+      })
     }
 
-    this.handleGetStudentGroupByClass()
-    this.handleGetSemester()
+    if(this.busRegisterData?.studentsData){
+      this.handleExistedStudentsData()
+    }
+
   }
 
-  handleGetSemester(){
-    this.apiLoading = true
-    this.classService.getSemester().subscribe(
-      (res: any) => {
-        this.semesterDataSource = res
-        this.apiLoading = false
-      },(error) => {
-
-      }
-    )
+  handleExistedStudentsData(){
+    const normalizeData = this.busRegisterData.studentsData.map((c: any) => ({
+      ID: c.s_ID,
+      tenant_code: c.s_tenant_code,
+      name: c.s_name,
+      classID: c.classID,
+      address: c.s_address,
+      gender: c.s_gender,
+      className: c.c_name
+    })).map((i:any) => {
+      // this.studentCheckListSelection.toggle(i)
+    })
+    this.handleUpdateCheckedStudentTableDataSource()
   }
 
   handleUpdateCheckedStudentTableDataSource(){
@@ -115,10 +129,15 @@ export class BusRegisterDialog implements OnInit{
 
   handleGetStudentGroupByClass(){
     this.apiLoading = true
-    this.studentService.getStudentGroupByClass().subscribe(
+
+    const query = {
+      semester: this.busRegisterData?.selectedSemester
+    }
+
+    this.studentService.getStudentGroupByClass(query).subscribe(
       (res: any) => {
-        // console.log(res.data);
         this.studentDataSource.data = res.data
+
         this.apiLoading = false
       }, error => {
         this._kloudNoti.error(error)
@@ -130,8 +149,8 @@ export class BusRegisterDialog implements OnInit{
   getChildren = (node: any) => this.studentTreeControl.getChildren(node)
 
   onStudentLeafItemSelectionToggle(node: any){
+    // console.log(node)
     this.studentCheckListSelection.toggle(node)
-    console.log(node);
     this.handleUpdateCheckedStudentTableDataSource()
   }
 

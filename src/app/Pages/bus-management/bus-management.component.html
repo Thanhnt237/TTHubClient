@@ -7,6 +7,25 @@
       <kloud-divider></kloud-divider>
 
       <mat-card-content class="kloud-card-content">
+        <div>
+          <mat-form-field
+            appearance="outline"
+            class="full-width-input"
+          >
+            <mat-label>Học kỳ</mat-label>
+            <mat-select
+              [(ngModel)]="selectedSemesterModel"
+              [(value)]="selectedSemesterModel"
+              (selectionChange)="handleSemesterChange()"
+            >
+              <mat-option
+                *ngFor="let data of semesterDataSource"
+                [value]="data.semester">
+                {{data.semester}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <div style="display: flex; justify-content: center; align-items: center">
           <mat-form-field appearance="outline">
             <mat-label>Khoảng ngày</mat-label>
@@ -39,6 +58,7 @@
 
         <div style="display: flex">
           <div class="widget-spacer"></div>
+          <button mat-stroked-button class="kloud-button" (click)="handleUpdateToday()"> Hôm nay </button>
           <button mat-stroked-button class="kloud-button" (click)="applyDatePickerFilter()"> Áp dụng </button>
         </div>
       </mat-card-content>
@@ -52,7 +72,9 @@
 
       <mat-card-content class="kontent kloud-card-content">
         <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
+        <div *ngIf="!driverDataSource">Không có dữ liệu</div>
         <mat-button-toggle-group
+          *ngIf="driverDataSource"
           style="align-items: start; display: block;"
           #classToggle="matButtonToggleGroup"
           class="class-filter-group-container"
@@ -61,7 +83,7 @@
             [style.align-items]="'left'"
             mat-stroke-button
             *ngFor="let item of driverDataSource"
-            [value]="item" (click)="onClickClassToggle()"
+            [value]="item" (click)="onClickDriverToggle()"
             class="kloud-button-toggle"
             style="display: flex; width: 100%; "
           >
@@ -127,43 +149,46 @@
 
     <mat-card-content class="table-container">
       <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
-<!--      <table mat-table [dataSource]="studentDataSource">-->
-<!--        <ng-container matColumnDef="tenant_code">-->
-<!--          <th mat-header-cell *matHeaderCellDef> Mã học sinh</th>-->
-<!--          <td mat-cell *matCellDef="let element"> {{element.tenant_code}} </td>-->
-<!--        </ng-container>-->
+      <table mat-table [dataSource]="driverBusManagementSource" >
+        <ng-container matColumnDef="tenant_code" *ngIf="driverBusManagementSource?.data">
+          <th mat-header-cell *matHeaderCellDef> Mã học sinh</th>
+          <td mat-cell *matCellDef="let element"> {{element.s_tenant_code}} </td>
+        </ng-container>
 
-<!--        <ng-container matColumnDef="name" sticky>-->
-<!--          <th mat-header-cell *matHeaderCellDef> Họ và tên </th>-->
-<!--          <td mat-cell *matCellDef="let element"> {{element.name}} </td>-->
-<!--        </ng-container>-->
+        <ng-container matColumnDef="name" sticky>
+          <th mat-header-cell *matHeaderCellDef> Họ và tên </th>
+          <td mat-cell *matCellDef="let element"> {{element.s_name}} </td>
+        </ng-container>
 
-<!--        <ng-container *ngFor="let date of dateCount" [matColumnDef]="date">-->
-<!--          <th mat-header-cell *matHeaderCellDef> Ngày {{date}}</th>-->
-<!--          <td mat-cell *matCellDef="let element">-->
-<!--            <div style="display: flex; justify-content: center; align-items: center">-->
+        <ng-container *ngFor="let date of dateCount" [matColumnDef]="date">
+          <th mat-header-cell *matHeaderCellDef> Ngày {{date}}</th>
+          <td mat-cell *matCellDef="let element">
+            <div style="display: flex; justify-content: center; align-items: center">
 <!--              <button [disabled]="apiLoading" mat-icon-button *ngIf="element?.checkedInDate?.includes(date)" (click)="onClickCheckin(element, date, false)"> <mat-icon style="color: green">check_circle_outline</mat-icon> </button>-->
 <!--              <button [disabled]="apiLoading" mat-icon-button *ngIf="!element?.checkedInDate?.includes(date)" (click)="onClickCheckin(element, date, true)"> <mat-icon color="accent">remove_circle_outline</mat-icon></button>-->
-<!--            </div>-->
-<!--          </td>-->
-<!--        </ng-container>-->
+                  <button [disabled]="apiLoading" mat-icon-button> <mat-icon style="color: green">check_circle_outline</mat-icon> </button>
+                  <button [disabled]="apiLoading" mat-icon-button> <mat-icon color="accent">remove_circle_outline</mat-icon></button>
 
-<!--        <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>-->
-<!--        <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>-->
+            </div>
+          </td>
+        </ng-container>
 
-<!--        <tr class="mat-row" *matNoDataRow>-->
-<!--          <td class="mat-cell" [colSpan]="displayedColumn.length">-->
-<!--            <div class="table-no-matching-data">-->
-<!--              Không có dữ liệu-->
-<!--            </div>-->
-<!--          </td>-->
-<!--        </tr>-->
-<!--      </table>-->
+        <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
 
-<!--      <mat-paginator-->
-<!--        [length]="this.studentDataSource.data.length"-->
-<!--        [pageSize]="15"-->
-<!--      ></mat-paginator>-->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" [colSpan]="displayedColumn?.length">
+            <div class="table-no-matching-data">
+              Không có dữ liệu
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <mat-paginator
+        [length]="this.driverBusManagementSource?.data?.length"
+        [pageSize]="15"
+      ></mat-paginator>
     </mat-card-content>
   </mat-card>
 </div>
