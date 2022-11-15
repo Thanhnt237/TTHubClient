@@ -98,11 +98,6 @@ export class BusRegisterDialog implements OnInit{
         driver: this.busRegisterData.selectedDriver
       })
     }
-
-    if(this.busRegisterData?.studentsData){
-      this.handleExistedStudentsData()
-    }
-
   }
 
   handleExistedStudentsData(){
@@ -114,9 +109,10 @@ export class BusRegisterDialog implements OnInit{
       address: c.s_address,
       gender: c.s_gender,
       className: c.c_name
-    })).map((i:any) => {
-      // this.studentCheckListSelection.toggle(i)
+    })).map((i: any) => {
+      this.studentCheckListSelection.select(i)
     })
+
     this.handleUpdateCheckedStudentTableDataSource()
   }
 
@@ -137,7 +133,9 @@ export class BusRegisterDialog implements OnInit{
     this.studentService.getStudentGroupByClass(query).subscribe(
       (res: any) => {
         this.studentDataSource.data = res.data
-
+        if(this.busRegisterData?.studentsData){
+          this.handleExistedStudentsData()
+        }
         this.apiLoading = false
       }, error => {
         this._kloudNoti.error(error)
@@ -149,7 +147,7 @@ export class BusRegisterDialog implements OnInit{
   getChildren = (node: any) => this.studentTreeControl.getChildren(node)
 
   onStudentLeafItemSelectionToggle(node: any){
-    // console.log(node)
+    console.log(node)
     this.studentCheckListSelection.toggle(node)
     this.handleUpdateCheckedStudentTableDataSource()
   }
@@ -182,6 +180,10 @@ export class BusRegisterDialog implements OnInit{
     const result = descendants.some(child => this.studentCheckListSelection.isSelected(child));
     return result && !this.descendantsAllSelected(node);
   }
+
+  // onOK(){
+  //   console.log(this.studentCheckListSelection);
+  // }
 
   onOK(){
     const selectedValue = this.studentCheckListSelection.selected
