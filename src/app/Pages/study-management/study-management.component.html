@@ -9,9 +9,14 @@
         <div class="kard-kontent-komponent">
           <mat-form-field appearance="outline">
             <mat-label>Học kỳ</mat-label>
-            <mat-select>
-              <mat-option>fack</mat-option>
-              <mat-option> facl2 </mat-option>
+            <mat-select
+              [(ngModel)]="selectedSemesterModel"
+              (selectionChange)="onSelectedSemester()"
+            >
+              <mat-option
+                *ngFor="let semester of semesterDataSource"
+                [value]="semester.semester">{{semester.semester}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -19,8 +24,14 @@
         <div class="kard-kontent-komponent">
           <mat-form-field appearance="outline">
             <mat-label>Lớp</mat-label>
-            <mat-select>
-              <mat-option>fackfack</mat-option>
+            <mat-select
+              [(ngModel)]="selectedClassModel"
+              (selectionChange)="onSelectedClass()"
+            >
+              <mat-option
+                *ngFor="let c of classesDataSource"
+                [value]="c.ID"
+              >{{c.name}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -33,8 +44,10 @@
       </mat-card-title>
       <kloud-divider></kloud-divider>
       <mat-card-content class="kontent kloud-card-content">
-        <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+        <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
+        <div *ngIf="!studentDataSource?.length">Trống</div>
         <mat-button-toggle-group
+          *ngIf="studentDataSource?.length"
           style="align-items: start; display: block;"
           #classToggle="matButtonToggleGroup"
           class="class-filter-group-container"
@@ -96,8 +109,10 @@
             </div>
 
             <div class="widget-button">
-              <button class="widget-icon-button"
-                      mat-raised-button color="primary"
+              <button
+                class="widget-icon-button"
+                mat-raised-button color="primary"
+                (click)="openAddClassDialog()"
               >
                 <mat-icon class="widget-icon">add_circle_outline</mat-icon>
                 <span>Tạo mới</span>
@@ -109,7 +124,7 @@
       </mat-card-subtitle>
 
       <mat-card-content>
-        <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+        <mat-progress-bar *ngIf="apiLoading" mode="indeterminate" color="accent"></mat-progress-bar>
         <div class="kloud-table">
           <kloud-table></kloud-table>
         </div>

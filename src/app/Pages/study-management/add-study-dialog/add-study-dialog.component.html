@@ -1,0 +1,69 @@
+<h2 mat-dialog-title>Phiếu thông báo học tập trẻ</h2>
+<kloud-divider></kloud-divider>
+  <mat-dialog-content class="fluid-container">
+    <mat-card class="filter-container">
+      <mat-card-title class="kloud-title-container">
+        <span>Bộ lọc</span>
+      </mat-card-title>
+      <kloud-divider></kloud-divider>
+      <mat-card-content class="kloud-card-content">
+        <div class="kloud-card-component">
+          <mat-form-field appearance="outline">
+            <mat-label>Học kỳ</mat-label>
+            <mat-select>
+              <mat-option>Học kỳ 1</mat-option>
+              <mat-option>Học kỳ 2</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="kloud-card-component">
+          <mat-form-field appearance="outline">
+            <mat-label>Lớp</mat-label>
+            <mat-select>
+              <mat-option>Lớp 1</mat-option>
+              <mat-option>Lớp 2</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="kloud-card-component">
+          <mat-form-field appearance="outline">
+            <mat-label>Học sinh</mat-label>
+            <mat-select>
+              <mat-option>Lớp 1</mat-option>
+              <mat-option>Lớp 2</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="main-content-container">
+      <mat-card-title class="kloud-title-container">
+        <span>Phiếu trao đổi tình hình học tập trẻ tháng 11</span>
+      </mat-card-title>
+      <kloud-divider></kloud-divider>
+      <mat-card-content class="kloud-card-content">
+        <form [formGroup]="educationGoalForm" >
+
+        </form>
+        <mat-form-field></mat-form-field>
+      </mat-card-content>
+    </mat-card>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close="" [mat-dialog-close]="'No data change'">Hủy</button>
+    <button mat-button color="primary" [disabled]="apiLoading" cdkFocusInitial type="submit">
+      <div style="display: flex;justify-content: center;align-items: center">
+        <span *ngIf="isNew">Thêm mới</span>
+        <span *ngIf="!isNew">Sửa</span>
+        <mat-spinner
+          [diameter]="20"
+          color="primary"
+          *ngIf="apiLoading"
+        ></mat-spinner>
+      </div>
+    </button>
+  </mat-dialog-actions>
