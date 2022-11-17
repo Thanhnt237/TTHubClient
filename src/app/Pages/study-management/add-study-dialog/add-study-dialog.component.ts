@@ -15,6 +15,9 @@ export class AddStudyDialogComponent implements OnInit{
   apiLoading: boolean = false;
   isNew: boolean = false
 
+  selectedSemesterModel: any;
+  selectedClassModel: any;
+
   constructor(
     private dialogRef: MatDialogRef<AddStudyDialogComponent>,
     private _formBuilder: FormBuilder,

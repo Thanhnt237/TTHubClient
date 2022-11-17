@@ -10,7 +10,9 @@
         <div class="kloud-card-component">
           <mat-form-field appearance="outline">
             <mat-label>Học kỳ</mat-label>
-            <mat-select>
+            <mat-select
+
+            >
               <mat-option>Học kỳ 1</mat-option>
               <mat-option>Học kỳ 2</mat-option>
             </mat-select>
@@ -20,17 +22,9 @@
         <div class="kloud-card-component">
           <mat-form-field appearance="outline">
             <mat-label>Lớp</mat-label>
-            <mat-select>
-              <mat-option>Lớp 1</mat-option>
-              <mat-option>Lớp 2</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div class="kloud-card-component">
-          <mat-form-field appearance="outline">
-            <mat-label>Học sinh</mat-label>
-            <mat-select>
+            <mat-select
+              [(ngModel)]="selectedClassModel"
+            >
               <mat-option>Lớp 1</mat-option>
               <mat-option>Lớp 2</mat-option>
             </mat-select>
@@ -46,9 +40,32 @@
       <kloud-divider></kloud-divider>
       <mat-card-content class="kloud-card-content">
         <form [formGroup]="educationGoalForm" >
+          <div class="kloud-card-component">
+            <mat-form-field appearance="outline">
+              <mat-label>Tháng</mat-label>
+              <mat-select>
+                <mat-option>Tháng 1</mat-option>
+                <mat-option>Tháng 2</mat-option>
+              </mat-select>
+            </mat-form-field>
 
+            <mat-form-field appearance="outline">
+              <mat-label>Học sinh</mat-label>
+              <mat-select>
+                <mat-option>Cấn Tuấn Thành</mat-option>
+                <mat-option>Cấn Tuấn Thành</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+          <div class="kloud-card-component">
+            <study-management-table>
+
+            </study-management-table>
+          </div>
         </form>
-        <mat-form-field></mat-form-field>
+
       </mat-card-content>
     </mat-card>
   </mat-dialog-content>

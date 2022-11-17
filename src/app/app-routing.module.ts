@@ -65,6 +65,9 @@ import { BusRegisterDialog } from "./Pages/bus-management/student-register/bus-r
 import { MatTreeModule } from "@angular/material/tree";
 import { KloudTreeDataComponent } from "./Components/kloud-tree-data/kloud-tree-data.component";
 import { AddStudyDialogComponent } from "./Pages/study-management/add-study-dialog/add-study-dialog.component";
+import {
+  StudyManagementTableComponent
+} from "./Pages/study-management/study-management-table/study-management-table.component";
 
 let matModule = [
   MatIconModule,
@@ -109,6 +112,7 @@ let expandModule = [
   BusRegisterDialog,
   KloudTreeDataComponent,
   AddStudyDialogComponent,
+  StudyManagementTableComponent
 ]
 
 
