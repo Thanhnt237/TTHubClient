@@ -58,7 +58,7 @@ export class AddStudyDialogComponent implements OnInit{
     life_skill_bank: new FormControl(),
   })
 
-  student_goals_achieved: FormGroup = this._formBuilder.group({
+   student_goals_achieved: FormGroup = this._formBuilder.group({
     physical_education: new FormControl(),
     intelligence_education: new FormControl(),
     language_education: new FormControl(),

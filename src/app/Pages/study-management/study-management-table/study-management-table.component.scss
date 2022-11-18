@@ -1,0 +1,14 @@
+.study-table{
+  display: flex;
+  justify-content: space-between;
+}
+
+.study-table-header{
+  font-weight: bold;
+}
+
+.study-table-col{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

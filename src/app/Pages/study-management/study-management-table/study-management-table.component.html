@@ -1,28 +1,39 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div class="fluid-container">
+  <div class="study-table">
+    <div class="study-table-col study-table-header">
+      <span>Nội dung đào tạo</span>
+      <span>Phát triển thể chất</span>
+      <span>Phát triển nhận thức</span>
+      <span>Phát triển ngôn ngữ</span>
+      <span>Phát triển tình cảm xã hội</span>
+      <span>Phát triển nghệ thuật</span>
+      <span>Sức khỏe</span>
+      <span>Tiếng anh</span>
+      <span>Ngân hàng kỹ năng sống</span>
+    </div>
 
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef>  </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-  </ng-container>
+    <div class="study-table-col">
+      <span class="study-table-header">Mục tiêu giáo dục</span>
+      <span>
+        <mat-form-field>
+        <input
+          matInput
+        />
+      </mat-form-field>
+      </span>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+    </div>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-  </ng-container>
+    <div class="study-table-col">
+      <span class="study-table-header">Thành tựu của trẻ</span>
+    </div>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-  </ng-container>
+    <div class="study-table-col">
+      <span class="study-table-header">GV phụ trách</span>
+    </div>
+  </div>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+  <div>
+    <span>Định hướng</span>
+  </div>
+</div>

@@ -99,7 +99,8 @@ export class StudyManagementComponent implements OnInit {
 
   openAddClassDialog(){
     this._dialog.open(AddStudyDialogComponent, {
-      width: "1360px"
+      width: "1360px",
+      height: "auto"
     })
       .afterClosed()
       .subscribe(res => {
