@@ -1,73 +1,394 @@
 <h2 mat-dialog-title>Phiếu thông báo học tập trẻ</h2>
 <kloud-divider></kloud-divider>
   <mat-dialog-content class="fluid-container">
-    <mat-card class="filter-container">
-      <mat-card-title class="kloud-title-container">
-        <span>Bộ lọc</span>
-      </mat-card-title>
-      <kloud-divider></kloud-divider>
-      <mat-card-content class="kloud-card-content">
-        <div class="kloud-card-component">
-          <mat-form-field appearance="outline">
-            <mat-label>Học kỳ</mat-label>
-            <mat-select
-
-            >
-              <mat-option>Học kỳ 1</mat-option>
-              <mat-option>Học kỳ 2</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div class="kloud-card-component">
-          <mat-form-field appearance="outline">
-            <mat-label>Lớp</mat-label>
-            <mat-select
-              [(ngModel)]="selectedClassModel"
-            >
-              <mat-option>Lớp 1</mat-option>
-              <mat-option>Lớp 2</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="main-content-container">
-      <mat-card-title class="kloud-title-container">
-        <span>Phiếu trao đổi tình hình học tập trẻ tháng 11</span>
-      </mat-card-title>
-      <kloud-divider></kloud-divider>
-      <mat-card-content class="kloud-card-content">
-        <form [formGroup]="educationGoalForm" >
-          <div class="kloud-card-component">
-            <mat-form-field appearance="outline">
-              <mat-label>Tháng</mat-label>
-              <mat-select>
-                <mat-option>Tháng 1</mat-option>
-                <mat-option>Tháng 2</mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Học sinh</mat-label>
-              <mat-select>
-                <mat-option>Cấn Tuấn Thành</mat-option>
-                <mat-option>Cấn Tuấn Thành</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+    <div>
+      <form [formGroup]="studyInformationForm">
+        <mat-card class="filter-container">
+          <mat-card-title class="kloud-title-container">
+            <span class="page-title">Thông tin trẻ</span>
+          </mat-card-title>
+          <kloud-divider></kloud-divider>
+          <mat-card-content class="kard-kontent">
+            <div class="kard-kontent-komponent">
+              <mat-form-field appearance="fill">
+                <mat-label>Tháng</mat-label>
+                <mat-select
+                  formControlName="month"
+                >
+                  <mat-option [value]="'THÁNG 1'">Tháng 1</mat-option>
+                  <mat-option [value]="'THÁNG 2'">Tháng 2</mat-option>
+                  <mat-option [value]="'THÁNG 3'">Tháng 3</mat-option>
+                  <mat-option [value]="'THÁNG 4'">Tháng 4</mat-option>
+                  <mat-option [value]="'THÁNG 5'">Tháng 5</mat-option>
+                  <mat-option [value]="'THÁNG 6'">Tháng 6</mat-option>
+                  <mat-option [value]="'THÁNG 7'">Tháng 7</mat-option>
+                  <mat-option [value]="'THÁNG 8'">Tháng 8</mat-option>
+                  <mat-option [value]="'THÁNG 9'">Tháng 9</mat-option>
+                  <mat-option [value]="'THÁNG 10'">Tháng 10</mat-option>
+                  <mat-option [value]="'THÁNG 11'">Tháng 11</mat-option>
+                  <mat-option [value]="'THÁNG 12'">Tháng 12</mat-option>
+                </mat-select>
+              </mat-form-field>
 
 
-          <div class="kloud-card-component">
-            <study-management-table>
+              <mat-form-field appearance="outline">
+                <mat-label>Học sinh</mat-label>
+                <mat-select
+                  formControlName="student"
+                >
+                  <mat-option [value]="{name: 'Nguyễn Ánh Dương'}">Nguyễn Ánh Dương</mat-option>
+                  <mat-option [value]="{name: 'Nguyễn Minh Tú'}">Nguyễn Minh Tú</mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            </study-management-table>
-          </div>
-        </form>
+              <mat-form-field appearance="outline">
+                <mat-label>Lớp</mat-label>
+                <mat-select
+                  formControlName="class"
+                >
+                  <mat-option [value]="{name: 'Lớp 3 tuổi'}">Lớp 3 tuổi</mat-option>
+                </mat-select>
+              </mat-form-field>
 
-      </mat-card-content>
-    </mat-card>
+              <mat-form-field appearance="outline">
+                <mat-label>GVCN</mat-label>
+                <mat-select
+                  formControlName="user"
+                >
+                  <mat-option [value]="{name: 'Cấn Tuấn Thành'}">Cấn Tuấn Thành</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
+
+      <form [formGroup]="educationGoalForm">
+        <mat-card class="filter-container">
+          <mat-card-title class="kloud-title-container">
+            <span class="page-title">Mục tiêu giáo dục</span>
+          </mat-card-title>
+          <kloud-divider></kloud-divider>
+          <mat-card-content class="kard-kontent">
+            <div class="kard-kontent-komponent">
+              <mat-form-field appearance="legacy">
+                <mat-label>Phát triển thể chất</mat-label>
+                <textarea
+                  formControlName="physical_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+<!--                <input-->
+<!--                  formControlName="physical_education"-->
+<!--                  matInput-->
+<!--                  placeholder="Học tập tốt, lao động tốt"-->
+<!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Phát triển nhận thức</mat-label>
+                <textarea
+                  formControlName="intelligence_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+<!--                <input-->
+<!--                  formControlName="intelligence_education"-->
+<!--                  matInput-->
+<!--                  placeholder="Học tập tốt, lao động tốt"-->
+<!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Phát triển ngôn ngữ</mat-label>
+                <textarea
+                  formControlName="language_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+<!--                <input-->
+<!--                  formControlName="language_education"-->
+<!--                  matInput-->
+<!--                  placeholder="Học tập tốt, lao động tốt"-->
+<!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Phát triển tình cảm xã hội</mat-label>
+                <textarea
+                  formControlName="socialite_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+<!--                <input-->
+<!--                  formControlName="socialite_education"-->
+<!--                  matInput-->
+<!--                  placeholder="Học tập tốt, lao động tốt"-->
+<!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Phát triển thẩm mỹ</mat-label>
+                <textarea
+                  formControlName="art_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+<!--                <input-->
+<!--                  formControlName="art_education"-->
+<!--                  matInput-->
+<!--                  placeholder="Học tập tốt, lao động tốt"-->
+<!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Sức khỏe chung</mat-label>
+                <textarea
+                  formControlName="health"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+<!--                <input-->
+<!--                  formControlName="health"-->
+<!--                  matInput-->
+<!--                  placeholder="Hay ăn chóng lớn"-->
+<!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Tiếng Anh</mat-label>
+                <textarea
+                  formControlName="english_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+<!--                <input-->
+<!--                  formControlName="english_education"-->
+<!--                  matInput-->
+<!--                  placeholder="Học tập tốt, lao động tốt"-->
+<!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Ngân hàng kỹ năng sống</mat-label>
+                <textarea
+                  formControlName="life_skill_bank"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+<!--                <input-->
+<!--                  formControlName="life_skill_bank"-->
+<!--                  matInput-->
+<!--                  placeholder="Học tập tốt, lao động tốt"-->
+<!--                />-->
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
+
+      <form [formGroup]="student_goals_achieved">
+        <mat-card class="filter-container">
+          <mat-card-title class="kloud-title-container">
+            <span class="page-title">Mục tiêu giáo dục</span>
+          </mat-card-title>
+          <kloud-divider></kloud-divider>
+          <mat-card-content class="kard-kontent">
+            <div class="kard-kontent-komponent">
+              <mat-form-field appearance="legacy">
+                <mat-label>Phát triển thể chất</mat-label>
+                <textarea
+                  formControlName="physical_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+                <!--                <input-->
+                <!--                  formControlName="physical_education"-->
+                <!--                  matInput-->
+                <!--                  placeholder="Học tập tốt, lao động tốt"-->
+                <!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Phát triển nhận thức</mat-label>
+                <textarea
+                  formControlName="intelligence_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+                <!--                <input-->
+                <!--                  formControlName="intelligence_education"-->
+                <!--                  matInput-->
+                <!--                  placeholder="Học tập tốt, lao động tốt"-->
+                <!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Phát triển ngôn ngữ</mat-label>
+                <textarea
+                  formControlName="language_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+                <!--                <input-->
+                <!--                  formControlName="language_education"-->
+                <!--                  matInput-->
+                <!--                  placeholder="Học tập tốt, lao động tốt"-->
+                <!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Phát triển tình cảm xã hội</mat-label>
+                <textarea
+                  formControlName="socialite_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+                <!--                <input-->
+                <!--                  formControlName="socialite_education"-->
+                <!--                  matInput-->
+                <!--                  placeholder="Học tập tốt, lao động tốt"-->
+                <!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Phát triển thẩm mỹ</mat-label>
+                <textarea
+                  formControlName="art_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+                <!--                <input-->
+                <!--                  formControlName="art_education"-->
+                <!--                  matInput-->
+                <!--                  placeholder="Học tập tốt, lao động tốt"-->
+                <!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Sức khỏe chung</mat-label>
+                <textarea
+                  formControlName="health"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+                <!--                <input-->
+                <!--                  formControlName="health"-->
+                <!--                  matInput-->
+                <!--                  placeholder="Hay ăn chóng lớn"-->
+                <!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Tiếng Anh</mat-label>
+                <textarea
+                  formControlName="english_education"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+                <!--                <input-->
+                <!--                  formControlName="english_education"-->
+                <!--                  matInput-->
+                <!--                  placeholder="Học tập tốt, lao động tốt"-->
+                <!--                />-->
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy">
+                <mat-label>Ngân hàng kỹ năng sống</mat-label>
+                <textarea
+                  formControlName="life_skill_bank"
+                  matInput
+                  placeholder="Học tập tốt, lao động tốt"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                ></textarea>
+                <!--                <input-->
+                <!--                  formControlName="life_skill_bank"-->
+                <!--                  matInput-->
+                <!--                  placeholder="Học tập tốt, lao động tốt"-->
+                <!--                />-->
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
+
+      <form [formGroup]="studyInformationForm">
+        <mat-card class="filter-container">
+          <mat-card-content class="kard-kontent">
+            <mat-card-title class="kloud-title-container">
+              <span class="page-title">Giải pháp định hướng</span>
+            </mat-card-title>
+            <kloud-divider></kloud-divider>
+            <div class="kard-kontent-komponent">
+              <mat-form-field appearance="legacy" class="full-width-input">
+                <mat-label>Giải pháp định hướng</mat-label>
+                <textarea
+                  formControlName="guideline"
+                  matInput
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                ></textarea>
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  <study-management-table
+    id="study-pdf-page"
+    [studyInformationForm]="studyInformationForm"
+    [educationGoalForm]="educationGoalForm"
+    [student_goals_achieved]="student_goals_achieved"
+  >
+
+    </study-management-table>
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">

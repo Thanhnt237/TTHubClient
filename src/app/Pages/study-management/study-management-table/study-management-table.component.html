@@ -1,39 +1,270 @@
-<div class="fluid-container">
-  <div class="study-table">
-    <div class="study-table-col study-table-header">
-      <span>Nội dung đào tạo</span>
-      <span>Phát triển thể chất</span>
-      <span>Phát triển nhận thức</span>
-      <span>Phát triển ngôn ngữ</span>
-      <span>Phát triển tình cảm xã hội</span>
-      <span>Phát triển nghệ thuật</span>
-      <span>Sức khỏe</span>
-      <span>Tiếng anh</span>
-      <span>Ngân hàng kỹ năng sống</span>
+<div class="note-wrapper-fluid-container">
+  <div class="header-container">
+    <div class="logo">
+      <img class="logo" alt="logo" src="assets/Logo.png">
     </div>
-
-    <div class="study-table-col">
-      <span class="study-table-header">Mục tiêu giáo dục</span>
-      <span>
-        <mat-form-field>
-        <input
-          matInput
-        />
-      </mat-form-field>
-      </span>
-
+    <div>
+      <div class="header-component">
+        <mat-icon class="header-icon">home</mat-icon>
+        <div><strong>Trường mầm non Trọng Tín</strong></div>
+      </div>
+      <div class="header-component">
+        <mat-icon class="header-icon">location_on</mat-icon>
+        <div>Địa chỉ: Khu 5, Phú Lộc, Phù Ninh, Phú Thọ</div>
+      </div>
     </div>
-
-    <div class="study-table-col">
-      <span class="study-table-header">Thành tựu của trẻ</span>
-    </div>
-
-    <div class="study-table-col">
-      <span class="study-table-header">GV phụ trách</span>
+    <div>
+      <div class="header-component">
+        <mat-icon class="header-icon">phone</mat-icon>
+        <div>SĐT: 0329378946</div>
+      </div>
+      <div class="header-component">
+        <mat-icon class="header-icon">email</mat-icon>
+        <div>Email: thanhnt@bytesoft.net</div>
+      </div>
     </div>
   </div>
 
-  <div>
-    <span>Định hướng</span>
+  <mat-divider style="border-top-color: darkred; height: 5px;"></mat-divider>
+
+  <div class="content-container">
+    <div class="content-title">
+      <div class="text-component">PHIẾU TRAO ĐỔI TÌNH HÌNH HỌC TẬP BÉ</div>
+      <div class="text-component" *ngIf="!studyInformationData.month">THÁNG</div>
+      <div class="text-component" *ngIf="studyInformationData.month">{{studyInformationData.month}}</div>
+    </div>
+
+    <div class="content-information-block">
+      <div class="padding-3">
+        <strong>Học sinh: </strong> {{studyInformationData?.student?.name}}
+      </div>
+
+      <div class="padding-3"><strong>Lớp: </strong>{{studyInformationData?.class?.name}}</div>
+
+      <div class="padding-3"><strong>Giáo viên chủ nhiệm: </strong>{{studyInformationData?.user?.name}}</div>
+    </div>
+
+    <div class="study-content-table">
+      <table style="margin: auto auto;">
+        <tr>
+          <th class="first-row">Nội dung</th>
+          <th class="content-row">Mục tiêu giáo dục</th>
+          <th class="content-row">Thành tựu của trẻ</th>
+          <th class="last-row">Giáo viên phụ trách</th>
+        </tr>
+
+        <tr>
+          <td class="first-row">Phát triển thể chất</td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="educationGoalData?.physical_education ? educationGoalData?.physical_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="studentGoalsAchievedData?.physical_education ? studentGoalsAchievedData?.physical_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="last-row">Giáo viên phụ trách</td>
+        </tr>
+
+        <tr>
+          <td class="first-row">Phát triển nhận thức</td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="educationGoalData?.intelligence_education ? educationGoalData?.intelligence_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="studentGoalsAchievedData?.intelligence_education ? studentGoalsAchievedData?.intelligence_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="last-row">Giáo viên phụ trách</td>
+        </tr>
+
+        <tr>
+          <td class="first-row">Phát triển ngôn ngữ</td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="educationGoalData?.language_education ? educationGoalData?.language_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="studentGoalsAchievedData?.language_education ? studentGoalsAchievedData?.language_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="last-row">Giáo viên phụ trách</td>
+        </tr>
+
+        <tr>
+          <td class="first-row">Phát triển tình cảm xã hội</td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="educationGoalData?.socialite_education ? educationGoalData?.socialite_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="studentGoalsAchievedData?.socialite_education ? studentGoalsAchievedData?.socialite_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="last-row">Giáo viên phụ trách</td>
+        </tr>
+
+        <tr>
+          <td class="first-row">Phát triển thẩm mỹ</td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="educationGoalData?.art_education ? educationGoalData?.art_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="studentGoalsAchievedData?.art_education ? studentGoalsAchievedData?.art_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="last-row">Giáo viên phụ trách</td>
+        </tr>
+
+        <tr>
+          <td class="first-row">Sức khỏe</td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="educationGoalData?.health ? educationGoalData?.health : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="studentGoalsAchievedData?.health ? studentGoalsAchievedData?.health : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="last-row">Giáo viên phụ trách</td>
+        </tr>
+
+        <tr>
+          <td class="first-row">Tiếng Anh</td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="educationGoalData?.english_education ? educationGoalData?.english_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="studentGoalsAchievedData?.english_education ? studentGoalsAchievedData?.english_education : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="last-row">Giáo viên phụ trách</td>
+        </tr>
+
+        <tr>
+          <td class="first-row">Ngân hàng kỹ năng sống</td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="educationGoalData?.life_skill_bank ? educationGoalData?.life_skill_bank : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="content-row">
+            <textarea
+              readonly
+              [value]="studentGoalsAchievedData?.life_skill_bank ? studentGoalsAchievedData?.life_skill_bank : ''"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+            ></textarea>
+          </td>
+          <td class="last-row">Giáo viên phụ trách</td>
+        </tr>
+      </table>
+
+      <div class="solution-text-note">
+        <div class="padding-6 justify-text"><strong>Giải pháp định hướng: </strong></div>
+<!--        <div class="padding-6 justify-text">-->
+<!--          Lorem Ipsum is simply dummy text of the printing and typesetting industry.-->
+<!--          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,-->
+<!--          when an unknown printer took a galley of type and scrambled it to make a type-->
+<!--          specimen book. It has survived not only five centuries, but also the leap into-->
+<!--          electronic typesetting, remaining essentially unchanged.-->
+<!--        </div>-->
+        <div class="padding-6 justify-text">
+          <textarea
+            readonly
+            [value]="studyInformationData?.guideline ? studyInformationData?.guideline : ''"
+            matInput
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="1"
+          ></textarea>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-container">
+    <div>Phú lộc, Ngày 11 Tháng 11 Năm 2022</div>
+    <div style="padding-right: 90px;">HIỆU TRƯỞNG</div>
+    <div style="padding-top: 100px;padding-right: 60px;">NGUYỄN THỊ BÍCH HẬU</div>
   </div>
 </div>
