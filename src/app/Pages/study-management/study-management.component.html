@@ -30,7 +30,7 @@
             >
               <mat-option
                 *ngFor="let c of classesDataSource"
-                [value]="c.ID"
+                [value]="c"
               >{{c.name}}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -99,22 +99,15 @@
                 <span>Xuất</span>
               </button>
             </div>
-            <div class="widget-button">
-              <button class="widget-icon-button"
-                      mat-raised-button color="accent"
-              >
-                <mat-icon class="widget-icon">add_circle_outline</mat-icon>
-                <span>Import</span>
-              </button>
-            </div>
 
             <div class="widget-button">
               <button
+                [disabled]="!selectedStudentModel"
                 class="widget-icon-button"
                 mat-raised-button color="primary"
                 (click)="openAddClassDialog()"
               >
-                <mat-icon class="widget-icon">add_circle_outline</mat-icon>
+                <mat-icon clastạos="widget-icon">add_circle_outline</mat-icon>
                 <span>Tạo mới</span>
               </button>
             </div>

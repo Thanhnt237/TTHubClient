@@ -45,12 +45,11 @@ export class StudyManagementComponent implements OnInit {
     this.apiLoading = true
     const query = {
       filter_semester: this.selectedSemesterModel,
-      filter_class: this.selectedClassModel
+      filter_class: this.selectedClassModel?.ID
     }
 
     this._studentService.getStudentsInfo(query).subscribe(
       (res: any) => {
-        console.log(res);
         this.studentDataSource = res?.data
         this.apiLoading = false
       }, error => {
@@ -100,7 +99,11 @@ export class StudyManagementComponent implements OnInit {
   openAddClassDialog(){
     this._dialog.open(AddStudyDialogComponent, {
       width: "1360px",
-      height: "auto"
+      height: "auto",
+      data: {
+        studentModel: this.selectedStudentModel,
+        classModel: this.selectedClassModel
+      }
     })
       .afterClosed()
       .subscribe(res => {

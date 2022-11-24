@@ -10,7 +10,7 @@
           <kloud-divider></kloud-divider>
           <mat-card-content class="kard-kontent">
             <div class="kard-kontent-komponent">
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="outline">
                 <mat-label>Tháng</mat-label>
                 <mat-select
                   formControlName="month"
@@ -30,32 +30,32 @@
                 </mat-select>
               </mat-form-field>
 
-
-              <mat-form-field appearance="outline">
-                <mat-label>Học sinh</mat-label>
-                <mat-select
-                  formControlName="student"
-                >
-                  <mat-option [value]="{name: 'Nguyễn Ánh Dương'}">Nguyễn Ánh Dương</mat-option>
-                  <mat-option [value]="{name: 'Nguyễn Minh Tú'}">Nguyễn Minh Tú</mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline">
-                <mat-label>Lớp</mat-label>
-                <mat-select
-                  formControlName="class"
-                >
-                  <mat-option [value]="{name: 'Lớp 3 tuổi'}">Lớp 3 tuổi</mat-option>
-                </mat-select>
-              </mat-form-field>
-
               <mat-form-field appearance="outline">
                 <mat-label>GVCN</mat-label>
                 <mat-select
                   formControlName="user"
                 >
                   <mat-option [value]="{name: 'Cấn Tuấn Thành'}">Cấn Tuấn Thành</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Học sinh</mat-label>
+                <mat-select
+                  readonly
+                  formControlName="student"
+                >
+                  <mat-option disabled [value]="studyData?.studentModel">{{studyData?.studentModel.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Lớp</mat-label>
+                <mat-select
+                  readonly
+                  formControlName="class"
+                >
+                  <mat-option disabled [value]="studyData?.classModel">{{studyData?.classModel.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -81,11 +81,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-<!--                <input-->
-<!--                  formControlName="physical_education"-->
-<!--                  matInput-->
-<!--                  placeholder="Học tập tốt, lao động tốt"-->
-<!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -98,11 +93,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-<!--                <input-->
-<!--                  formControlName="intelligence_education"-->
-<!--                  matInput-->
-<!--                  placeholder="Học tập tốt, lao động tốt"-->
-<!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -115,11 +105,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-<!--                <input-->
-<!--                  formControlName="language_education"-->
-<!--                  matInput-->
-<!--                  placeholder="Học tập tốt, lao động tốt"-->
-<!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -132,11 +117,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-<!--                <input-->
-<!--                  formControlName="socialite_education"-->
-<!--                  matInput-->
-<!--                  placeholder="Học tập tốt, lao động tốt"-->
-<!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -149,11 +129,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-<!--                <input-->
-<!--                  formControlName="art_education"-->
-<!--                  matInput-->
-<!--                  placeholder="Học tập tốt, lao động tốt"-->
-<!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -166,11 +141,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-<!--                <input-->
-<!--                  formControlName="health"-->
-<!--                  matInput-->
-<!--                  placeholder="Hay ăn chóng lớn"-->
-<!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -183,11 +153,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-<!--                <input-->
-<!--                  formControlName="english_education"-->
-<!--                  matInput-->
-<!--                  placeholder="Học tập tốt, lao động tốt"-->
-<!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -200,11 +165,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-<!--                <input-->
-<!--                  formControlName="life_skill_bank"-->
-<!--                  matInput-->
-<!--                  placeholder="Học tập tốt, lao động tốt"-->
-<!--                />-->
               </mat-form-field>
             </div>
           </mat-card-content>
@@ -229,11 +189,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-                <!--                <input-->
-                <!--                  formControlName="physical_education"-->
-                <!--                  matInput-->
-                <!--                  placeholder="Học tập tốt, lao động tốt"-->
-                <!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -246,11 +201,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-                <!--                <input-->
-                <!--                  formControlName="intelligence_education"-->
-                <!--                  matInput-->
-                <!--                  placeholder="Học tập tốt, lao động tốt"-->
-                <!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -263,11 +213,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-                <!--                <input-->
-                <!--                  formControlName="language_education"-->
-                <!--                  matInput-->
-                <!--                  placeholder="Học tập tốt, lao động tốt"-->
-                <!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -280,11 +225,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-                <!--                <input-->
-                <!--                  formControlName="socialite_education"-->
-                <!--                  matInput-->
-                <!--                  placeholder="Học tập tốt, lao động tốt"-->
-                <!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -297,11 +237,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-                <!--                <input-->
-                <!--                  formControlName="art_education"-->
-                <!--                  matInput-->
-                <!--                  placeholder="Học tập tốt, lao động tốt"-->
-                <!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -314,11 +249,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-                <!--                <input-->
-                <!--                  formControlName="health"-->
-                <!--                  matInput-->
-                <!--                  placeholder="Hay ăn chóng lớn"-->
-                <!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -331,11 +261,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-                <!--                <input-->
-                <!--                  formControlName="english_education"-->
-                <!--                  matInput-->
-                <!--                  placeholder="Học tập tốt, lao động tốt"-->
-                <!--                />-->
               </mat-form-field>
 
               <mat-form-field appearance="legacy">
@@ -348,11 +273,6 @@
                   cdkAutosizeMinRows="1"
                   cdkAutosizeMaxRows="5"
                 ></textarea>
-                <!--                <input-->
-                <!--                  formControlName="life_skill_bank"-->
-                <!--                  matInput-->
-                <!--                  placeholder="Học tập tốt, lao động tốt"-->
-                <!--                />-->
               </mat-form-field>
             </div>
           </mat-card-content>
@@ -370,7 +290,7 @@
               <mat-form-field appearance="legacy" class="full-width-input">
                 <mat-label>Giải pháp định hướng</mat-label>
                 <textarea
-                  formControlName="guideline"
+                  formControlName="solution_orientation"
                   matInput
                   cdkTextareaAutosize
                   cdkAutosizeMinRows="1"
@@ -393,7 +313,12 @@
 
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close="" [mat-dialog-close]="'No data change'">Hủy</button>
-    <button mat-button color="primary" [disabled]="apiLoading" cdkFocusInitial type="submit">
+    <button mat-button color="primary"
+            [disabled]="apiLoading"
+            cdkFocusInitial
+            type="submit"
+            (click)="onOK()"
+    >
       <div style="display: flex;justify-content: center;align-items: center">
         <span *ngIf="isNew">Thêm mới</span>
         <span *ngIf="!isNew">Sửa</span>

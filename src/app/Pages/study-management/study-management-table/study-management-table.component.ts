@@ -35,7 +35,6 @@ export class StudyManagementTableComponent implements OnInit, OnChanges{
 
     this.educationGoalData.valueChanges.subscribe((res: any) => {
       this.educationGoalData = res
-      console.log(res);
     })
 
     this.studentGoalsAchievedData.valueChanges.subscribe((res: any) => {
